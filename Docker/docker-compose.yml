@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql:5
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - /Users/user/Documents/.docker/mysql/config:/etc/mysql/
+      - /Users/user/Documents/.docker/mysql/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: rentalCarService
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: password
