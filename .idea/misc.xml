@@ -4,6 +4,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/Car_Rental_WS/pom.xml" />
+        <option value="$PROJECT_DIR$/SOAP_WS_Currency_Converter/pom.xml" />
       </list>
     </option>
   </component>

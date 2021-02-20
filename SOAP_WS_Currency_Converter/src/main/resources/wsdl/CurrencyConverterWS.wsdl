@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://fh.converter.currency.ws.soap.campus.se.fh" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://fh.converter.currency.ws.soap.campus.se.fh" xmlns:intf="http://fh.converter.currency.ws.soap.campus.se.fh" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://fh.converter.currency.ws.soap.campus.se.fh" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="login">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="loginResponse">
+    <complexType>
+     <sequence>
+      <element name="loginReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getInterfaceVersion">
+    <complexType>
+     <sequence>
+      <element name="apiToken" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getInterfaceVersionResponse">
+    <complexType>
+     <sequence>
+      <element name="getInterfaceVersionReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="convert">
+    <complexType>
+     <sequence>
+      <element name="apiToyken" type="xsd:string"/>
+      <element name="fromCurrency" type="xsd:string"/>
+      <element name="toCurrency" type="xsd:string"/>
+      <element name="amount" type="xsd:float"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="convertResponse">
+    <complexType>
+     <sequence>
+      <element name="convertReturn" type="xsd:float"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="loginRequest">
+
+      <wsdl:part element="impl:login" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getInterfaceVersionRequest">
+
+      <wsdl:part element="impl:getInterfaceVersion" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getInterfaceVersionResponse">
+
+      <wsdl:part element="impl:getInterfaceVersionResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="convertResponse">
+
+      <wsdl:part element="impl:convertResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginResponse">
+
+      <wsdl:part element="impl:loginResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="convertRequest">
+
+      <wsdl:part element="impl:convert" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="CurrencyConverterWS">
+
+      <wsdl:operation name="login">
+
+         <wsdl:input message="impl:loginRequest" name="loginRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:loginResponse" name="loginResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getInterfaceVersion">
+
+         <wsdl:input message="impl:getInterfaceVersionRequest" name="getInterfaceVersionRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getInterfaceVersionResponse" name="getInterfaceVersionResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="convert">
+
+         <wsdl:input message="impl:convertRequest" name="convertRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:convertResponse" name="convertResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CurrencyConverterWSSoapBinding" type="impl:CurrencyConverterWS">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="login">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="loginRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="loginResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getInterfaceVersion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getInterfaceVersionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getInterfaceVersionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="convert">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="convertRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="convertResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CurrencyConverterWSService">
+
+      <wsdl:port binding="impl:CurrencyConverterWSSoapBinding" name="CurrencyConverterWS">
+
+         <wsdlsoap:address location="http://tempuri.org/CRM2RIMO/services/CurrencyConverterWS"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

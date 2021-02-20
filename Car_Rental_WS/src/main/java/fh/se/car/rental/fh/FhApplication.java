@@ -1,6 +1,8 @@
 package fh.se.car.rental.fh;
 
+import fh.se.car.rental.fh.model.Car;
 import fh.se.car.rental.fh.model.User;
+import fh.se.car.rental.fh.repository.CarRepository;
 import fh.se.car.rental.fh.repository.UserRepository;
 import fh.se.car.rental.fh.security.JWTAuthorizationFilter;
 import org.springframework.beans.factory.InitializingBean;
@@ -20,6 +22,8 @@ public class FhApplication {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    CarRepository carRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(FhApplication.class, args);
@@ -45,6 +49,8 @@ public class FhApplication {
         return () -> {
             User user = new User(1L, "testuser", "Dummy", "Dummy", "test", true, "emir@cajlakovic");
             userRepository.save(user);
+            Car car = new Car(1L, "Z4","BMW", 100F,"W-1235454");
+            carRepository.save(car);
         };
     };
 }
