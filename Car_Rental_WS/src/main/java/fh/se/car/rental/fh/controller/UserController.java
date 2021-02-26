@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @Validated
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -49,6 +50,7 @@ public class UserController {
     }
 
     @PostMapping("/user/login")
+    @CrossOrigin(origins = "http://localhost:8080")
     public User login(@RequestParam(value = "user", required = true) String username, @RequestParam(value = "password", required = true) String password){
         logger.info("Logging in "+username);
         User dbUser = userService.findByUserName(username);
