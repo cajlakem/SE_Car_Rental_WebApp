@@ -6,20 +6,23 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
+import java.math.BigDecimal;
 
 @WebService(serviceName = "CurrencyConverterService")
 public interface CurrencyConverterService {
 
+
+
     @WebMethod()
     @WebResult(name = "Amount")
-    public double convert(@WebParam(name = "apiToken") String apiToken, @WebParam(name = "from") CurrencyCode from, @WebParam(name = "to") CurrencyCode to, @WebParam(name = "amount") Float amount);
+    public BigDecimal convert(@WebParam(name = "apiToken") String apiToken, @WebParam(name = "to") CurrencyCode to, @WebParam(name = "amount") BigDecimal amount) throws Exception;
 
     @WebMethod()
     @WebResult(name = "Version")
-    public String version();
+    public String version() throws Exception;
 
     @WebMethod()
     @WebResult(name = "Token")
-    public String login(@WebParam(name = "username") String username, @WebParam(name = "password") String password);
+    public String login(@WebParam(name = "username") String username, @WebParam(name = "password") String password) throws Exception;
 
 }
