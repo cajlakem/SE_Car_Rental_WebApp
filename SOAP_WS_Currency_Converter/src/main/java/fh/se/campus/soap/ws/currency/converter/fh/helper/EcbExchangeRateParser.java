@@ -65,6 +65,7 @@ public class EcbExchangeRateParser implements ExchangeRateParser{
 
     private ExchangeRateDTO rawParse(String xmlUrl) throws XPathExpressionException {
 
+
         ExchangeRateDTO result = new ExchangeRateDTO();
         Map<Date, Map<String, BigDecimal>> resultMap = new HashMap<Date, Map<String, BigDecimal>>();
 
