@@ -45,6 +45,7 @@ public class UserController {
             logger.error(msg);
             throw new UsernameAlreadyInUse(msg);
         }
+        //TODO: This mess as soon as possible
         user.setPassword("test");
         userService.save(user);
     }

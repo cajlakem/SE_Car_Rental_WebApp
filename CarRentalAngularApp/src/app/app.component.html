@@ -1,6 +1,9 @@
 <div id="app">
   <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">Car Rental App</a>
+    <a href="#" class="navbar-brand">
+      <img src="/assets/car.png" width="60" height="60" alt="">
+      Car Rental Web Shop
+    </a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
         <a href="/home" class="nav-link" routerLink="home">Home </a>
@@ -33,6 +36,11 @@
         <a href class="nav-link" (click)="logout()">LogOut</a>
       </li>
     </ul>
+
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
   </nav>
 
   <div class="container">

@@ -260,8 +260,6 @@ JCar_Rental_WS/src/main/java/fh/se/car/rental/fh/exceptions/LoiginFail.java,e\6
 WCar_Rental_WS/src/main/java/fh/se/car/rental/fh/exceptions/RecordNotFoundException.java,e\2\e298d0536f8c7005451b0de10700aebfdc1a0d9d
 „
 TCar_Rental_WS/src/main/java/fh/se/car/rental/fh/exceptions/UsernameAlreadyInUse.java,7\2\72ec9725c6d97e981c3e5682940c63efb95dd8f7
-b
-2Car_Rental_WS/src/main/resources/log4j2-spring.xml,a\2\a2f47c50b4b2d68fec4fe46136481a59e059d057
 E
 Car_Rental_WS/HELP.md,0\2\024b5dbf5e5691c82103e3df0b784e01ff560897
 w
