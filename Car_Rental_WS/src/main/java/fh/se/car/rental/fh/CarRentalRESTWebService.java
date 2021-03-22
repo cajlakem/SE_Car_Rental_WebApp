@@ -16,9 +16,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
-public class FhApplication {
+public class CarRentalRESTWebService {
 
     @Autowired
     UserRepository userRepository;
@@ -26,7 +27,8 @@ public class FhApplication {
     CarRepository carRepository;
 
     public static void main(String[] args) {
-        SpringApplication.run(FhApplication.class, args);
+        SpringApplication.run(CarRentalRESTWebService.class, args);
+
     }
 
     @EnableWebSecurity
@@ -35,11 +37,10 @@ public class FhApplication {
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
-            http.csrf().disable()
-                    .addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
+            http.csrf().disable().addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                     .authorizeRequests()
-                    .antMatchers(HttpMethod.POST, "/user/login").permitAll()
-                    .antMatchers(HttpMethod.POST, "/user/register").permitAll()
+                    .antMatchers(HttpMethod.POST, "/users/login").permitAll()
+                    .antMatchers(HttpMethod.POST, "/users/register").permitAll()
                     .anyRequest().authenticated();
         }
     }
@@ -49,7 +50,7 @@ public class FhApplication {
         return () -> {
             User user = new User(1L, "testuser", "Dummy", "Dummy", "test", true, "emir@cajlakovic");
             userRepository.save(user);
-            Car car = new Car(1L, "Z4","BMW", 100F,"W-1235454");
+            Car car = new Car(1L, "C4","Covette", 100F,"W-1235454");
             carRepository.save(car);
         };
     };

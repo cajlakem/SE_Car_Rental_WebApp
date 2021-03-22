@@ -25,11 +25,11 @@ public class User {
     private List<Booking> bookings;
     private Boolean active;
     private String token;
-    @Column(unique = true)
+    @Column(unique = false)
     @NotNull(message = "Email cannot be null")
     @Email(message = "Email invalid")
     private String email;
-    @Column(unique = true)
+    @Column(unique = false)
     private String mobile;
 
     public Boolean getActive() {

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-@SuppressWarnings({"unchecked","rawtypes"})
+
 @ControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler
 {
@@ -22,7 +22,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler
         List<String> details = new ArrayList<>();
         details.add(ex.getLocalizedMessage());
         ErrorResponse error = new ErrorResponse("Server Error", details);
-        return new ResponseEntity(error, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity(error, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(RecordNotFoundException.class)

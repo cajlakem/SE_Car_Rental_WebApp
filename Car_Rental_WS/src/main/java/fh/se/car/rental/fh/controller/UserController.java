@@ -3,7 +3,7 @@ import fh.se.car.rental.fh.exceptions.LoiginFail;
 import fh.se.car.rental.fh.exceptions.RecordNotFoundException;
 import fh.se.car.rental.fh.exceptions.UsernameAlreadyInUse;
 import fh.se.car.rental.fh.model.User;
-import fh.se.car.rental.fh.service.UserService;
+import fh.se.car.rental.fh.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.slf4j.Logger;
@@ -13,48 +13,64 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@Validated
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
     @Autowired
-    private UserService userService;
+    private UserRepository userRepository;
+    Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    Logger logger;
 
-    {
-        logger = LoggerFactory.getLogger(UserController.class);
-    }
-
-    @GetMapping("/users")
-    public List<User> list(){
-        return userService.listAll();
-    }
-
-    @PostMapping("/user/register")
-    public void add(@Validated @RequestBody User user){
-        logger.info("Adding user "+user.getUserName());
-        User dbUser = userService.findByUserName(user.getUserName());
-        if(dbUser != null){
-            String msg = user.getUserName()+" already in use!";
+    @PostMapping("/users/register")
+    public User createUser(@Validated @RequestBody User newUser){
+        logger.info("Adding user "+newUser.getUserName());
+        if(userRepository.findByUserName(newUser.getUserName()) != null){
+            String msg = newUser.getUserName()+" already in use!";
             logger.error(msg);
             throw new UsernameAlreadyInUse(msg);
         }
-        //TODO: This mess as soon as possible
-        user.setPassword("test");
-        userService.save(user);
+        //TODO: I know you can do it better!
+        newUser.setPassword("test");
+        return userRepository.save(newUser);
     }
 
-    @PostMapping("/user/login")
-    @CrossOrigin(origins = "http://localhost:8080")
-    public User login(@RequestParam(value = "user", required = true) String username, @RequestParam(value = "password", required = true) String password){
+    @GetMapping("/users")
+    public List<User> queryAllUsers(){
+        return userRepository.findAll();
+    }
+
+    @GetMapping("/users/{id}")
+    User getUser(@PathVariable Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new RecordNotFoundException(id.toString()));
+    }
+
+    @PutMapping("/users/{id}")
+    User modifyUser(@RequestBody User newUser, @PathVariable Long id) {
+        return userRepository.findById(id)
+                .map(user -> {
+                    user.setEmail(newUser.getEmail());
+                    user.setMobile(newUser.getMobile());
+                    return userRepository.save(user);
+                })
+                .orElseGet(() -> {
+                    newUser.setId(id);
+                    return userRepository.save(newUser);
+                });
+    }
+
+    @DeleteMapping("/users/{id}")
+    void deleteUser(@PathVariable Long id) {
+        userRepository.deleteById(id);
+    }
+
+
+    @PostMapping("/users/login")
+    public String login(@RequestParam(value = "user", required = true) String username, @RequestParam(value = "password", required = true) String password){
         logger.info("Logging in "+username);
-        User dbUser = userService.findByUserName(username);
+        User dbUser = userRepository.findByUserName(username);
         if(dbUser == null){
             logger.error("Failed to login "+username);
             throw  new RecordNotFoundException(username+" not found!");
@@ -64,18 +80,16 @@ public class UserController {
             throw  new LoiginFail("Wrong credentials!");
         }
         String token = getJWTToken(username);
-        dbUser.setToken(token);
         logger.info("Token created for "+username+" "+token);
-        return dbUser;
+        return token;
     }
 
     private String getJWTToken(String username){
         String secretKey = "mySecretKey";
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils
-                .commaSeparatedStringToAuthorityList("ROLE_USER");
+                .commaSeparatedStringToAuthorityList("SYSTEM_ADMIN");
         String token = Jwts
                 .builder()
-                .setId("softtekJWT")
                 .setSubject(username)
                 .claim("authorities",
                         grantedAuthorities.stream()

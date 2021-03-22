@@ -14,3 +14,17 @@ services:
       MYSQL_DATABASE: rentalCarService
       MYSQL_USER: admin
       MYSQL_PASSWORD: password
+    networks:
+      - my_ws
+  backend_spring:
+    container_name: spring_container
+    image: lulzimbulica/vaccathon-backend
+    ports:
+      - 8443:8443
+    depends_on:
+      - db
+    networks:
+      - my_ws
+networks:
+  my_ws:
+    driver: bridge
