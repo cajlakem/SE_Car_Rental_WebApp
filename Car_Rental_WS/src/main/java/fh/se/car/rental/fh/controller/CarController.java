@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @Validated
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping("/api/v1")
 public class CarController {
     @Autowired
     private CarRepository carService;

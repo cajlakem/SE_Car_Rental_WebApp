@@ -1,5 +1,7 @@
 package fh.se.car.rental.fh.model;
 
+import fh.se.car.rental.fh.model.enums.CarState;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -18,16 +20,31 @@ public class Car {
     private Float price;
     private String licensePlate;
 
-    public Car(Long id, String label, String vendor, Float price, String licensePlate) {
+
+
+    @Enumerated(EnumType.ORDINAL)
+    private CarState status;
+
+    public Car(Long id, String label, String vendor, Float price, String licensePlate, CarState state) {
         this.id = id;
         this.label = label;
         this.vendor = vendor;
         this.price = price;
         this.licensePlate = licensePlate;
+        this.status = state;
     }
 
     public Car() {
 
+    }
+
+    public CarState getStatus() {
+        return status;
+    }
+
+    public Car setStatus(CarState status) {
+        this.status = status;
+        return this;
     }
 
     public Long getId() {

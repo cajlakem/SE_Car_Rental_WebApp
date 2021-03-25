@@ -14,16 +14,12 @@ import java.util.Optional;
 
 @RestController
 @Validated
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping("/api/v1")
 public class BookingController {
     @Autowired
     private BookingRepository bookingService;
 
-    Logger logger;
-
-    {
-        logger = LoggerFactory.getLogger(BookingController.class);
-    }
+    Logger logger = LoggerFactory.getLogger(BookingController.class);
 
     @GetMapping("/bookings")
     public List<Booking> list(){

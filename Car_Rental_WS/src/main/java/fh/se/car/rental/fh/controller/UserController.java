@@ -1,4 +1,5 @@
 package fh.se.car.rental.fh.controller;
+import fh.se.car.rental.fh.exceptions.CredentialsWrong;
 import fh.se.car.rental.fh.exceptions.LoiginFail;
 import fh.se.car.rental.fh.exceptions.RecordNotFoundException;
 import fh.se.car.rental.fh.exceptions.UsernameAlreadyInUse;
@@ -17,7 +18,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @RestController
+@RequestMapping("/api/v1")
 public class UserController {
     @Autowired
     private UserRepository userRepository;
@@ -25,15 +28,15 @@ public class UserController {
 
 
     @PostMapping("/users/register")
-    public User createUser(@Validated @RequestBody User newUser){
+    public User createUser(@Validated @RequestBody User newUser,  @RequestHeader(name = "reenteredPassword") String reenteredPassword){
         logger.info("Adding user "+newUser.getUserName());
+        if (reenteredPassword.isEmpty() || newUser.getPassword().equals(reenteredPassword)) throw new CredentialsWrong("Check the password!");
         if(userRepository.findByUserName(newUser.getUserName()) != null){
             String msg = newUser.getUserName()+" already in use!";
             logger.error(msg);
             throw new UsernameAlreadyInUse(msg);
         }
-        //TODO: I know you can do it better!
-        newUser.setPassword("test");
+        newUser.setPassword(reenteredPassword);
         return userRepository.save(newUser);
     }
 
@@ -43,12 +46,12 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    User getUser(@PathVariable Long id) {
+    public User getUser(@PathVariable Long id) {
         return userRepository.findById(id).orElseThrow(() -> new RecordNotFoundException(id.toString()));
     }
 
     @PutMapping("/users/{id}")
-    User modifyUser(@RequestBody User newUser, @PathVariable Long id) {
+    public User modifyUser(@RequestBody User newUser, @PathVariable Long id) {
         return userRepository.findById(id)
                 .map(user -> {
                     user.setEmail(newUser.getEmail());
@@ -62,13 +65,12 @@ public class UserController {
     }
 
     @DeleteMapping("/users/{id}")
-    void deleteUser(@PathVariable Long id) {
+    public void deleteUser(@PathVariable Long id) {
         userRepository.deleteById(id);
     }
 
-
     @PostMapping("/users/login")
-    public String login(@RequestParam(value = "user", required = true) String username, @RequestParam(value = "password", required = true) String password){
+    public String login(@RequestHeader(name = "username", required = true) String username, @RequestHeader(name = "password", required = true) String password){
         logger.info("Logging in "+username);
         User dbUser = userRepository.findByUserName(username);
         if(dbUser == null){

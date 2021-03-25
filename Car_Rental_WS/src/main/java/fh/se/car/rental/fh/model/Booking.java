@@ -1,5 +1,7 @@
 package fh.se.car.rental.fh.model;
 
+import fh.se.car.rental.fh.model.enums.BookingState;
+import fh.se.car.rental.fh.model.enums.CarState;
 import org.springframework.data.annotation.Reference;
 
 import javax.persistence.*;
@@ -35,11 +37,14 @@ public class Booking {
     @NotNull(message = "User cannot be null")
     private User user;
 
+    @Enumerated(EnumType.ORDINAL)
+    private BookingState status;
+
     public Booking() {
 
     }
 
-    public Booking(Long id, String remark, @NotNull(message = "Label cannot be null") String label, @NotNull(message = "StartTime cannot be null") Date startTime, Date endTime, @NotNull(message = "Price cannot be null") Float price, @NotNull(message = "Car cannot be null") Car car, @NotNull(message = "User cannot be null") User user) {
+    public Booking(Long id, String remark, @NotNull(message = "Label cannot be null") String label, @NotNull(message = "StartTime cannot be null") Date startTime, Date endTime, @NotNull(message = "Price cannot be null") Float price, @NotNull(message = "Car cannot be null") Car car, @NotNull(message = "User cannot be null") User user, BookingState state) {
         this.id = id;
         this.remark = remark;
         this.label = label;
@@ -48,6 +53,16 @@ public class Booking {
         this.price = price;
         this.car = car;
         this.user = user;
+        this.status = state;
+    }
+
+    public BookingState getStatus() {
+        return status;
+    }
+
+    public Booking setStatus(BookingState status) {
+        this.status = status;
+        return this;
     }
 
     public Long getId() {

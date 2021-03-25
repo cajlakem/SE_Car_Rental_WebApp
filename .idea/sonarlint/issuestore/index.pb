@@ -16,8 +16,6 @@ I
 Docker/docker-compose.yml,9\9\9928ac99c68c361676d183e871c3281f57a7b10c
 H
 Car_Rental_WS/Dockerfile,a\1\a15b5c130ae5f7456f781092b086172080329d48
-w
-GCar_Rental_WS/src/test/java/fh/se/car/rental/fh/FhApplicationTests.java,a\3\a35e31ceb272218ea49c5a466c53bfe2830278e8
 ù
 m.idea/dataSources/8a093ab9-30b3-4e96-9092-dd4ec2c7559b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta,8\4\84c140ac875345d7ca627c1657e9ce9e823bd14a
 c
@@ -472,3 +470,15 @@ JCar_Rental_WS/src/main/java/fh/se/car/rental/fh/services/DocumentType.java,b\e
 VCar_Rental_WS/src/main/java/fh/se/car/rental/fh/services/SequenceGeneratorService.java,a\e\aeff4b217f177e543b95d7196b28eaad6f4c70e4
 |
 LCar_Rental_WS/src/main/java/fh/se/car/rental/fh/CarRentalRESTWebService.java,f\1\f13480260e6fa47cc63fc6b37e7fe70a7d3b4f9e
+b
+2Docker/.gradle/buildOutputCleanup/cache.properties,6\f\6f605233884c0b171752dcd5a0b3f009d374425d
+P
+ Docker/.gradle/6.7/gc.properties,9\2\921963839a38206050a0d31ca40307e2f38b1fad
+`
+0Docker/.gradle/configuration-cache/gc.properties,2\0\20d5daf05dac8fc41cfa7bfb2e38879c6bb7fed6
+R
+"Docker/.gradle/vcs-1/gc.properties,9\7\97c52bbc70d3122e60e705fadbbe450a65fb057a
+N
+CarRentalAngularApp/Dockerfile,8\1\8101098eae767a28fc095be8d0dcba919a22d554
+N
+CarRentalAngularApp/nginx.conf,8\7\872f2ec836a38b5bbfd7ef6180d90f6bf52fd563
