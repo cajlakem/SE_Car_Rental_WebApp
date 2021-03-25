@@ -3,6 +3,7 @@ package fh.se.car.rental.fh;
 import fh.se.car.rental.fh.model.Car;
 import fh.se.car.rental.fh.model.User;
 import fh.se.car.rental.fh.model.enums.CarState;
+import fh.se.car.rental.fh.model.enums.CurrencyCode;
 import fh.se.car.rental.fh.repository.CarRepository;
 import fh.se.car.rental.fh.repository.UserRepository;
 import fh.se.car.rental.fh.security.JWTAuthorizationFilter;
@@ -50,7 +51,7 @@ public class CarRentalRESTWebService {
         return () -> {
             User user = new User(1L, "testuser", "Dummy", "Dummy", "test", true, "emir@cajlakovic");
             userRepository.save(user);
-            Car car = new Car(1L, "C4","Covette", 100F,"W-1235454", CarState.FREE);
+            Car car = new Car(1L, "C4","Covette", 100F,"W-1235454", CarState.FREE, CurrencyCode.USD);
             carRepository.save(car);
         };
     };

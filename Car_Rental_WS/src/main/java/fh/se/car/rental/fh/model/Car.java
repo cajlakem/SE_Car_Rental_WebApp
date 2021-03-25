@@ -1,6 +1,7 @@
 package fh.se.car.rental.fh.model;
 
 import fh.se.car.rental.fh.model.enums.CarState;
+import fh.se.car.rental.fh.model.enums.CurrencyCode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -19,19 +20,20 @@ public class Car {
     @NotNull(message = "Price cannot be null")
     private Float price;
     private String licensePlate;
-
-
-
     @Enumerated(EnumType.ORDINAL)
     private CarState status;
+    @NotNull(message = "currency cannot be null")
+    @Enumerated(EnumType.ORDINAL)
+    private CurrencyCode currency;
 
-    public Car(Long id, String label, String vendor, Float price, String licensePlate, CarState state) {
+    public Car(Long id, @NotNull(message = "Username cannot be null") String label, @NotNull(message = "Vendor cannot be null") String vendor, @NotNull(message = "Price cannot be null") Float price, String licensePlate, CarState status, @NotNull(message = "currency cannot be null") CurrencyCode currency) {
         this.id = id;
         this.label = label;
         this.vendor = vendor;
         this.price = price;
         this.licensePlate = licensePlate;
-        this.status = state;
+        this.status = status;
+        this.currency = currency;
     }
 
     public Car() {
@@ -89,6 +91,15 @@ public class Car {
 
     public Car setLicensePlate(String licensePlate) {
         this.licensePlate = licensePlate;
+        return this;
+    }
+
+    public CurrencyCode getCurrency() {
+        return currency;
+    }
+
+    public Car setCurrency(CurrencyCode currency) {
+        this.currency = currency;
         return this;
     }
 }

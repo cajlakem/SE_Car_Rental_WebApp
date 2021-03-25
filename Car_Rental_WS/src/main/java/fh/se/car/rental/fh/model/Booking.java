@@ -2,6 +2,7 @@ package fh.se.car.rental.fh.model;
 
 import fh.se.car.rental.fh.model.enums.BookingState;
 import fh.se.car.rental.fh.model.enums.CarState;
+import fh.se.car.rental.fh.model.enums.CurrencyCode;
 import org.springframework.data.annotation.Reference;
 
 import javax.persistence.*;
@@ -37,14 +38,19 @@ public class Booking {
     @NotNull(message = "User cannot be null")
     private User user;
 
+    @NotNull(message = "state cannot be null")
     @Enumerated(EnumType.ORDINAL)
     private BookingState status;
+
+    @NotNull(message = "currency cannot be null")
+    @Enumerated(EnumType.ORDINAL)
+    private CurrencyCode currency;
 
     public Booking() {
 
     }
 
-    public Booking(Long id, String remark, @NotNull(message = "Label cannot be null") String label, @NotNull(message = "StartTime cannot be null") Date startTime, Date endTime, @NotNull(message = "Price cannot be null") Float price, @NotNull(message = "Car cannot be null") Car car, @NotNull(message = "User cannot be null") User user, BookingState state) {
+    public Booking(Long id, String remark, @NotNull(message = "Label cannot be null") String label, @NotNull(message = "StartTime cannot be null") Date startTime, Date endTime, @NotNull(message = "Price cannot be null") Float price, @NotNull(message = "Car cannot be null") Car car, @NotNull(message = "User cannot be null") User user, @NotNull(message = "state cannot be null") BookingState status, @NotNull(message = "currency cannot be null") CurrencyCode currency) {
         this.id = id;
         this.remark = remark;
         this.label = label;
@@ -53,7 +59,8 @@ public class Booking {
         this.price = price;
         this.car = car;
         this.user = user;
-        this.status = state;
+        this.status = status;
+        this.currency = currency;
     }
 
     public BookingState getStatus() {
@@ -134,6 +141,15 @@ public class Booking {
 
     public Booking setEndTime(Date endTime) {
         this.endTime = endTime;
+        return this;
+    }
+
+    public CurrencyCode getCurrency() {
+        return currency;
+    }
+
+    public Booking setCurrency(CurrencyCode currency) {
+        this.currency = currency;
         return this;
     }
 }

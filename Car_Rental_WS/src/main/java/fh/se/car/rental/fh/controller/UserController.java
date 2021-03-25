@@ -29,8 +29,8 @@ public class UserController {
 
     @PostMapping("/users/register")
     public User createUser(@Validated @RequestBody User newUser,  @RequestHeader(name = "reenteredPassword") String reenteredPassword){
+        if (reenteredPassword.isEmpty() || !newUser.getPassword().equals(reenteredPassword)) throw new CredentialsWrong("Check the password! "+reenteredPassword + " != "+newUser.getPassword());
         logger.info("Adding user "+newUser.getUserName());
-        if (reenteredPassword.isEmpty() || newUser.getPassword().equals(reenteredPassword)) throw new CredentialsWrong("Check the password!");
         if(userRepository.findByUserName(newUser.getUserName()) != null){
             String msg = newUser.getUserName()+" already in use!";
             logger.error(msg);
