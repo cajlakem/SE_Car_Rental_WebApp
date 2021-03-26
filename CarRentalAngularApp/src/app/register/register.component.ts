@@ -8,9 +8,12 @@ import { AuthService } from '../_services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   form: any = {
+    lastname: null,
+    firstname: null,
     username: null,
     email: null,
-    password: null
+    password: null,
+    mobile: null
   };
   isSuccessful = false;
   isSignUpFailed = false;
@@ -22,9 +25,9 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const { username, email, password } = this.form;
+    const { firstname, lastname, username, email, password, mobile } = this.form;
 
-    this.authService.register(username, email, password).subscribe(
+    this.authService.register(firstname, lastname, username, email, password, mobile).subscribe(
       data => {
         console.log(data);
         this.isSuccessful = true;

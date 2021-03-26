@@ -1,4 +1,5 @@
 package fh.se.car.rental.fh.controller;
+import fh.se.car.rental.fh.controller.helper.JwtResponse;
 import fh.se.car.rental.fh.exceptions.CredentialsWrong;
 import fh.se.car.rental.fh.exceptions.LoiginFail;
 import fh.se.car.rental.fh.exceptions.RecordNotFoundException;
@@ -14,6 +15,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -71,7 +75,7 @@ public class UserController {
     }
 
     @PostMapping("/users/login")
-    public String login(@RequestHeader(name = "username", required = true) String username, @RequestHeader(name = "password", required = true) String password){
+    public JwtResponse login(@RequestHeader(name = "username", required = true) String username, @RequestHeader(name = "password", required = true) String password){
         logger.info("Logging in "+username);
         User dbUser = userRepository.findByUserName(username);
         if(dbUser == null){
@@ -82,18 +86,18 @@ public class UserController {
             logger.error("Failed to login "+username);
             throw  new LoiginFail("Wrong credentials!");
         }
-        String token = getJWTToken(username);
-        logger.info("Token created for "+username+" "+token);
+        JwtResponse token = getJWTToken(dbUser);
+        logger.info("Token created for "+username+" "+token.getAccessToken());
         return token;
     }
 
-    private String getJWTToken(String username){
+    private JwtResponse getJWTToken(User dbUser){
         String secretKey = "mySecretKey";
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils
                 .commaSeparatedStringToAuthorityList("SYSTEM_ADMIN");
         String token = Jwts
                 .builder()
-                .setSubject(username)
+                .setSubject(dbUser.getUserName())
                 .claim("authorities",
                         grantedAuthorities.stream()
                                 .map(GrantedAuthority::getAuthority)
@@ -102,6 +106,7 @@ public class UserController {
                 .setExpiration(new Date(System.currentTimeMillis() + 600000))
                 .signWith(SignatureAlgorithm.HS512,
                         secretKey.getBytes()).compact();
-        return "Bearer " + token;
+
+        return new JwtResponse(token, dbUser.getId(), dbUser.getUserName(), dbUser.getEmail(), Arrays.asList("ADMIN", "MODERATOR", "USER"));
     }
 }
