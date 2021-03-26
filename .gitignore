@@ -12,7 +12,7 @@ target/
 .settings
 .springBeans
 .sts4-cache
-/swagger/swagger-ui.html
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
