@@ -49,6 +49,7 @@ public class CarRentalRESTWebService {
                     .antMatchers(HttpMethod.POST, "/api/v1/users/register").permitAll()
                     .antMatchers(HttpMethod.GET, "/swagger/**").permitAll()
                     .anyRequest().authenticated();
+            http.cors();
         }
     }
 
