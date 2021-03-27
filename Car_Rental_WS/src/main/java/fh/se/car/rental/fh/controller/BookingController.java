@@ -2,7 +2,6 @@ package fh.se.car.rental.fh.controller;
 
 import fh.se.car.rental.fh.exceptions.CarLabelAlreadyInUse;
 import fh.se.car.rental.fh.model.Booking;
-import fh.se.car.rental.fh.model.Car;
 import fh.se.car.rental.fh.model.enums.BookingState;
 import fh.se.car.rental.fh.model.enums.CurrencyCode;
 import fh.se.car.rental.fh.repository.BookingRepository;
@@ -28,6 +27,11 @@ public class BookingController {
     @GetMapping("/bookings")
     public List<Booking> list(){
         return bookingService.findAll();
+    }
+
+    @GetMapping("/currencyCodes")
+    public Enum<CurrencyCode>[] getCurrencyCodes(){
+        return CurrencyCode.values();
     }
 
     @GetMapping("/bookings/findByState")
