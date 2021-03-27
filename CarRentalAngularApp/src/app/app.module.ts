@@ -13,6 +13,7 @@ import { BoardUserComponent } from './board-user/board-user.component';
 import { ServicepointComponent } from './servicepoint/servicepoint.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { CarListComponent } from "./home/car-list/car-list.component";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     HomeComponent,
     ProfileComponent,
     BoardUserComponent,
-    ServicepointComponent
+    ServicepointComponent,
+    CarListComponent
   ],
   imports: [
     BrowserModule,
