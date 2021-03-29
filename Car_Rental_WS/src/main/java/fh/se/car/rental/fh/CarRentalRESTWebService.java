@@ -1,5 +1,6 @@
 package fh.se.car.rental.fh;
 
+import fh.se.car.rental.fh.currency.ws.client.CurrencyClient;
 import fh.se.car.rental.fh.model.Car;
 import fh.se.car.rental.fh.model.User;
 import fh.se.car.rental.fh.model.enums.CarState;
@@ -32,7 +33,8 @@ public class CarRentalRESTWebService {
     @Autowired
     CarRepository carRepository;
 
-    //CurrencyClient currencyClient;
+    @Autowired
+    CurrencyClient currencyClient;
 
     public static void main(String[] args) {
         SpringApplication.run(CarRentalRESTWebService.class, args);
@@ -74,7 +76,7 @@ public class CarRentalRESTWebService {
             userRepository.save(user);
             Car car = new Car(1L, "C4","Covette", 100D,"W-1235454", CarState.FREE, CurrencyCode.USD);
             carRepository.save(car);
-
+            currencyClient.convertCurrency("EUR", 100D);
         };
     };
 }
