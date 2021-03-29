@@ -76,7 +76,7 @@ public class CarRentalRESTWebService {
             userRepository.save(user);
             Car car = new Car(1L, "C4","Covette", 100D,"W-1235454", CarState.FREE, CurrencyCode.USD);
             carRepository.save(car);
-            currencyClient.convertCurrency("EUR", 100D);
+            //currencyClient.convertCurrency("EUR", 100D);
         };
     };
 }
