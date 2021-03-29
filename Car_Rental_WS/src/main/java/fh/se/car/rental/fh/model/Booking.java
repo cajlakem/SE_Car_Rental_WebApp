@@ -28,7 +28,7 @@ public class Booking {
     private Date endTime;
 
     @NotNull(message = "Price cannot be null")
-    private Float price;
+    private Double price;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn
     @NotNull(message = "Car cannot be null")
@@ -50,7 +50,7 @@ public class Booking {
 
     }
 
-    public Booking(Long id, String remark, @NotNull(message = "Label cannot be null") String label, @NotNull(message = "StartTime cannot be null") Date startTime, Date endTime, @NotNull(message = "Price cannot be null") Float price, @NotNull(message = "Car cannot be null") Car car, @NotNull(message = "User cannot be null") User user, @NotNull(message = "state cannot be null") BookingState status, @NotNull(message = "currency cannot be null") CurrencyCode currency) {
+    public Booking(Long id, String remark, @NotNull(message = "Label cannot be null") String label, @NotNull(message = "StartTime cannot be null") Date startTime, Date endTime, @NotNull(message = "Price cannot be null") Double price, @NotNull(message = "Car cannot be null") Car car, @NotNull(message = "User cannot be null") User user, @NotNull(message = "state cannot be null") BookingState status, @NotNull(message = "currency cannot be null") CurrencyCode currency) {
         this.id = id;
         this.remark = remark;
         this.label = label;
@@ -90,11 +90,11 @@ public class Booking {
         return this;
     }
 
-    public Float getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public Booking setPrice(Float price) {
+    public Booking setPrice(Double price) {
         this.price = price;
         return this;
     }

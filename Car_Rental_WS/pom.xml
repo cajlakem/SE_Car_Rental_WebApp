@@ -66,12 +66,37 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-core</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.14.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <schemaLanguage>WSDL</schemaLanguage>
+                    <generateDirectory>${project.basedir}/src/main/java</generateDirectory>
+                    <generatePackage>fh.se.car.rental.fh.currency.ws.client.helper</generatePackage>
+                    <schemaDirectory>${project.basedir}/src/main/resources</schemaDirectory>
+                    <schemaIncludes>
+                        <include>cc_client.wsdl</include>
+                    </schemaIncludes>
+                </configuration>
             </plugin>
         </plugins>
     </build>

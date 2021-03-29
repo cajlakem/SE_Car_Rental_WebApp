@@ -1,5 +1,4 @@
 package fh.se.car.rental.fh.controller;
-
 import fh.se.car.rental.fh.exceptions.CarLabelAlreadyInUse;
 import fh.se.car.rental.fh.model.Booking;
 import fh.se.car.rental.fh.model.enums.BookingState;
@@ -21,6 +20,9 @@ import java.util.Optional;
 public class BookingController {
     @Autowired
     private BookingRepository bookingService;
+
+    //@Autowired
+    //private CurrencyClient currencyClient;
 
     Logger logger = LoggerFactory.getLogger(BookingController.class);
 
@@ -44,6 +46,7 @@ public class BookingController {
             if(booking.getStatus() == state) {
                 result.add(booking);
                 booking.setStatus(state);
+                //booking.setPrice(currencyClient.convertCurrency(currency.toString(), booking.getPrice()));
             }
         }
         return result;

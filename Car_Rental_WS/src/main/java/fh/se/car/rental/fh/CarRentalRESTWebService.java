@@ -32,6 +32,8 @@ public class CarRentalRESTWebService {
     @Autowired
     CarRepository carRepository;
 
+    //CurrencyClient currencyClient;
+
     public static void main(String[] args) {
         SpringApplication.run(CarRentalRESTWebService.class, args);
 
@@ -70,8 +72,9 @@ public class CarRentalRESTWebService {
         return () -> {
             User user = new User(1L, "testuser", "Dummy", "Dummy", "test", true, "emir@cajlakovic");
             userRepository.save(user);
-            Car car = new Car(1L, "C4","Covette", 100F,"W-1235454", CarState.FREE, CurrencyCode.USD);
+            Car car = new Car(1L, "C4","Covette", 100D,"W-1235454", CarState.FREE, CurrencyCode.USD);
             carRepository.save(car);
+
         };
     };
 }
