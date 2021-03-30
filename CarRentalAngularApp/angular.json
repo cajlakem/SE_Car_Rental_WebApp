@@ -68,7 +68,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "CarRentalAngularApp:build"
+            "browserTarget": "CarRentalAngularApp:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
