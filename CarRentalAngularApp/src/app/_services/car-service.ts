@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Car} from "../_models/Car";
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {Car} from '../_models/Car';
 
 const API_URL = '/rest/';
 

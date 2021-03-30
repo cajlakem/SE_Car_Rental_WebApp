@@ -1,0 +1,13 @@
+.bg-image{
+  background-image: url("../assets/snazzy-image.png");
+}
+.round {
+  border-radius: 25px;
+}
+.nav-link{
+  padding-right: 2.5em !important;
+  padding-left: 2.5em !important;
+  color: white !important;
+}
+.logotitle{
+}
