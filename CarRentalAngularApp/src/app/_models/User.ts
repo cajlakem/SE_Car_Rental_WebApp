@@ -1,4 +1,4 @@
-import {Booking} from "./Booking";
+import {Booking} from './Booking';
 
 export class User {
   id: number;
