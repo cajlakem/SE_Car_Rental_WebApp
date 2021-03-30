@@ -23,15 +23,6 @@ services:
       - db
     networks:
       - my_ws
-  angular_frontend:
-    container_name: angular_frontend
-    build: ./../CarRentalAngularApp/
-    ports:
-      - 80:80
-    depends_on:
-      - db
-    networks:
-      - my_ws
 networks:
   my_ws:
     driver: bridge

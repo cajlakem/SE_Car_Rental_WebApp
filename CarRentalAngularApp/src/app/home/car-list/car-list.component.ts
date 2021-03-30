@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {CarService} from "../../_services/car-service";
-import {Car} from "../../_models/Car";
+import {CarService} from '../../_services/car-service';
+import {Car} from '../../_models/Car';
 import { faCheckDouble, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { AppComponent } from '../../app.component';
 
 
 @Component({
@@ -13,10 +14,11 @@ export class CarListComponent implements OnInit {
   cars:Car[] = [];
   iconDoubleCheck = faCheckDouble;
   iconCircleX = faTimesCircle;
-
+  app: AppComponent;
   constructor(private carService: CarService) { }
 
   ngOnInit(): void {
+    this.app = AppComponent.myapp;
     this.carService.retrieveCars().subscribe(cars => {
       this.cars = cars;
       console.log(cars);

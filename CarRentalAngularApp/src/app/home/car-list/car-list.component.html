@@ -1,4 +1,4 @@
-<div class="car-list">
+<div class="car-list" *ngIf="app.isLoggedIn">
 
   <ul>
     <li class="car-list-headings">
@@ -23,5 +23,8 @@
       </div>
     </li>
   </ul>
+
+</div>
+<div class="car-list" *ngIf="app.isLoggedIn">
 
 </div>

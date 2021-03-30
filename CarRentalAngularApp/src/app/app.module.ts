@@ -9,12 +9,12 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
-import { BoardUserComponent } from './board-user/board-user.component';
+import { BookingsComponent } from './bookings/bookings.component';
 import { ServicepointComponent } from './servicepoint/servicepoint.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
-import { CarListComponent } from "./home/car-list/car-list.component";
-import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import { CarListComponent } from './home/car-list/car-list.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -23,9 +23,9 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     RegisterComponent,
     HomeComponent,
     ProfileComponent,
-    BoardUserComponent,
     ServicepointComponent,
-    CarListComponent
+    CarListComponent,
+    BookingsComponent
   ],
   imports: [
     BrowserModule,

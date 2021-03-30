@@ -7,8 +7,10 @@ import { TokenStorageService } from './_services/token-storage.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  // @ts-ignore
+  static myapp;
   private roles: string[] = [];
-  title = 'CarRentalAngularApp';
+  title = 'Car Rental System';
   isLoggedIn = false;
   showAdminBoard = false;
   showModeratorBoard = false;
@@ -17,6 +19,7 @@ export class AppComponent implements OnInit {
   constructor(private tokenStorageService: TokenStorageService) { }
 
   ngOnInit(): void {
+    AppComponent.myapp = this;
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {
