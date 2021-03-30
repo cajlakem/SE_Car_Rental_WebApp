@@ -14,6 +14,7 @@ import { ServicepointComponent } from './servicepoint/servicepoint.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { CarListComponent } from "./home/car-list/car-list.component";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CarListComponent } from "./home/car-list/car-list.component";
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
