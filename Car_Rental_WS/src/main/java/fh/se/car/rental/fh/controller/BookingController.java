@@ -1,5 +1,6 @@
 package fh.se.car.rental.fh.controller;
 import fh.se.car.rental.fh.exceptions.CarLabelAlreadyInUse;
+import fh.se.car.rental.fh.exceptions.RecordNotFoundException;
 import fh.se.car.rental.fh.model.Booking;
 import fh.se.car.rental.fh.model.enums.BookingState;
 import fh.se.car.rental.fh.model.enums.CurrencyCode;
@@ -56,12 +57,18 @@ public class BookingController {
     public void add(@Validated @RequestBody Booking booking){
         logger.info("Adding booking "+booking.getId());
         Optional<Booking> dbBooking = bookingService.findById(booking.getId());
-        if(dbBooking != null){
+        if(dbBooking.isPresent()){
             String msg = booking.getId()+" already in use!";
             logger.error(msg);
             throw new CarLabelAlreadyInUse(msg);
         }
         bookingService.save(booking);
+    }
+
+    @GetMapping("/bookings/user/{id}")
+    public List<Booking> getUser(@PathVariable Long id) {
+        System.out.println(bookingService.findByUserId(id).get());
+        return bookingService.findByUserId(id).orElseThrow(() -> new RecordNotFoundException(id.toString()));
     }
 
 }

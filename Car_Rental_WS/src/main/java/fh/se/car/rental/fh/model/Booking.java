@@ -29,11 +29,11 @@ public class Booking {
 
     @NotNull(message = "Price cannot be null")
     private Double price;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn
     @NotNull(message = "Car cannot be null")
     private Car car;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn
     @NotNull(message = "User cannot be null")
     private User user;
