@@ -1,0 +1,47 @@
+<?xml version ='1.0' encoding ='UTF-8' ?>
+<definitions name='CurrencyConverter'
+  targetNamespace='http://fh.converter.currency.ws.soap.campus.se.fh'
+  xmlns:tns='http://fh.converter.currency.ws.soap.campus.se.fh'
+  xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/'
+  xmlns:xsd='http://www.w3.org/2001/XMLSchema'
+  xmlns:soapenc='http://schemas.xmlsoap.org/soap/encoding/'
+  xmlns:wsdl='http://schemas.xmlsoap.org/wsdl/'
+  xmlns='http://schemas.xmlsoap.org/wsdl/'> 
+
+<message name='convertToCurrencyRequest'>
+  <part name='toCurrency' type='xsd:string'/>
+  <part name='amount' type='xsd:float'/>
+</message>
+<message name='convertToCurrencyResponse'>
+  <part name='Result' type='xsd:float'/>
+</message> 
+
+<portType name='convertToCurrencyPortType'>
+  <operation name='convertToCurrency'>
+    <input message='tns:convertToCurrencyRequest'/>
+    <output message='tns:convertToCurrencyResponse'/>
+  </operation>
+</portType> 
+
+<binding name='convertToCurrencyBinding' type='tns:convertToCurrencyPortType'>
+  <soap:binding style='rpc'
+    transport='http://schemas.xmlsoap.org/soap/http'/>
+  <operation name='convertToCurrency'>
+    <soap:operation soapAction='urn:CurrencyConverter#convertToCurrency'/>
+    <input>
+      <soap:body use='encoded' namespace='urn:CurrencyConverter'
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+    </input>
+    <output>
+      <soap:body use='encoded' namespace='urn:CurrencyConverter'
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+    </output>
+  </operation>
+</binding> 
+
+<service name='convertToCurrencyService'>
+  <port name='convertToCurrencyPort' binding='convertToCurrencyBinding'>
+    <soap:address location='http://localhost/CurrencyConverterWebservice/CurrencyConverter.php' />
+  </port>
+</service>
+</definitions>
