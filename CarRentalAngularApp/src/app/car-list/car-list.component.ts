@@ -29,16 +29,24 @@ export class CarListComponent implements OnInit {
 
     this.userService.getCurrentUser()?.subscribe((user: User) => {
         this.currentUser = user;
-        if (this.currentUser) {
-          this.carService.retrieveUserBookings(this.currentUser.id).subscribe(bookings => {
-            this.userBookings = bookings;
-          })
-        }
+        this.retrieveUsersBookings();
       },
       err => {
         console.error(err.error.message);
       });
 
+    this.retrieveAllCars();
+  }
+
+  retrieveUsersBookings() {
+    if (this.currentUser) {
+      this.carService.retrieveUserBookings(this.currentUser.id).subscribe(bookings => {
+        this.userBookings = bookings;
+      })
+    }
+  }
+
+  retrieveAllCars() {
     this.carService.retrieveCars().subscribe(cars => {
         this.cars = cars;
       },
@@ -54,7 +62,7 @@ export class CarListComponent implements OnInit {
   bookCar(car: Car) {
     if (this.currentUser) {
       this.carService.bookCar(car, this.currentUser).subscribe((data: any) => {
-          console.log(data);
+          this.retrieveUsersBookings();
         },
         (err: any) => {
           console.error(err.error);
