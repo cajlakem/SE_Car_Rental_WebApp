@@ -43,6 +43,6 @@
   transform: scale(1.02);
 }
 
-.car-list-cell {
-
+.booking-button:active, .booking-button:focus {
+  outline: none;
 }

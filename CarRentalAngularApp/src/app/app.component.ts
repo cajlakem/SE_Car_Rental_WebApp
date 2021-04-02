@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
 
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
-      this.username = user.username;
+      this.username = user?.username;
     }
     this.userService.getPublicContent().subscribe(
       data => {

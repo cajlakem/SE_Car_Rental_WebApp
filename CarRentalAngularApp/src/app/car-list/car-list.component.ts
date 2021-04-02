@@ -29,6 +29,11 @@ export class CarListComponent implements OnInit {
 
     this.userService.getCurrentUser()?.subscribe((user: User) => {
         this.currentUser = user;
+        if (this.currentUser) {
+          this.carService.retrieveUserBookings(this.currentUser.id).subscribe(bookings => {
+            this.userBookings = bookings;
+          })
+        }
       },
       err => {
         console.error(err.error.message);

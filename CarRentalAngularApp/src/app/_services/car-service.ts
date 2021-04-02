@@ -19,7 +19,9 @@ export class CarService {
     return this.http.get<Array<Car>>(API_URL + 'cars');
   }
 
-}
+  retrieveUserBookings(userId: any): Observable<Array<Booking>> {
+    return this.http.get<Array<Booking>>(API_URL + 'bookings/user/' + userId);
+  }
 
   bookCar(carToBook: Car, user: User): any {
     const bookingId = Number.parseInt(user.id.toString() + Date.now());
