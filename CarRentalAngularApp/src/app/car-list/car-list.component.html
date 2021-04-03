@@ -1,10 +1,39 @@
-<div class="car-list" *ngIf="app.isLoggedIn">
+<div class="car-list">
+
+  <ul>
+    <li class="car-list-headings">
+      <div class="car-list-cell">Car</div>
+      <div class="car-list-cell">Start Date</div>
+      <div class="car-list-cell">End Date</div>
+      <div class="car-list-cell">Price</div>
+      <div class="car-list-cell">Status</div>
+    </li>
+    <li *ngFor="let booking of userBookings"
+        class="car-list-item">
+      <div class="car-list-cell"
+           style="font-weight: bold"
+      >
+        {{booking.car.label}}
+      </div>
+      <div class="car-list-cell"> {{booking.startTime | date: 'dd:MM:YY hh:mm'}}</div>
+      <div class="car-list-cell"> {{booking.endTime | date: 'dd:MM:YY hh:mm'}} </div>
+      <div class="car-list-cell"> {{booking.price + ' ' + booking.currency}} </div>
+      <div class="car-list-cell">
+        <fa-icon *ngIf="isCarFree(booking.status)" style="color: darkseagreen" [icon]="iconDoubleCheck"></fa-icon>
+        <fa-icon *ngIf="!isCarFree(booking.status)" style="color: lightgrey" [icon]="iconCircleX"></fa-icon>
+        {{booking.status}}
+      </div>
+    </li>
+  </ul>
+
+
   <ul>
     <li class="car-list-headings">
       <div class="car-list-cell">Car</div>
       <div class="car-list-cell">Vendor</div>
       <div class="car-list-cell">Price</div>
       <div class="car-list-cell">Status</div>
+      <div class="car-list-cell" style="min-width: 120px;"></div>
     </li>
     <li *ngFor="let car of cars"
         class="car-list-item">
@@ -19,6 +48,11 @@
         <fa-icon *ngIf="isCarFree(car.status)" style="color: darkseagreen" [icon]="iconDoubleCheck"></fa-icon>
         <fa-icon *ngIf="!isCarFree(car.status)" style="color: lightgrey" [icon]="iconCircleX"></fa-icon>
         {{car.status}}
+      </div>
+      <div class="car-list-cell">
+        <button *ngIf="isCarFree(car.status)" class="btn-primary round booking-button" style="min-width: 120px;" (click)="bookCar(car)">
+          book {{car.label}}
+        </button>
       </div>
     </li>
   </ul>

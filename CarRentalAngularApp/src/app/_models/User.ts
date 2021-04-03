@@ -10,4 +10,5 @@ export class User {
   token: string;
   email: string;
   mobile: string;
+  password: string;
 }
