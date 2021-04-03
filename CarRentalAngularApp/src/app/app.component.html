@@ -22,8 +22,11 @@
     </ul>
   </nav>
 
-      <header class="jumbotron jumbotron-fluid bg-image text-black">
-        <h1 class="text-primary">&nbsp;C A R NOW | mieten</h1>
-      </header>
-      <app-car-list></app-car-list>
+  <header class="jumbotron jumbotron-fluid bg-image text-black">
+    <h1 class="text-primary">&nbsp;C A R NOW | mieten</h1>
+  </header>
+
+  <app-currency-selection (onCurrencyValueChanged)="onCurrencySelectionEvent($event)"></app-currency-selection>
+
+  <app-car-list [currency]="currency"></app-car-list>
 </div>

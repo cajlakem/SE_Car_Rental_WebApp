@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { TokenStorageService } from './_services/token-storage.service';
+import {Component, OnInit} from '@angular/core';
+import {TokenStorageService} from './_services/token-storage.service';
 import {UserService} from './_services/user.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
 
@@ -19,8 +19,11 @@ export class AppComponent implements OnInit {
   title = 'C A R NOW';
   isLoggedIn = false;
   username?: string;
+  currency: string;
 
-  constructor(private userService: UserService, private tokenStorageService: TokenStorageService, public dialog: MatDialog) { }
+
+  constructor(private userService: UserService, private tokenStorageService: TokenStorageService, public dialog: MatDialog) {
+  }
 
   openLoginDialog(): void {
     const dialogRef = this.dialog.open(LoginComponent, {
@@ -29,7 +32,7 @@ export class AppComponent implements OnInit {
   }
 
   openRegisterDialog(): void {
-    const dialogRef = this.dialog.open(RegisterComponent,{
+    const dialogRef = this.dialog.open(RegisterComponent, {
       width: '300px',
     });
   }
@@ -42,6 +45,7 @@ export class AppComponent implements OnInit {
       const user = this.tokenStorageService.getUser();
       this.username = user?.username;
     }
+
     this.userService.getPublicContent().subscribe(
       data => {
         console.log(data);
@@ -50,6 +54,10 @@ export class AppComponent implements OnInit {
         this.content = JSON.parse(err.error).message;
       }
     );
+  }
+
+  onCurrencySelectionEvent(event: any) {
+    this.currency = event;
   }
 
   logout(): void {

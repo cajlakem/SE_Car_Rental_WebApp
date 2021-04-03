@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CarService} from '../_services/car-service';
 import {Car} from '../_models/Car';
 import {faCheckDouble, faTimesCircle} from '@fortawesome/free-solid-svg-icons';
@@ -14,6 +14,8 @@ import {Booking} from "../_models/Booking";
   styleUrls: ['./car-list.component.css']
 })
 export class CarListComponent implements OnInit {
+  @Input() currency: string;
+
   currentUser: User | null;
   cars: Car[] = [];
   userBookings: Booking[];
@@ -61,7 +63,7 @@ export class CarListComponent implements OnInit {
 
   bookCar(car: Car) {
     if (this.currentUser) {
-      this.carService.bookCar(car, this.currentUser).subscribe((data: any) => {
+      this.carService.bookCar(car, this.currentUser, this.currency).subscribe((data: any) => {
           this.retrieveUsersBookings();
         },
         (err: any) => {
