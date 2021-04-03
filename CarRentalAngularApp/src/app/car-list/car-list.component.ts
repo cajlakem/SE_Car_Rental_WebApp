@@ -1,12 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CarService} from '../_services/car-service';
 import {Car} from '../_models/Car';
 import {faCheckDouble, faTimesCircle} from '@fortawesome/free-solid-svg-icons';
 import {AppComponent} from '../app.component';
 import {UserService} from "../_services/user.service";
 import {User} from "../_models/User";
-import {Booking} from "../_models/Booking";
-
 
 @Component({
   selector: 'app-car-list',
@@ -15,10 +13,10 @@ import {Booking} from "../_models/Booking";
 })
 export class CarListComponent implements OnInit {
   @Input() currency: string;
+  @Output() onCarBooked = new EventEmitter<any>();
 
   currentUser: User | null;
   cars: Car[] = [];
-  userBookings: Booking[];
   iconDoubleCheck = faCheckDouble;
   iconCircleX = faTimesCircle;
   app: AppComponent;
@@ -31,21 +29,12 @@ export class CarListComponent implements OnInit {
 
     this.userService.getCurrentUser()?.subscribe((user: User) => {
         this.currentUser = user;
-        this.retrieveUsersBookings();
       },
       err => {
         console.error(err.error.message);
       });
 
     this.retrieveAllCars();
-  }
-
-  retrieveUsersBookings() {
-    if (this.currentUser) {
-      this.carService.retrieveUserBookings(this.currentUser.id).subscribe(bookings => {
-        this.userBookings = bookings;
-      })
-    }
   }
 
   retrieveAllCars() {
@@ -64,7 +53,7 @@ export class CarListComponent implements OnInit {
   bookCar(car: Car) {
     if (this.currentUser) {
       this.carService.bookCar(car, this.currentUser, this.currency).subscribe((data: any) => {
-          this.retrieveUsersBookings();
+          this.onCarBooked.emit();
         },
         (err: any) => {
           console.error(err.error);

@@ -19,6 +19,7 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {CurrencySelectionComponent} from "./_shared/currencySelection/currency-selection.component";
+import {CarBookingListComponent} from "./car-booking-list/car-booking-list.component";
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {CurrencySelectionComponent} from "./_shared/currencySelection/currency-s
     ProfileComponent,
     ServicepointComponent,
     CarListComponent,
+    CarBookingListComponent,
     CurrencySelectionComponent
   ],
   imports: [

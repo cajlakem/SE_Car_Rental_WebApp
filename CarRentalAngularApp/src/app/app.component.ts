@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {TokenStorageService} from './_services/token-storage.service';
 import {UserService} from './_services/user.service';
 import {MatDialog} from '@angular/material/dialog';
 import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
+import {CarBookingListComponent} from "./car-booking-list/car-booking-list.component";
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ import {LoginComponent} from './login/login.component';
 
 
 export class AppComponent implements OnInit {
+  @ViewChild(CarBookingListComponent) carBookingList: CarBookingListComponent;
   // @ts-ignore
   static myapp;
   content?: string;
@@ -58,6 +60,10 @@ export class AppComponent implements OnInit {
 
   onCurrencySelectionEvent(event: any) {
     this.currency = event;
+  }
+
+  onCarBooked() {
+    this.carBookingList.retrieveUsersBookings();
   }
 
   logout(): void {
