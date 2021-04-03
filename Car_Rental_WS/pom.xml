@@ -100,11 +100,11 @@
                 </executions>
                 <configuration>
                     <schemaLanguage>WSDL</schemaLanguage>
-                    <generateDirectory>${project.basedir}/src/main/java</generateDirectory>
+                    <generateDirectory>${project.basedir}/target/generated-sources/client</generateDirectory>
                     <generatePackage>fh.se.car.rental.fh.currency.ws.client.helper</generatePackage>
-                    <schemaDirectory>${project.basedir}/src/main/resources</schemaDirectory>
+                    <schemaDirectory>${project.basedir}/src/main/resources/wsdl</schemaDirectory>
                     <schemaIncludes>
-                        <include>cc_client.wsdl</include>
+                        <include>cc.client.wsdl</include>
                     </schemaIncludes>
                 </configuration>
             </plugin>

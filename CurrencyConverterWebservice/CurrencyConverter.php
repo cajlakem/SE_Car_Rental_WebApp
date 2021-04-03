@@ -13,8 +13,13 @@
 		return $currencies;
 	}
 	
-	function convertToCurrency($toCurrency,$amount){
+	function convertToCurrency($apiToken, $toCurrency,$amount){
 		$convertedAmount = 0;
+
+		if($apiToken != 'PHPisDirty'){
+            $array_details = array("detail1" => "What are you doing? API Token ".$apiToken." is WRONG!");
+            return new SoapFault("CurrencyConverter", "APITokenWrongException", null, $array_details, "FaultSpecified");
+        }
 
 		if ($amount <= 0) {
 			return 0;

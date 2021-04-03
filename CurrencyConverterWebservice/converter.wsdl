@@ -21,6 +21,7 @@
   </message>
 
   <message name='convertToCurrencyRequest'>
+    <part name='apiToken' type='xsd:string'/>
     <part name='toCurrency' type='xsd:string'/>
     <part name='amount' type='xsd:float'/>
   </message>
