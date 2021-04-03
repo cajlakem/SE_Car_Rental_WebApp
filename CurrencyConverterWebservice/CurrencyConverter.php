@@ -25,8 +25,12 @@
 		}
 		
 		$currencies = loadAllCurrenciesFromXML();
-		#if (!availableCurrencies.Contains(toCurrency.ToUpper()))
-        #        throw new SoapException("The currency " + toCurrency + " is not listed in the xml file", SoapException.ClientFaultCode);
+		$upperToCurrency = strtoupper($toCurrency);
+        if($upperToCurrency != "EUR" && !isset($currencies[$upperToCurrency])) {
+            $array_details = array("detail1" => "Currency ".$toCurrency." could not be found in the xml file");
+
+            return new SoapFault("CurrencyConverter", "CurrencyNotFoundException", null, $array_details, "FaultSpecified");
+        }
 	
 	    if (strtoupper($toCurrency) == "EUR") {
 			$convertedAmount = convertEuro($amount,$currencies);
