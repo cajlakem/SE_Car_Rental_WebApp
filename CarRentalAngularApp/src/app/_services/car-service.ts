@@ -23,7 +23,7 @@ export class CarService {
     return this.http.get<Array<Booking>>(API_URL + 'bookings/user/' + userId);
   }
 
-  bookCar(carToBook: Car, user: User): any {
+  bookCar(carToBook: Car, user: User, currency: string): any {
     const bookingId = Number.parseInt(user.id.toString() + Date.now());
 
     const bookingRequest: Booking = {
@@ -36,7 +36,7 @@ export class CarService {
       car: carToBook,
       user: user,
       status: 'OPEN',
-      currency: 'AED'
+      currency: currency
     }
     return this.http.post(API_URL + 'booking', bookingRequest);
   }
