@@ -6,6 +6,7 @@
 <xsd:element name="convert">
 <xsd:complexType>
 <xsd:sequence>
+<xsd:element minOccurs="0" maxOccurs="1" name="apiToken" type="xsd:string"/>
 <xsd:element minOccurs="0" maxOccurs="1" name="toCurrency" type="xsd:string"/>
 <xsd:element minOccurs="1" maxOccurs="1" name="amount" type="xsd:double"/>
 </xsd:sequence>
@@ -44,7 +45,7 @@
 </wsdl:binding>
 <wsdl:service name="IConverterService">
 <wsdl:port name="BasicHttpBinding" binding="tns:BasicHttpBinding">
-<soap:address location="https://localhost:49155/ConverterService.asmx"/>
+<soap:address location="https://localhost:44382/ConverterService.asmx"/>
 </wsdl:port>
 </wsdl:service>
 </wsdl:definitions>
