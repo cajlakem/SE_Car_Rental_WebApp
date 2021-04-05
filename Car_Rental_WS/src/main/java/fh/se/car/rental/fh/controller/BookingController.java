@@ -49,7 +49,7 @@ public class BookingController {
             if(booking.getStatus() == state) {
                 result.add(booking);
                 booking.setStatus(state);
-                booking.setPrice(currencyClient.convertCurrency(currency.toString(), booking.getPrice()).getConvertResult());
+                //booking.setPrice(currencyClient.convertCurrency(currency.toString(), booking.getPrice()).getConvertResult());
             }
         }
         return result;
@@ -68,7 +68,7 @@ public class BookingController {
             logger.error(msg);
             throw new CarLabelAlreadyInUse(msg);
         }
-        booking.setPrice(currencyClient.convertCurrency(booking.getCurrency().name(), booking.getPrice()).getConvertResult());
+        //booking.setPrice(currencyClient.convertCurrency(booking.getCurrency().name(), booking.getPrice()).getConvertResult());
         bookingService.save(booking);
     }
 

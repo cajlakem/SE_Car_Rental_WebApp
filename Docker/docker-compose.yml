@@ -23,15 +23,6 @@ services:
       - db
     networks:
       - my_ws
-  currency_converter_sw:
-    container_name: currency_converter_sw
-    build: ./../CurrencyConverterWebservice
-    ports:
-      - 9090:80
-    depends_on:
-      - db
-    networks:
-      - my_ws
 networks:
   my_ws:
     driver: bridge
