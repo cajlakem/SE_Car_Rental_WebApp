@@ -7,7 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Car_Rental_WS" />
-        <module name="SOAP_WS_Currency_Converter" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="14">

@@ -70,7 +70,7 @@
 							 array( 
 							  'uri'=>"http://localhost/test-uri",
 							  'encoding'=>'UTF-8', 
-							  'soap_version'=>SOAP_1_2
+							  'soap_version'=>SOAP_1_1
 							 ) 
 							);
 	$server->addFunction("convertToCurrency");
