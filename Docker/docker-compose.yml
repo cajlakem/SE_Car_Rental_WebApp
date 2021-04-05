@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   db:
-    container_name: rental_db
+    container_name: DB
     image: mysql:5
     restart: always
     ports:
@@ -15,10 +15,19 @@ services:
     networks:
       - my_ws
   backend_spring:
-    container_name: spring_container
+    container_name: BackendWS
     build: ./../Car_Rental_WS/
     ports:
       - 8443:8443
+    depends_on:
+      - db
+    networks:
+      - my_ws
+  currency_converter_sw:
+    container_name: CurrencyConverterWS
+    build: ./../CurrencyConverterWebservice
+    ports:
+      - 9090:80
     depends_on:
       - db
     networks:
