@@ -30,8 +30,13 @@ public class BookingController {
     Logger logger = LoggerFactory.getLogger(BookingController.class);
 
     @GetMapping("/bookings")
-    public List<Booking> list(){
-        return bookingService.findAll();
+    public List<Booking> list(@RequestParam(required = true) CurrencyCode currency){
+        List<Booking>  bookings = bookingService.findAll();
+        for (Booking booking:bookings) {
+            booking.setPrice(currencyClient.convertCurrency(currency.name(), booking.getPrice()).getConvertResult());
+        }
+        return bookings;
+
     }
 
     @GetMapping("/currencyCodes")
@@ -45,11 +50,11 @@ public class BookingController {
         List<Booking>  bookings = bookingService.findAll();
         List<Booking> result = new ArrayList<>();
         for (Booking booking:bookings) {
-            logger.info(booking.getStatus().toString());
             if(booking.getStatus() == state) {
                 result.add(booking);
                 booking.setStatus(state);
-                //booking.setPrice(currencyClient.convertCurrency(currency.toString(), booking.getPrice()).getConvertResult());
+                Double price = currencyClient.convertCurrency(currency.name(), booking.getPrice()).getConvertResult();
+                booking.setPrice(price);
             }
         }
         return result;
@@ -68,7 +73,7 @@ public class BookingController {
             logger.error(msg);
             throw new CarLabelAlreadyInUse(msg);
         }
-        //booking.setPrice(currencyClient.convertCurrency(booking.getCurrency().name(), booking.getPrice()).getConvertResult());
+        booking.setPrice(currencyClient.convertCurrency(booking.getCurrency().name(), booking.getPrice()).getConvertResult());
         bookingService.save(booking);
     }
 
