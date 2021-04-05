@@ -50,10 +50,17 @@ namespace CurrencyConverterWebservice
             currencyDoc.Load(XML_FILE_URL);
             foreach (XmlNode xmlNode in currencyDoc.DocumentElement.ChildNodes[2].ChildNodes[0].ChildNodes)
             {
-                string s = xmlNode.Attributes[RATE_ATTRIBUTE_VALUE].Value;
-                string t = xmlNode.Attributes[RATE_ATTRIBUTE_VALUE].Value.Replace(".", ",");
-                currencyAndRatesMap.Add(xmlNode.Attributes[CURRENCY_ATTRIBUTE_VALUE].Value,
-                                        Convert.ToDouble(xmlNode.Attributes[RATE_ATTRIBUTE_VALUE].Value.Replace(".", ",")));
+                double rate = 0;
+                try
+                {
+                    rate = Convert.ToDouble(xmlNode.Attributes[RATE_ATTRIBUTE_VALUE].Value);
+                }
+                catch(FormatException fe)
+                {
+                    rate = Convert.ToDouble(xmlNode.Attributes[RATE_ATTRIBUTE_VALUE].Value.Replace(".", ","));
+                }
+                
+                currencyAndRatesMap.Add(xmlNode.Attributes[CURRENCY_ATTRIBUTE_VALUE].Value,rate);
             }
         }
 
