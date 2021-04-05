@@ -1,6 +1,5 @@
 package fh.se.car.rental.fh;
 
-import fh.se.car.rental.fh.currency.ws.client.CurrencyClient;
 import fh.se.car.rental.fh.model.Car;
 import fh.se.car.rental.fh.model.User;
 import fh.se.car.rental.fh.model.enums.CarState;
@@ -33,8 +32,8 @@ public class CarRentalRESTWebService {
     @Autowired
     CarRepository carRepository;
 
-    @Autowired
-    CurrencyClient currencyClient;
+    //@Autowired
+    //CurrencyClient currencyClient;
 
     public static void main(String[] args) {
         SpringApplication.run(CarRentalRESTWebService.class, args);

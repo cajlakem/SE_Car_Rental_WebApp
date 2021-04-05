@@ -1,68 +1,50 @@
-<?xml version ='1.0' encoding ='UTF-8' ?>
-<definitions name='CurrencyConverter'
-             targetNamespace='http://fh.converter.currency.ws.soap.campus.se.fh'
-             xmlns:tns='http://fh.converter.currency.ws.soap.campus.se.fh'
-             xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/'
-             xmlns:xsd='http://www.w3.org/2001/XMLSchema'
-             xmlns:soapenc='http://schemas.xmlsoap.org/soap/encoding/'
-             xmlns:wsdl='http://schemas.xmlsoap.org/wsdl/'
-             xmlns='http://schemas.xmlsoap.org/wsdl/'>
-
-  <xsd:element name="doubleFault">
-    <xsd:complexType>
-      <xsd:sequence>
-        <xsd:element name="detail1" type="xsd:string"/>
-      </xsd:sequence>
-    </xsd:complexType>
-  </xsd:element>
-
-  <wsdl:types>
-    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://fh.converter.currency.ws.soap.campus.se.fh">
-      <xsd:element name="NewElement" type="xsd:string">
-      </xsd:element>
-    </xsd:schema>
-  </wsdl:types>
-
-  <message name="fault_specified">
-    <part name="relevant_name" element="tns:NewElement"/>
-  </message>
-
-  <message name='convertToCurrencyRequest'>
-    <part name='apiToken' type='xsd:string'/>
-    <part name='toCurrency' type='xsd:string'/>
-    <part name='amount' type='xsd:float'/>
-  </message>
-  <message name='convertToCurrencyResponse'>
-    <part name='Result' type='xsd:float'/>
-  </message>
-
-  <portType name='convertToCurrencyPortType'>
-    <operation name='convertToCurrency'>
-      <input message='tns:convertToCurrencyRequest'/>
-      <output message='tns:convertToCurrencyResponse'/>
-      <fault name="FaultSpecified" message="tns:fault_specified"/>
-    </operation>
-  </portType>
-
-  <binding name='convertToCurrencyBinding' type='tns:convertToCurrencyPortType'>
-    <soap:binding style='rpc'
-                  transport='http://schemas.xmlsoap.org/soap/http'/>
-    <operation name='convertToCurrency'>
-      <soap:operation soapAction='urn:CurrencyConverter#convertToCurrency'/>
-      <input>
-        <soap:body use='encoded' namespace='urn:CurrencyConverter'
-                   encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
-      </input>
-      <output>
-        <soap:body use='encoded' namespace='urn:CurrencyConverter'
-                   encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
-      </output>
-    </operation>
-  </binding>
-
-  <service name='convertToCurrencyService'>
-    <port name='convertToCurrencyPort' binding='convertToCurrencyBinding'>
-      <soap:address location='http://localhost/CurrencyConverterWebservice/CurrencyConverter.php' />
-    </port>
-  </service>
-</definitions>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://tempuri.org/" name="IConverterService">
+<wsdl:types>
+<xsd:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+<xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+<xsd:import namespace="http://schemas.datacontract.org/2004/07/System"/>
+<xsd:element name="convert">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element minOccurs="0" maxOccurs="1" name="toCurrency" type="xsd:string"/>
+<xsd:element minOccurs="1" maxOccurs="1" name="amount" type="xsd:double"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="convertResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element minOccurs="1" maxOccurs="1" name="convertResult" type="xsd:double"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+</xsd:schema>
+</wsdl:types>
+<wsdl:message name="IConverterService_convert_InputMessage"/>
+<wsdl:message name="IConverterService_convert_OutputMessage">
+<wsdl:part name="parameters" element="tns:convertResponse"/>
+</wsdl:message>
+<wsdl:portType name="IConverterService">
+<wsdl:operation name="convert">
+<wsdl:input message="tns:IConverterService_convert_InputMessage"/>
+<wsdl:output message="tns:IConverterService_convert_OutputMessage"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="BasicHttpBinding" type="tns:IConverterService" style="document">
+<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="convert">
+<soap:operation soapAction="http://tempuri.org/IConverterService/convert" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="IConverterService">
+<wsdl:port name="BasicHttpBinding" binding="tns:BasicHttpBinding">
+<soap:address location="https://localhost:49155/ConverterService.asmx"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

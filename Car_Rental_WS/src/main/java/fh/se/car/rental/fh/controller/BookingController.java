@@ -1,5 +1,7 @@
 package fh.se.car.rental.fh.controller;
+import fh.se.car.rental.fh.currency.ws.client.CurrencyClient;
 import fh.se.car.rental.fh.exceptions.CarLabelAlreadyInUse;
+import fh.se.car.rental.fh.exceptions.CurrencyNotSet;
 import fh.se.car.rental.fh.exceptions.RecordNotFoundException;
 import fh.se.car.rental.fh.model.Booking;
 import fh.se.car.rental.fh.model.enums.BookingState;
@@ -22,8 +24,8 @@ public class BookingController {
     @Autowired
     private BookingRepository bookingService;
 
-    //@Autowired
-    //private CurrencyClient currencyClient;
+    @Autowired
+    private CurrencyClient currencyClient;
 
     Logger logger = LoggerFactory.getLogger(BookingController.class);
 
@@ -47,7 +49,7 @@ public class BookingController {
             if(booking.getStatus() == state) {
                 result.add(booking);
                 booking.setStatus(state);
-                //booking.setPrice(currencyClient.convertCurrency(currency.toString(), booking.getPrice()));
+                booking.setPrice(currencyClient.convertCurrency(currency.toString(), booking.getPrice()).getConvertResult());
             }
         }
         return result;
@@ -57,11 +59,16 @@ public class BookingController {
     public void add(@Validated @RequestBody Booking booking){
         logger.info("Adding booking "+booking.getId());
         Optional<Booking> dbBooking = bookingService.findById(booking.getId());
+        if(booking.getCurrency() == null) {
+            throw new CurrencyNotSet("Currency not set!");
+        };
+
         if(dbBooking.isPresent()){
             String msg = booking.getId()+" already in use!";
             logger.error(msg);
             throw new CarLabelAlreadyInUse(msg);
         }
+        booking.setPrice(currencyClient.convertCurrency(booking.getCurrency().name(), booking.getPrice()).getConvertResult());
         bookingService.save(booking);
     }
 
