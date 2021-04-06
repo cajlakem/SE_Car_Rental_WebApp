@@ -51,7 +51,8 @@ public class CarRentalRESTWebService {
                     .authorizeRequests()
                     .antMatchers(HttpMethod.POST, "/api/v1/users/login").permitAll()
                     .antMatchers(HttpMethod.POST, "/api/v1/users/register").permitAll()
-                    .antMatchers(HttpMethod.GET, "/api/v1/cars").permitAll()
+                    .antMatchers(HttpMethod.GET, "/api/v1/cars/findByState").permitAll()
+                    .antMatchers(HttpMethod.GET, "/api/v1/currencyCodes").permitAll()
                     .antMatchers(HttpMethod.GET, "/swagger/**").permitAll()
                     .anyRequest().authenticated();
             http.cors();
