@@ -14,7 +14,9 @@
     <description>FH Campus Rental Car Web Service</description>
     <properties>
         <java.version>11</java.version>
-
+        <sonar.projectKey>cajlakem_SE_Car_Rental_WebApp</sonar.projectKey>
+        <sonar.organization>cajlakem</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <plugin.prettier.goal>write</plugin.prettier.goal>
     </properties>
     <dependencies>
@@ -108,18 +110,15 @@
 
     <profiles>
         <profile>
-          <id>travis</id>
+          <id>jenkins</id>
           <activation>
             <property>
-              <name>env.TRAVIS</name>
+              <name>env.JENKINS</name>
             </property>
           </activation>
           <properties>
             <!-- But in our CI environment we want to validate that code is formatted -->
             <plugin.prettier.goal>check</plugin.prettier.goal>
-            <sonar.projectKey>cajlakem_SE_Car_Rental_WebApp</sonar.projectKey>
-            <sonar.organization>cajlakem</sonar.organization>
-            <sonar.host.url>https://sonarcloud.io</sonar.host.url>
           </properties>
         </profile>
       </profiles>
