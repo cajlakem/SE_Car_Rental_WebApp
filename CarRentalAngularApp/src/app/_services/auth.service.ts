@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {AuthUser} from "../_models/AuthUser";
 
-const AUTH_API = 'https://localhost:8443/api/v1/users/';
+const AUTH_API = '/rest';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +13,12 @@ export class AuthService {
 
   login(username: string, password: string): Observable<AuthUser> {
     const headers = { 'content-type': 'application/json', 'username' : username, 'password': password};
-    return this.http.post<AuthUser>(AUTH_API + 'login', {},  {headers: headers});
+    return this.http.post<AuthUser>('/api/v1/users/' + 'login', {},  {headers: headers});
   }
 
   register(firstname: string, lastname: string, username: string, email: string, password: string, mobile: string): Observable<any> {
     const body = JSON.stringify({userName: username, password: password, firstName: firstname, lastName: lastname, email: email, mobile: mobile});
     const headers = { 'content-type': 'application/json', 'reenteredPassword' : password};
-    return this.http.post(AUTH_API + 'register', body, {headers: headers});
+    return this.http.post(AUTH_API + '/api/v1/users/register', body, {headers: headers});
   }
 }
