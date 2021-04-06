@@ -23,6 +23,7 @@ public class CurrencyClient extends WebServiceGatewaySupport {
         request.setApiToken(env.getProperty("carrental.apiToken"));
         logger.info("Calling convertCurrency (toString: "+toCurrency+" amount: "+amount.toString()+" token:"+request.getApiToken());
         ConvertResponse response = (ConvertResponse) getWebServiceTemplate().marshalSendAndReceive(request);
+        logger.info("Result" + String.valueOf(response.getConvertResult()));
         return response;
     }
 }
