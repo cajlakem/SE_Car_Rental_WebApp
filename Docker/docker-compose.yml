@@ -15,7 +15,7 @@ services:
     networks:
       - my_ws
   backend_spring:
-    container_name: spring_container
+    container_name: springcontainer
     build: ./../Car_Rental_WS/
     ports:
       - 8443:8443
