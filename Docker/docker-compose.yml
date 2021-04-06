@@ -23,13 +23,13 @@ services:
       - db
     networks:
       - my_ws
-  angular_frontend:
-    container_name: angular_frontend
-    build: ./../CarRentalAngularApp/
+  currency_converter_sw:
+    container_name: currency_ws
+    build: ./../CurrencyConverterWebservice
     ports:
-      - 80:80
+      - 9090:80
     depends_on:
-      - db
+      - backend_spring
     networks:
       - my_ws
 networks:

@@ -1,6 +1,8 @@
 package fh.se.car.rental.fh.controller;
-
+import fh.se.car.rental.fh.currency.ws.client.CurrencyClient;
 import fh.se.car.rental.fh.exceptions.CarLabelAlreadyInUse;
+import fh.se.car.rental.fh.exceptions.CurrencyNotSet;
+import fh.se.car.rental.fh.exceptions.RecordNotFoundException;
 import fh.se.car.rental.fh.model.Booking;
 import fh.se.car.rental.fh.model.enums.BookingState;
 import fh.se.car.rental.fh.model.enums.CurrencyCode;
@@ -22,11 +24,19 @@ public class BookingController {
     @Autowired
     private BookingRepository bookingService;
 
+    @Autowired
+    private CurrencyClient currencyClient;
+
     Logger logger = LoggerFactory.getLogger(BookingController.class);
 
     @GetMapping("/bookings")
-    public List<Booking> list(){
-        return bookingService.findAll();
+    public List<Booking> list(@RequestParam(required = true) CurrencyCode currency){
+        List<Booking>  bookings = bookingService.findAll();
+        for (Booking booking:bookings) {
+            booking.setPrice(currencyClient.convertCurrency(currency.name(), booking.getPrice()).getConvertResult());
+        }
+        return bookings;
+
     }
 
     @GetMapping("/currencyCodes")
@@ -40,10 +50,11 @@ public class BookingController {
         List<Booking>  bookings = bookingService.findAll();
         List<Booking> result = new ArrayList<>();
         for (Booking booking:bookings) {
-            logger.info(booking.getStatus().toString());
             if(booking.getStatus() == state) {
                 result.add(booking);
                 booking.setStatus(state);
+                Double price = currencyClient.convertCurrency(currency.name(), booking.getPrice()).getConvertResult();
+                booking.setPrice(price);
             }
         }
         return result;
@@ -53,12 +64,23 @@ public class BookingController {
     public void add(@Validated @RequestBody Booking booking){
         logger.info("Adding booking "+booking.getId());
         Optional<Booking> dbBooking = bookingService.findById(booking.getId());
-        if(dbBooking != null){
+        if(booking.getCurrency() == null) {
+            throw new CurrencyNotSet("Currency not set!");
+        };
+
+        if(dbBooking.isPresent()){
             String msg = booking.getId()+" already in use!";
             logger.error(msg);
             throw new CarLabelAlreadyInUse(msg);
         }
+        booking.setPrice(currencyClient.convertCurrency(booking.getCurrency().name(), booking.getPrice()).getConvertResult());
         bookingService.save(booking);
+    }
+
+    @GetMapping("/bookings/user/{id}")
+    public List<Booking> getUser(@PathVariable Long id) {
+        System.out.println(bookingService.findByUserId(id).get());
+        return bookingService.findByUserId(id).orElseThrow(() -> new RecordNotFoundException(id.toString()));
     }
 
 }

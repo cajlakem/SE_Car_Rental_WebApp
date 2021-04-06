@@ -20,7 +20,7 @@ public class User {
     @Column(nullable = false)
     @NotNull(message = "Lastname cannot be null")
     private String lastName;
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn
     private List<Booking> bookings;
     private Boolean active;

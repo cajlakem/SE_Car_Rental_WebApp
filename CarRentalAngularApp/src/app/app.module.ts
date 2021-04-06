@@ -1,36 +1,52 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {MatDialogModule} from '@angular/material/dialog';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './profile/profile.component';
-import { BoardUserComponent } from './board-user/board-user.component';
-import { ServicepointComponent } from './servicepoint/servicepoint.component';
+import {AppComponent} from './app.component';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
+import {ProfileComponent} from './profile/profile.component';
 
-import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import {authInterceptorProviders} from './_helpers/auth.interceptor';
+import {CarListComponent} from './car-list/car-list.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {ServicepointComponent} from './servicepoint/servicepoint.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatOptionModule} from "@angular/material/core";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {CurrencySelectionComponent} from "./_shared/currencySelection/currency-selection.component";
+import {CarBookingListComponent} from "./car-booking-list/car-booking-list.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent,
     ProfileComponent,
-    BoardUserComponent,
-    ServicepointComponent
+    ServicepointComponent,
+    CarListComponent,
+    CarBookingListComponent,
+    CurrencySelectionComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    MatAutocompleteModule,
+    MatOptionModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

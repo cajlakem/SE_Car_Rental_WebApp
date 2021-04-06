@@ -18,7 +18,7 @@ public class Car {
     @NotNull(message = "Vendor cannot be null")
     private String vendor;
     @NotNull(message = "Price cannot be null")
-    private Float price;
+    private Double price;
     private String licensePlate;
     @Enumerated(EnumType.ORDINAL)
     private CarState status;
@@ -26,7 +26,7 @@ public class Car {
     @Enumerated(EnumType.ORDINAL)
     private CurrencyCode currency;
 
-    public Car(Long id, @NotNull(message = "Username cannot be null") String label, @NotNull(message = "Vendor cannot be null") String vendor, @NotNull(message = "Price cannot be null") Float price, String licensePlate, CarState status, @NotNull(message = "currency cannot be null") CurrencyCode currency) {
+    public Car(Long id, @NotNull(message = "Username cannot be null") String label, @NotNull(message = "Vendor cannot be null") String vendor, @NotNull(message = "Price cannot be null") Double price, String licensePlate, CarState status, @NotNull(message = "currency cannot be null") CurrencyCode currency) {
         this.id = id;
         this.label = label;
         this.vendor = vendor;
@@ -40,12 +40,23 @@ public class Car {
 
     }
 
+
+
     public CarState getStatus() {
         return status;
     }
 
     public Car setStatus(CarState status) {
         this.status = status;
+        return this;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public Car setPrice(Double price) {
+        this.price = price;
         return this;
     }
 
@@ -73,15 +84,6 @@ public class Car {
 
     public Car setVendor(String vendor) {
         this.vendor = vendor;
-        return this;
-    }
-
-    public Float getPrice() {
-        return price;
-    }
-
-    public Car setPrice(Float price) {
-        this.price = price;
         return this;
     }
 

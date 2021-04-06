@@ -1,4 +1,5 @@
 package fh.se.car.rental.fh.controller;
+import fh.se.car.rental.fh.currency.ws.client.CurrencyClient;
 import fh.se.car.rental.fh.exceptions.CarLabelAlreadyInUse;
 import fh.se.car.rental.fh.model.Booking;
 import fh.se.car.rental.fh.model.Car;
@@ -22,6 +23,9 @@ public class CarController {
     @Autowired
     private CarRepository carService;
 
+    @Autowired
+    private CurrencyClient currencyClient;
+
     Logger logger = LoggerFactory.getLogger(CarController.class);
 
     @GetMapping("/cars/findByState")
@@ -30,19 +34,14 @@ public class CarController {
         List<Car>  cars = carService.findAll();
         List<Car> result = new ArrayList<>();
         for (Car car:cars) {
-            logger.info(car.getStatus().toString());
             if(car.getStatus() == state){
+                Double price = currencyClient.convertCurrency(currency.name(), car.getPrice()).getConvertResult();
                 car.setCurrency(currency);
+                car.setPrice(price);
                 result.add(car);
             }
         }
         return result;
-    }
-
-
-    @GetMapping("/cars")
-    public List<Car> list(){
-        return carService.findAll();
     }
 
     @PostMapping("/car")
