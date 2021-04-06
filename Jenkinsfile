@@ -17,7 +17,6 @@ pipeline {
                 sh '''
                 mvn --version
                 docker --version
-                docker-compose version
                 '''
             }
         }
