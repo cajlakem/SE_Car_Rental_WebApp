@@ -39,7 +39,6 @@ pipeline {
                 }
           }
 /*
-
         stage('unit tests') {
             steps {
                     dir('Car_rental_WS'){
@@ -77,7 +76,7 @@ pipeline {
             steps {
                     dir('Docker'){
                         sh 'docker-compose down'
-                        sh 'docker-compose up -d'
+                        sh 'docker-compose up -d --build'
                 }
             }
         }
