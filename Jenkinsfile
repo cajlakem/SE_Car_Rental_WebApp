@@ -12,43 +12,41 @@ pipeline {
     }
 
     stages {
-/*         stage('perparation') {
+        stage('perparation') {
             steps {
                 sh '''
                 mvn --version
                 docker --version
-                docker-compose version
+                sonar-scanner --version
                 '''
             }
         }
 
-        stage('code quality') {
+
+        stage('Prettier: Check code format') {
             steps {
-                    dir('vaccathon-rest-api'){
-                        sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar'
+                    dir('Car_Rental_WS'){
+                        //sh 'mvn prettier:check' https://github.com/HubSpot/prettier-maven-plugin
+                        sh 'echo works'
                     }
+            }
+        }
+
+        stage('Sonar: Quality code check') {
+            steps {
+                    sh 'sonar-scanner'
                 }
           }
+/*
 
         stage('unit tests') {
             steps {
-                    dir('vaccathon-rest-api'){
+                    dir('Car_rental_WS'){
                         sh 'mvn test'
                     }
             }
         }
-
-        stage('build: backend') {
-            steps {
-                sh 'docker build -t lulzimbulica/vaccathon-frontend vaccathon-rest-api/'
-            }
-        }
-
-        stage('build: frontend') {
-            steps {
-                sh 'docker build -t lulzimbulica/vaccathon-frontend frontend/vaccathon'
-            }
-        }
+*/
 
         stage('approval') {
             when{
@@ -67,37 +65,19 @@ pipeline {
             }
         }
 
-        stage('push: docker images') {
-            when{
-                allOf{
-                    expression {
-                        return env.GIT_BRANCH == "origin/main"
-                    }
-                }
-            }
-            steps {
-                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub',
-                                     usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-                    sh '''
-                    docker login -u $USERNAME -p $PASSWORD
-                    docker push lulzimbulica/vaccathon-frontend
-                    docker push lulzimbulica/vaccathon-backend
-                    '''
-                }
-            }
-        }
-*/
        stage('deploy: app') {
             when{
                 allOf{
                     expression {
-                        return env.GIT_BRANCH == "origin/main"
+                        return env.GIT_BRANCH == "main"
                     }
                 }
             }
             steps {
-                sh '''
-                echo test'''
+                    dir('Docker'){
+                        sh 'docker-compose down'
+                        sh 'docker-compose up -d'
+                }
             }
         }
     }
