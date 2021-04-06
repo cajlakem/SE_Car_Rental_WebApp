@@ -6,8 +6,8 @@
            aria-label="Currency"
            matInput
            [formControl]="myControl"
-           [matAutocomplete]="auto" (ngModelChange)="changeCurrency($event)">
-    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+           [matAutocomplete]="auto" (blur)="onCurrencyChanged()" >
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onCurrencyChanged($event)">
       <mat-option *ngFor="let currency of filteredCurrencies | async" [value]="currency">
         {{currency}}
       </mat-option>

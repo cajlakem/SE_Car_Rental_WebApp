@@ -35,11 +35,15 @@ export class CarBookingListComponent implements OnInit {
     if (this.currentUser) {
       this.carService.retrieveUserBookings(this.currentUser.id).subscribe(bookings => {
         this.userBookings = bookings;
-      })
+      });
     }
   }
 
   isCarFree(status: string): boolean {
     return status === 'FREE';
+  }
+
+  hasBookings() {
+    return this.userBookings?.length > 0;
   }
 }

@@ -1,9 +1,9 @@
-import {Component, OnInit, Output} from "@angular/core";
-import {FormControl} from "@angular/forms";
-import {Observable} from "rxjs";
-import {map, startWith} from "rxjs/operators";
-import {CurrencyService} from "../../_services/currency.service";
-import {EventEmitter} from "@angular/core";
+import {Component, OnInit, Output} from '@angular/core';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+import {CurrencyService} from '../../_services/currency.service';
+import {EventEmitter} from '@angular/core';
 
 const standardCurrency = 'EUR';
 
@@ -31,11 +31,18 @@ export class CurrencySelectionComponent implements OnInit {
         startWith(''),
         map(value => this._filter(value))
       );
-    })
+    }, error => console.error('Currency not found'));
   }
 
-  changeCurrency(event: any) {
-    this.onCurrencyValueChanged.emit(event)
+  onCurrencyChanged(event?: any) {
+    let currency = event?.option?.value;
+    if (!event?.option?.value) {
+      currency = this.myControl.value;
+    }
+
+    if (this.currencies.includes(currency)) {
+      this.onCurrencyValueChanged.emit(currency);
+    }
   }
 
   private _filter(value: string): string[] {

@@ -22,7 +22,7 @@
         {{car.status}}
       </div>
       <div class="car-list-cell">
-        <button *ngIf="isCarFree(car.status)" class="btn-primary round booking-button" style="min-width: 120px;" (click)="bookCar(car)">
+        <button *ngIf="this.isLoggedIn && isCarFree(car.status)" class="btn-primary round booking-button" style="min-width: 120px;" (click)="bookCar(car)">
           book {{car.label}}
         </button>
       </div>

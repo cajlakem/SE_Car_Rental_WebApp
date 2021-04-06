@@ -4,7 +4,8 @@ import {UserService} from './_services/user.service';
 import {MatDialog} from '@angular/material/dialog';
 import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
-import {CarBookingListComponent} from "./car-booking-list/car-booking-list.component";
+import {CarBookingListComponent} from './car-booking-list/car-booking-list.component';
+import {CarListComponent} from './car-list/car-list.component';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ import {CarBookingListComponent} from "./car-booking-list/car-booking-list.compo
 
 export class AppComponent implements OnInit {
   @ViewChild(CarBookingListComponent) carBookingList: CarBookingListComponent;
+  @ViewChild(CarListComponent) carList: CarListComponent;
   // @ts-ignore
   static myapp;
   content?: string;
@@ -47,19 +49,11 @@ export class AppComponent implements OnInit {
       const user = this.tokenStorageService.getUser();
       this.username = user?.username;
     }
-
-    this.userService.getPublicContent().subscribe(
-      data => {
-        console.log(data);
-      },
-      err => {
-        this.content = JSON.parse(err.error).message;
-      }
-    );
   }
 
   onCurrencySelectionEvent(event: any) {
     this.currency = event;
+    this.carList.retrieveAllCars(event);
   }
 
   onCarBooked() {

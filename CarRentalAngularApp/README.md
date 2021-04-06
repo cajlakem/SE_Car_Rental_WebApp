@@ -25,3 +25,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Run App locally (on Linux)
+sudo ng serve --port 80 --ssl true --ssl-cert ./ssl/my_key_store.crt --ssl-key ./ssl/my_store.key
