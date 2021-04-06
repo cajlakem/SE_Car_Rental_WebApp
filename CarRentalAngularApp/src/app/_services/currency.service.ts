@@ -12,6 +12,6 @@ export class CurrencyService {
   }
 
   retrieveCurrencyCodes(): Observable<string[]> {
-    return this.http.get<string[]>(API_URL + '/currencyCodes')
+    return this.http.get<string[]>(API_URL + '/currencyCodes');
   }
 }

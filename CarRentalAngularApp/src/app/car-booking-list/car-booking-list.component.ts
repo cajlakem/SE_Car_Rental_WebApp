@@ -35,7 +35,7 @@ export class CarBookingListComponent implements OnInit {
     if (this.currentUser) {
       this.carService.retrieveUserBookings(this.currentUser.id).subscribe(bookings => {
         this.userBookings = bookings;
-      })
+      });
     }
   }
 

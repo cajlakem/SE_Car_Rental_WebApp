@@ -3,8 +3,9 @@ import {CarService} from '../_services/car-service';
 import {Car} from '../_models/Car';
 import {faCheckDouble, faTimesCircle} from '@fortawesome/free-solid-svg-icons';
 import {AppComponent} from '../app.component';
-import {UserService} from "../_services/user.service";
-import {User} from "../_models/User";
+import {UserService} from '../_services/user.service';
+import {User} from '../_models/User';
+import {TokenStorageService} from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-car-list',
@@ -19,31 +20,35 @@ export class CarListComponent implements OnInit {
   cars: Car[] = [];
   iconDoubleCheck = faCheckDouble;
   iconCircleX = faTimesCircle;
-  app: AppComponent;
+  isLoggedIn = false;
 
-  constructor(private userService: UserService, private carService: CarService) {
+  constructor(private userService: UserService, private carService: CarService, private tokenStorageService: TokenStorageService) {
   }
 
   ngOnInit(): void {
-    this.app = AppComponent.myapp;
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
 
-    this.userService.getCurrentUser()?.subscribe((user: User) => {
-        this.currentUser = user;
-      },
-      err => {
-        console.error(err.error.message);
-      });
+    if (this.isLoggedIn) {
+      this.userService.getCurrentUser()?.subscribe((user: User) => {
+          this.currentUser = user;
+        },
+        err => {
+          console.error(err.error.message);
+        });
+    }
 
-    this.retrieveAllCars();
+    this.retrieveAllCars(this.currency);
   }
 
-  retrieveAllCars() {
-    this.carService.retrieveCars().subscribe(cars => {
-        this.cars = cars;
-      },
-      err => {
-        console.error(err.error.message);
-      });
+  retrieveAllCars(currency: string) {
+    if (currency) {
+      this.carService.retrieveCars(currency).subscribe(cars => {
+          this.cars = cars;
+        },
+        err => {
+          console.error(err.error.message);
+        });
+    }
   }
 
   isCarFree(status: string): boolean {

@@ -15,8 +15,8 @@ export class CarService {
   constructor(private http: HttpClient) {
   }
 
-  retrieveCars(): Observable<Array<Car>> {
-    return this.http.get<Array<Car>>(API_URL + 'cars');
+  retrieveCars(currencyCode: string): Observable<Array<Car>> {
+    return this.http.get<Array<Car>>(API_URL + 'cars/findByState?state=FREE&currency=' + currencyCode);
   }
 
   retrieveUserBookings(userId: any): Observable<Array<Booking>> {
