@@ -17,7 +17,7 @@ pipeline {
                 sh '''
                 mvn --version
                 docker --version
-                sonar-scanner -version
+                sonar-scanner --version
                 '''
             }
         }
@@ -38,34 +38,24 @@ pipeline {
                 }
           }
 /*
-        stage('Sonar: Backend code check') {
-            steps {
-                    dir('Car_Rental_WS'){
-                        sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar'
-                    }
-                }
-          }
-
-
-
 
         stage('unit tests') {
             steps {
-                    dir('vaccathon-rest-api'){
+                    dir('Car_rental_WS'){
                         sh 'mvn test'
                     }
             }
         }
-
+*/
         stage('build: backend') {
             steps {
-                sh 'docker build -t lulzimbulica/vaccathon-frontend vaccathon-rest-api/'
+                sh 'docker build -t lulzimbulica/car_rental_java_backend Car_Rental_WS/'
             }
         }
 
         stage('build: frontend') {
             steps {
-                sh 'docker build -t lulzimbulica/vaccathon-frontend frontend/vaccathon'
+                sh 'docker build -t lulzimbulica/car_rental_angluar_frontend CarRentalAngularApp/'
             }
         }
 
@@ -85,7 +75,7 @@ pipeline {
                 }
             }
         }
-
+/*
         stage('push: docker images') {
             when{
                 allOf{
