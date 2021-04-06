@@ -31,6 +31,17 @@ pipeline {
             }
         }
 
+        stage('Sonar: Quality code check') {
+            steps {
+                   // dir('CarRentalAngularApp'){
+                        sh 'sonar-scanner'
+                              //-Dsonar.organization=cajlakem \
+                              //-Dsonar.projectKey=cajlakem_SE_Car_Rental_WebApp \
+                              //-Dsonar.host.url=https://sonarcloud.io'''
+                    //}
+                }
+          }
+/*
         stage('Sonar: Backend code check') {
             steps {
                     dir('Car_Rental_WS'){
@@ -39,19 +50,9 @@ pipeline {
                 }
           }
 
-        stage('Sonar: Frontend code check') {
-            steps {
-                    dir('CarRentalAngularApp'){
-                        sh '''sonar-scanner \
-                              -Dsonar.organization=cajlakem \
-                              -Dsonar.projectKey=cajlakem_SE_Car_Rental_WebApp \
-                              -Dsonar.sources=. \
-                              -Dsonar.host.url=https://sonarcloud.io'''
-                    }
-                }
-          }
 
-/*
+
+
         stage('unit tests') {
             steps {
                     dir('vaccathon-rest-api'){
