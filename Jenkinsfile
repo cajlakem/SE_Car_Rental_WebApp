@@ -12,7 +12,7 @@ pipeline {
     }
 
     stages {
-/*         stage('perparation') {
+        stage('perparation') {
             steps {
                 sh '''
                 mvn --version
@@ -22,6 +22,16 @@ pipeline {
             }
         }
 
+
+        stage('Check code format') {
+            steps {
+                    dir('Car_Rental_WS'){
+                        sh 'mvn prettier:check'
+                    }
+            }
+        }
+
+/*
         stage('code quality') {
             steps {
                     dir('vaccathon-rest-api'){
