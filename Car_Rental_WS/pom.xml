@@ -117,8 +117,11 @@
           <properties>
             <!-- But in our CI environment we want to validate that code is formatted -->
             <plugin.prettier.goal>check</plugin.prettier.goal>
+            <sonar.projectKey>cajlakem_SE_Car_Rental_WebApp</sonar.projectKey>
+            <sonar.organization>cajlakem</sonar.organization>
+            <sonar.host.url>https://sonarcloud.io</sonar.host.url>
           </properties>
         </profile>
       </profiles>
-      
+
 </project>
