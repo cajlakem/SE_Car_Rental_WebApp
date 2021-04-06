@@ -23,7 +23,7 @@ pipeline {
         }
 
 
-        stage('Prettier:Check code format') {
+        stage('Prettier: Check code format') {
             steps {
                     dir('Car_Rental_WS'){
                         //sh 'mvn prettier:check' https://github.com/HubSpot/prettier-maven-plugin
@@ -47,17 +47,6 @@ pipeline {
             }
         }
 */
-        stage('build: backend') {
-            steps {
-                sh 'docker build -t lulzimbulica/car_rental_java_backend Car_Rental_WS/'
-            }
-        }
-
-        stage('build: frontend') {
-            steps {
-                sh 'docker build -t lulzimbulica/car_rental_angluar_frontend CarRentalAngularApp/'
-            }
-        }
 
         stage('approval') {
             when{
@@ -75,27 +64,7 @@ pipeline {
                 }
             }
         }
-/*
-        stage('push: docker images') {
-            when{
-                allOf{
-                    expression {
-                        return env.GIT_BRANCH == "origin/main"
-                    }
-                }
-            }
-            steps {
-                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub',
-                                     usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-                    sh '''
-                    docker login -u $USERNAME -p $PASSWORD
-                    docker push lulzimbulica/vaccathon-frontend
-                    docker push lulzimbulica/vaccathon-backend
-                    '''
-                }
-            }
-        }
-*/
+
        stage('deploy: app') {
             when{
                 allOf{
@@ -105,8 +74,10 @@ pipeline {
                 }
             }
             steps {
-                sh '''
-                echo test'''
+                    dir('Docker'){
+                        sh 'docker-compose down'
+                        sh 'docker-compose up -d'
+                }
             }
         }
     }
