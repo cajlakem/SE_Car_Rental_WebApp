@@ -1,6 +1,6 @@
 {
   "/rest": {
-    "target": "https://localhost:8443/api/v1",
+    "target": "https://spring_container:8443/api/v1",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
