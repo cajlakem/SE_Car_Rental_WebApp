@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CarService} from '../_services/car-service';
 import {Car} from '../_models/Car';
 import {faCheckDouble, faTimesCircle} from '@fortawesome/free-solid-svg-icons';
-import {AppComponent} from '../app.component';
 import {UserService} from '../_services/user.service';
 import {User} from '../_models/User';
 import {TokenStorageService} from '../_services/token-storage.service';
