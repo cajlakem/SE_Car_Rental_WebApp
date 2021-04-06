@@ -17,6 +17,7 @@ pipeline {
                 sh '''
                 mvn --version
                 docker --version
+                sonar-scanner -version
                 '''
             }
         }
@@ -33,12 +34,7 @@ pipeline {
 
         stage('Sonar: Quality code check') {
             steps {
-                   // dir('CarRentalAngularApp'){
-                        sh 'sonar-scanner'
-                              //-Dsonar.organization=cajlakem \
-                              //-Dsonar.projectKey=cajlakem_SE_Car_Rental_WebApp \
-                              //-Dsonar.host.url=https://sonarcloud.io'''
-                    //}
+                    sh 'sonar-scanner'
                 }
           }
 /*
