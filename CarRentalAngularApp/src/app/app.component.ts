@@ -52,6 +52,7 @@ export class AppComponent implements OnInit {
   }
 
   onCurrencySelectionEvent(event: any) {
+    this.currency = event;
     this.carList.retrieveAllCars(event);
   }
 
