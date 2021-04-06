@@ -42,4 +42,8 @@ export class CarBookingListComponent implements OnInit {
   isCarFree(status: string): boolean {
     return status === 'FREE';
   }
+
+  hasBookings() {
+    return this.userBookings?.length > 0;
+  }
 }
