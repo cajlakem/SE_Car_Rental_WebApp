@@ -31,14 +31,26 @@ pipeline {
             }
         }
 
-
-        stage('Sonar:Static code check') {
+        stage('Sonar: Backend code check') {
             steps {
                     dir('Car_Rental_WS'){
                         sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar'
                     }
                 }
           }
+
+        stage('Sonar: Frontend code check') {
+            steps {
+                    dir('CarRentalAngularApp'){
+                        sh '''sonar-scanner \
+                              -Dsonar.organization=cajlakem \
+                              -Dsonar.projectKey=cajlakem_SE_Car_Rental_WebApp \
+                              -Dsonar.sources=. \
+                              -Dsonar.host.url=https://sonarcloud.io'''
+                    }
+                }
+          }
+
 /*
         stage('unit tests') {
             steps {
