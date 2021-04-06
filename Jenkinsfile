@@ -22,7 +22,7 @@ pipeline {
         }
 
 
-        stage('Check code format') {
+        stage('Prettier:Check code format') {
             steps {
                     dir('Car_Rental_WS'){
                         //sh 'mvn prettier:check' https://github.com/HubSpot/prettier-maven-plugin
@@ -32,9 +32,9 @@ pipeline {
         }
 
 
-        stage('code quality') {
+        stage('Sonar:Static code check') {
             steps {
-                    dir('vaccathon-rest-api'){
+                    dir('Car_Rental_WS'){
                         sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar'
                     }
                 }
