@@ -3,5 +3,11 @@
     <h3>
       <strong>Servicepoints:</strong>
     </h3>
+    <agm-map [latitude]="48.209128" [longitude]="16.370924" (mapClick)="onMapClicked($event)" [zoom]="13">
+      <agm-marker [latitude]="sp1.lat" [longitude]="sp1.lng" [title]="sp1.name"></agm-marker>
+      <agm-marker [latitude]="sp2.lat" [longitude]="sp2.lng" [title]="sp2.name"></agm-marker>
+      <agm-marker [latitude]="sp3.lat" [longitude]="sp3.lng" [title]="sp3.name"></agm-marker>
+      <agm-marker [latitude]="sp4.lat" [longitude]="sp4.lng" [title]="sp4.name"></agm-marker>
+    </agm-map>
   </header>
 </div>
