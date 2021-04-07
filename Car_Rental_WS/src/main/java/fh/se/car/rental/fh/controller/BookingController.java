@@ -10,11 +10,10 @@ import fh.se.car.rental.fh.model.enums.BookingState;
 import fh.se.car.rental.fh.model.enums.CarState;
 import fh.se.car.rental.fh.model.enums.CurrencyCode;
 import fh.se.car.rental.fh.repository.BookingRepository;
+import fh.se.car.rental.fh.repository.CarRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import fh.se.car.rental.fh.repository.CarRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,6 @@ public class BookingController {
 
   @GetMapping("/bookings")
   public List<Booking> list(@RequestParam(required = true) CurrencyCode currency) {
-
     List<Booking> bookings = bookingService.findAll();
     for (Booking booking : bookings) {
       booking.setPrice(
@@ -78,17 +76,17 @@ public class BookingController {
 
   @PostMapping("/booking")
   public void add(@Validated @RequestBody Booking booking) {
-    logger.info("Adding booking " + booking.getId()+ " "+booking.getCar().getPrice());
+    logger.info("Adding booking " + booking.getId() + " " + booking.getCar().getPrice());
     Optional<Car> car = carRepository.findById(booking.getCar().getId());
 
     if (booking.getCurrency() == null) {
       throw new CurrencyNotSet("Currency not set!");
     }
     if (car.isPresent()) {
-      if(!car.get().getStatus().name().equals(CarState.FREE.name())) {
-          String msg = booking.getId() + " already in use!";
-          logger.error(msg);
-          throw new CarLabelAlreadyInUse(msg);
+      if (!car.get().getStatus().name().equals(CarState.FREE.name())) {
+        String msg = booking.getId() + " already in use!";
+        logger.error(msg);
+        throw new CarLabelAlreadyInUse(msg);
       }
     }
 
@@ -97,6 +95,7 @@ public class BookingController {
         .convertCurrency(booking.getCurrency().name(), booking.getCar().getPrice())
         .getConvertResult()
     );
+    booking.setEndTime(null);
     booking.getCar().setStatus(CarState.INUSE);
     carRepository.save(booking.getCar());
     bookingService.save(booking);

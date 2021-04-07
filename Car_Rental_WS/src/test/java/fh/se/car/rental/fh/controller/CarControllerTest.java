@@ -60,21 +60,32 @@ class CarControllerTest {
       CarState.FREE,
       CurrencyCode.USD
     );
-    //given(carService.findById(3L)).willReturn(null);
+    given(carService.findById(3L)).willReturn(null);
     //when
-    //carController.add(newCar);
+    carController.add(newCar);
     //then
-    //verify(carService).save(newCar);
+    verify(carService).save(newCar);
   }
 
   @Test
   void testAdd_whenCarExists_throwsException() {
     //given
-    //Car newCar = new Car(3L, "Golf8","VM", 555D,"W-6575674", CarState.FREE, CurrencyCode.USD);
-    //given(carService.findById(3L)).willReturn(java.util.Optional.of(newCar));
+    Car newCar = new Car(
+      3L,
+      "Golf8",
+      "VM",
+      555D,
+      "W-6575674",
+      CarState.FREE,
+      CurrencyCode.USD
+    );
+    given(carService.findById(3L)).willReturn(java.util.Optional.of(newCar));
     //when
-    //CarLabelAlreadyInUse myCaughtException = assertThrows(CarLabelAlreadyInUse.class, () -> carController.add(newCar));
+    CarLabelAlreadyInUse myCaughtException = assertThrows(
+      CarLabelAlreadyInUse.class,
+      () -> carController.add(newCar)
+    );
     //then
-    //assertEquals("Golf8 already in use!", myCaughtException.getMessage());
+    assertEquals("Golf8 already in use!", myCaughtException.getMessage());
   }
 }
