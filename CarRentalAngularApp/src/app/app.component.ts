@@ -6,6 +6,7 @@ import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
 import {CarBookingListComponent} from './car-booking-list/car-booking-list.component';
 import {CarListComponent} from './car-list/car-list.component';
+import { ServicepointComponent } from './servicepoint/servicepoint.component';
 
 @Component({
   selector: 'app-root',
