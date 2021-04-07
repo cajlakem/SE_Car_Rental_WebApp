@@ -5,6 +5,7 @@ import fh.se.car.rental.fh.exceptions.CarLabelAlreadyInUse;
 import fh.se.car.rental.fh.exceptions.CurrencyNotSet;
 import fh.se.car.rental.fh.exceptions.RecordNotFoundException;
 import fh.se.car.rental.fh.model.Booking;
+import fh.se.car.rental.fh.model.Car;
 import fh.se.car.rental.fh.model.enums.BookingState;
 import fh.se.car.rental.fh.model.enums.CarState;
 import fh.se.car.rental.fh.model.enums.CurrencyCode;
@@ -78,14 +79,17 @@ public class BookingController {
   @PostMapping("/booking")
   public void add(@Validated @RequestBody Booking booking) {
     logger.info("Adding booking " + booking.getId()+ " "+booking.getCar().getPrice());
-    Optional<Booking> dbBooking = bookingService.findById(booking.getId());
+    Optional<Car> car = carRepository.findById(booking.getCar().getId());
+
     if (booking.getCurrency() == null) {
       throw new CurrencyNotSet("Currency not set!");
     }
-    if (dbBooking.isPresent()) {
-      String msg = booking.getId() + " already in use!";
-      logger.error(msg);
-      throw new CarLabelAlreadyInUse(msg);
+    if (car.isPresent()) {
+      if(!car.get().getStatus().name().equals(CarState.FREE.name())) {
+          String msg = booking.getId() + " already in use!";
+          logger.error(msg);
+          throw new CarLabelAlreadyInUse(msg);
+      }
     }
 
     booking.setPrice(
