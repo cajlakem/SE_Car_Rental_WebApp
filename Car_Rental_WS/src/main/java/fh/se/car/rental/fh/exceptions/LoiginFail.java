@@ -5,7 +5,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class LoiginFail extends RuntimeException {
-    public LoiginFail(String exception) {
-        super(exception);
-    }
+
+  public LoiginFail(String exception) {
+    super(exception);
+  }
 }

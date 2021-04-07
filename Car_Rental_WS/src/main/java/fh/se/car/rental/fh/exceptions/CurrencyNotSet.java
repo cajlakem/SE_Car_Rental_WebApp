@@ -5,7 +5,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.CONFLICT)
 public class CurrencyNotSet extends RuntimeException {
-    public CurrencyNotSet(String exception) {
-        super(exception);
-    }
+
+  public CurrencyNotSet(String exception) {
+    super(exception);
+  }
 }

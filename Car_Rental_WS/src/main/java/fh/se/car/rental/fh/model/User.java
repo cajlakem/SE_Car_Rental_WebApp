@@ -1,145 +1,156 @@
 package fh.se.car.rental.fh.model;
 
+import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
 @Table(name = "user")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(unique = true)
-    @NotNull(message = "Username cannot be null")
-    private String userName;
-    @Column(nullable = false)
-    @NotNull(message = "Firstname cannot be null")
-    private String firstName;
-    @Column(nullable = false)
-    @NotNull(message = "Lastname cannot be null")
-    private String lastName;
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn
-    private List<Booking> bookings;
-    private Boolean active;
-    private String token;
-    @Column(unique = false)
-    @NotNull(message = "Email cannot be null")
-    @Email(message = "Email invalid")
-    private String email;
-    @Column(unique = false)
-    private String mobile;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    public Boolean getActive() {
-        return active;
-    }
+  @Column(unique = true)
+  @NotNull(message = "Username cannot be null")
+  private String userName;
 
-    public User setActive(Boolean active) {
-        this.active = active;
-        return this;
-    }
+  @Column(nullable = false)
+  @NotNull(message = "Firstname cannot be null")
+  private String firstName;
 
-    public List<Booking> getBookings() {
-        return bookings;
-    }
+  @Column(nullable = false)
+  @NotNull(message = "Lastname cannot be null")
+  private String lastName;
 
-    public User setBookings(List<Booking> bookings) {
-        this.bookings = bookings;
-        return this;
-    }
+  @OneToMany(fetch = FetchType.EAGER)
+  @JoinColumn
+  private List<Booking> bookings;
 
-    public String getPassword() {
-        return password;
-    }
+  private Boolean active;
+  private String token;
 
-    public User setPassword(String password) {
-        this.password = password;
-        return this;
-    }
+  @Column(unique = false)
+  @NotNull(message = "Email cannot be null")
+  @Email(message = "Email invalid")
+  private String email;
 
-    private String password;
+  @Column(unique = false)
+  private String mobile;
 
+  public Boolean getActive() {
+    return active;
+  }
 
+  public User setActive(Boolean active) {
+    this.active = active;
+    return this;
+  }
 
-    public User(Long id, String userName, String firstName, String lastName, String password, boolean active, String email) {
-        this.id = id;
-        this.userName = userName;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.active = active;
-        this.email = email;
-    }
+  public List<Booking> getBookings() {
+    return bookings;
+  }
 
-    public User() {
+  public User setBookings(List<Booking> bookings) {
+    this.bookings = bookings;
+    return this;
+  }
 
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public User setPassword(String password) {
+    this.password = password;
+    return this;
+  }
 
-    public Long getId() {
-        return id;
-    }
+  private String password;
 
-    public String getUserName() {
-        return userName;
-    }
+  public User(
+    Long id,
+    String userName,
+    String firstName,
+    String lastName,
+    String password,
+    boolean active,
+    String email
+  ) {
+    this.id = id;
+    this.userName = userName;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.password = password;
+    this.active = active;
+    this.email = email;
+  }
 
-    public User setUserName(String userName) {
-        this.userName = userName;
-        return this;
-    }
+  public User() {}
 
-    public String getFirstName() {
-        return firstName;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public User setFirstName(String firstName) {
-        this.firstName = firstName;
-        return this;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public String getLastName() {
-        return lastName;
-    }
+  public String getUserName() {
+    return userName;
+  }
 
-    public User setLastName(String lastName) {
-        this.lastName = lastName;
-        return this;
-    }
+  public User setUserName(String userName) {
+    this.userName = userName;
+    return this;
+  }
 
-    public String getToken() {
-        return token;
-    }
+  public String getFirstName() {
+    return firstName;
+  }
 
-    public User setToken(String token) {
-        this.token = token;
-        return this;
-    }
+  public User setFirstName(String firstName) {
+    this.firstName = firstName;
+    return this;
+  }
 
-    public boolean checkPassword(String password){
-        return password.equals(this.password);
-    }
+  public String getLastName() {
+    return lastName;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public User setLastName(String lastName) {
+    this.lastName = lastName;
+    return this;
+  }
 
-    public User setEmail(String email) {
-        this.email = email;
-        return this;
-    }
+  public String getToken() {
+    return token;
+  }
 
-    public String getMobile() {
-        return mobile;
-    }
+  public User setToken(String token) {
+    this.token = token;
+    return this;
+  }
 
-    public User setMobile(String mobile) {
-        this.mobile = mobile;
-        return this;
-    }
+  public boolean checkPassword(String password) {
+    return password.equals(this.password);
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public User setEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public String getMobile() {
+    return mobile;
+  }
+
+  public User setMobile(String mobile) {
+    this.mobile = mobile;
+    return this;
+  }
 }

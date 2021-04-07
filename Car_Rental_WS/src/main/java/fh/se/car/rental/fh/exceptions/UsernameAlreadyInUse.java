@@ -5,7 +5,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.CONFLICT)
 public class UsernameAlreadyInUse extends RuntimeException {
-    public UsernameAlreadyInUse(String exception) {
-        super(exception);
-    }
+
+  public UsernameAlreadyInUse(String exception) {
+    super(exception);
+  }
 }

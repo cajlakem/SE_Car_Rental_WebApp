@@ -8,22 +8,22 @@ import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 @Configuration
 public class CurrencyClientConfig {
+  @Autowired
+  private Environment env;
 
-    @Autowired
-    private Environment env;
+  @Bean
+  public Jaxb2Marshaller marshaller() {
+    Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+    marshaller.setContextPath("fh.se.car.rental.fh.currency.ws.client.helper");
+    return marshaller;
+  }
 
-    @Bean
-    public Jaxb2Marshaller marshaller() {
-        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-        marshaller.setContextPath("fh.se.car.rental.fh.currency.ws.client.helper");
-        return marshaller;
-    }
-    @Bean
-    public CurrencyClient countryClient(Jaxb2Marshaller marshaller) {
-        CurrencyClient client = new CurrencyClient();
-        client.setDefaultUri(env.getProperty("carrental.currency.client.url"));
-        client.setMarshaller(marshaller);
-        client.setUnmarshaller(marshaller);
-        return client;
-    }
+  @Bean
+  public CurrencyClient countryClient(Jaxb2Marshaller marshaller) {
+    CurrencyClient client = new CurrencyClient();
+    client.setDefaultUri(env.getProperty("carrental.currency.client.url"));
+    client.setMarshaller(marshaller);
+    client.setUnmarshaller(marshaller);
+    return client;
+  }
 }
