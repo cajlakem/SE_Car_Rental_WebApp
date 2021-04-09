@@ -1,4 +1,4 @@
-<div class="car-list">
+<!--<div class="component-container">-->
   <ul>
     <li class="car-list-headings">
       <div class="car-list-cell">Car</div>
@@ -17,16 +17,16 @@
       <div class="car-list-cell"> {{car.vendor}}</div>
       <div class="car-list-cell"> {{car.price + ' ' + car.currency}} </div>
       <div class="car-list-cell">
-        <fa-icon *ngIf="isCarFree(car.status)" style="color: darkseagreen" [icon]="iconDoubleCheck"></fa-icon>
-        <fa-icon *ngIf="!isCarFree(car.status)" style="color: lightgrey" [icon]="iconCircleX"></fa-icon>
+        <fa-icon *ngIf="isCarFree(car.status)" style="color: darkseagreen; margin-right: 5px;" [icon]="iconDoubleCheck"></fa-icon>
+        <fa-icon *ngIf="!isCarFree(car.status)" style="color: lightgrey; margin-right: 5px;" [icon]="iconCircleX"></fa-icon>
         {{car.status}}
       </div>
       <div class="car-list-cell">
-        <button *ngIf="this.isLoggedIn && isCarFree(car.status)" class="btn-primary round booking-button" style="min-width: 120px;" (click)="bookCar(car)">
+        <button *ngIf="this.isLoggedIn && isCarFree(car.status)" class="car-list-button btn-primary round booking-button" (click)="bookCar(car)">
           book {{car.label}}
         </button>
       </div>
     </li>
   </ul>
 
-</div>
+<!--</div>-->

@@ -1,4 +1,4 @@
-<div *ngIf="hasBookings()" class="car-list">
+<div *ngIf="hasBookings()" class="component-container">
   <ul>
     <li class="car-list-headings">
       <div class="car-list-cell">Car</div>
@@ -18,8 +18,8 @@
       <div class="car-list-cell"> {{booking.endTime | date: 'dd:MM:YY hh:mm'}} </div>
       <div class="car-list-cell"> {{booking.price + ' ' + booking.currency}} </div>
       <div class="car-list-cell">
-        <fa-icon *ngIf="isCarFree(booking.status)" style="color: darkseagreen" [icon]="iconDoubleCheck"></fa-icon>
-        <fa-icon *ngIf="!isCarFree(booking.status)" style="color: lightgrey" [icon]="iconCircleX"></fa-icon>
+        <fa-icon *ngIf="isCarFree(booking.status)" style="color: darkseagreen; margin-right: 5px;" [icon]="iconDoubleCheck"></fa-icon>
+        <fa-icon *ngIf="!isCarFree(booking.status)" style="color: lightgrey; margin-right: 5px;" [icon]="iconCircleX"></fa-icon>
         {{booking.status}}
       </div>
     </li>

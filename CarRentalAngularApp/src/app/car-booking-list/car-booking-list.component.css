@@ -1,9 +1,3 @@
-.car-list {
-  background: #f7f7f7;
-  padding: 10px 20px;
-
-}
-
 .car-list ul{
   list-style: none;
   padding: 0;
@@ -26,6 +20,12 @@
   justify-content: space-between;
   padding: 10px 20px;
   margin: 5px 0;
+}
+
+.car-list-cell {
+  width: 21%;
+  display: flex;
+  align-items: center;
 }
 
 

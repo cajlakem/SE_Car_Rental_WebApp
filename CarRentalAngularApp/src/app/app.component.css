@@ -1,10 +1,19 @@
-.bg-image{
+.bg-image {
   background-image: url("../assets/snazzy-image.png");
 }
-.nav-link{
+
+.nav-link {
   padding-right: 2.5em !important;
   padding-left: 2.5em !important;
   color: white !important;
 }
-.logotitle{
+
+.app-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.logged-in-content {
+  /*max-width: 1000px;*/
 }

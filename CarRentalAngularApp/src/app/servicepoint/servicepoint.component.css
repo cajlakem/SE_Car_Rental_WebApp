@@ -1,4 +1,9 @@
-agm-map{
-  height:400px;
-  width: 600px;
+.google-maps-container {
+  display: flex;
+  justify-content: center;
+}
+
+agm-map {
+  height: 400px;
+  width: 100%;
 }
