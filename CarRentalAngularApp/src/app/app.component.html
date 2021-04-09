@@ -26,11 +26,13 @@
     <h1 class="text-primary">&nbsp;C A R NOW | mieten</h1>
   </header>
 
-  <app-currency-selection (onCurrencyValueChanged)="onCurrencySelectionEvent($event)"></app-currency-selection>
+  <div *ngIf="isLoggedIn">
+    <app-currency-selection (onCurrencyValueChanged)="onCurrencySelectionEvent($event)"></app-currency-selection>
 
-  <app-car-booking-list *ngIf="isLoggedIn"></app-car-booking-list>
+    <app-car-booking-list></app-car-booking-list>
 
-  <app-car-list [currency]="currency" (onCarBooked)="onCarBooked()"></app-car-list>
+    <app-car-list [currency]="currency" (onCarBooked)="onCarBooked()"></app-car-list>
+  </div>
 
   <app-servicepoint></app-servicepoint>
 </div>
