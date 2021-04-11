@@ -31,7 +31,7 @@
 
   <div class="container">
     <div class="logged-in-content" *ngIf="isLoggedIn">
-      <app-car-booking-list></app-car-booking-list>
+      <app-car-booking-list (onCarReturned)="onCarReturned()"></app-car-booking-list>
 
       <div class="component-container" style="margin-top: 40px;">
         <app-currency-selection (onCurrencyValueChanged)="onCurrencySelectionEvent($event)"></app-currency-selection>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {User} from "../_models/User";
 import {UserService} from "../_services/user.service";
 import {CarService} from "../_services/car-service";
@@ -11,6 +11,8 @@ import {faCheckDouble, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
   styleUrls: ['./car-booking-list.component.css']
 })
 export class CarBookingListComponent implements OnInit {
+  @Output() onCarReturned = new EventEmitter<any>();
+
   currentUser: User | null;
   userBookings: Booking[];
 
@@ -34,7 +36,7 @@ export class CarBookingListComponent implements OnInit {
   retrieveUsersBookings() {
     if (this.currentUser) {
       this.carService.retrieveUserBookings(this.currentUser.id).subscribe(bookings => {
-        this.userBookings = bookings;
+        this.userBookings = bookings.filter((booking) => booking.status === 'OPEN');
       });
     }
   }
@@ -45,5 +47,13 @@ export class CarBookingListComponent implements OnInit {
 
   hasBookings() {
     return this.userBookings?.length > 0;
+  }
+
+  returnCar(booking: Booking) {
+    booking.endTime = new Date();
+    this.carService.returnCar(booking).subscribe((booked) => {
+      this.retrieveUsersBookings();
+      this.onCarReturned.emit();
+    }, error => console.error(error));
   }
 }

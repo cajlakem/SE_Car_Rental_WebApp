@@ -22,6 +22,11 @@
         <fa-icon *ngIf="!isCarFree(booking.status)" style="color: lightgrey; margin-right: 5px;" [icon]="iconCircleX"></fa-icon>
         {{booking.status}}
       </div>
+      <div class="car-list-cell">
+        <button class="car-list-button btn-primary round booking-button" (click)="returnCar(booking)">
+          return
+        </button>
+      </div>
     </li>
   </ul>
 </div>

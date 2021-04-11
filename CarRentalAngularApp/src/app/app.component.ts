@@ -61,6 +61,10 @@ export class AppComponent implements OnInit {
     this.carBookingList.retrieveUsersBookings();
   }
 
+  onCarReturned() {
+    this.carList.retrieveAllCars(this.currency);
+  }
+
   logout(): void {
     this.tokenStorageService.signOut();
     window.location.reload();

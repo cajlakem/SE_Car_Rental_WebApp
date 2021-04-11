@@ -41,4 +41,8 @@ export class CarService {
     return this.http.post(API_URL + 'booking', bookingRequest);
   }
 
+  returnCar(booking: Booking) {
+    return this.http.post(API_URL + 'booking/return', booking);
+  }
+
 }
