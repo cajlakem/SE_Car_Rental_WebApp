@@ -23,7 +23,7 @@
 }
 
 .car-list-cell {
-  width: 21%;
+  width: 20%;
   display: flex;
   align-items: center;
 }
@@ -43,6 +43,11 @@
   transform: scale(1.02);
 }
 
-.booking-button:active, .booking-button:focus {
+.car-list-button {
+  min-width: 120px;
+  width: 100%
+}
+
+.car-list-button:active, .car-list-button:focus {
   outline: none;
 }
