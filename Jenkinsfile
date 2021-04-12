@@ -27,7 +27,7 @@ pipeline {
             steps {
                 dir('Car_Rental_WS'){
                     sh 'mvn compile'
-                    //sh 'mvn prettier:check' https://github.com/HubSpot/prettier-maven-plugin
+                    sh 'mvn prettier:check' // https://github.com/HubSpot/prettier-maven-plugin
                 }
             }
         }
@@ -40,9 +40,9 @@ pipeline {
 
         stage('unit tests') {
             steps {
-                    dir('Car_rental_WS'){
-                        sh 'mvn test'
-                    }
+                dir('Car_Rental_WS'){
+                    sh 'mvn test'
+                }
             }
         }
 
