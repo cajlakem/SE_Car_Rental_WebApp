@@ -26,9 +26,8 @@ pipeline {
         stage('Prettier: Check code format') {
             steps {
                 dir('Car_Rental_WS'){
-                    //sh 'mvn prettier:check' https://github.com/HubSpot/prettier-maven-plugin
                     sh 'mvn compile'
-                    sh 'echo works'
+                    //sh 'mvn prettier:check' https://github.com/HubSpot/prettier-maven-plugin
                 }
             }
         }
