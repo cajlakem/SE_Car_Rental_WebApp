@@ -1,0 +1,31 @@
+
+\
+java:S1192$"FDefine a constant instead of duplicating this literal "April" 9 times.(€îÀ
+d
+java:S1192\"IDefine a constant instead of duplicating this literal "test@man" 4 times.(ºÅÛ…øÿÿÿÿ
+d
+java:S1192\"IDefine a constant instead of duplicating this literal "test1234" 3 times.(ºÅÛ…øÿÿÿÿ
+]
+java:S1192$"GDefine a constant instead of duplicating this literal "joker" 17 times.(€îÀ
+_
+java:S1192$"IDefine a constant instead of duplicating this literal "testLOL" 13 times.(€îÀ
+a
+java:S1192$"KDefine a constant instead of duplicating this literal "april@fool" 9 times.(€îÀ
+b
+java:S1192\"GDefine a constant instead of duplicating this literal "tester" 3 times.(ºÅÛ…øÿÿÿÿ
+h	java:S100""NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Âä“¦ıÿÿÿÿ
+c	java:S100/"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼ıÁ 
+c	java:S100?"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“²ˆô
+h	java:S100M"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıñ®²üÿÿÿÿ
+h	java:S100X"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´§Ø¿ùÿÿÿÿ
+h	java:S100e"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(àŞ¨Óşÿÿÿÿ
+h	java:S100x"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(°¨²øÿÿÿÿ
+i	java:S100…"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(êçÚúÿÿÿÿ
+i	java:S100¢"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ûı­âùÿÿÿÿ
+S
+java:S1854¯"<Remove this useless assignment to local variable "testUser".(ñïìÔ
+d	java:S100µ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹çõ
+d	java:S100Â"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶Êãë
+d	java:S100Ğ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í’ÿğ
+D
+java:S1481¯"-Remove this unused "testUser" local variable.(ñïìÔ

@@ -1,8 +1,28 @@
 version: '3.3'
 
 services:
-  db:
-    container_name: rental_db
+  userregistrationdb:
+    container_name: userregistrationdb
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_DATABASE=userregistrations
+      - MONGO_INITDB_ROOT_USERNAME=my_ms
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    networks:
+      - my_ws
+  authorizationdb:
+    container_name: authorizationdb
+    image: 'bitnami/redis:latest'
+    environment:
+      - REDIS_PASSWORD=password123
+    ports:
+      - '6379'
+    networks:
+      - my_ws
+  usermanagementdb:
+    container_name: usermanagementdb
     image: mysql:5
     restart: always
     ports:
@@ -14,33 +34,96 @@ services:
       MYSQL_PASSWORD: password
     networks:
       - my_ws
-  backend_spring:
-    container_name: springcontainer
-    build: ./../Car_Rental_WS/
+  inventorymanagementdb:
+    container_name: inventorymanagementdb
+    image: postgres
+    restart: always
     ports:
-      - 8443:8443
-    depends_on:
-      - db
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=inventorymanagementdb
     networks:
       - my_ws
-  currency_converter_sw:
-    container_name: currency_ws
-    build: ./../CurrencyConverterWebservice
-    ports:
-      - 9090:80
-    depends_on:
-      - backend_spring
-    networks:
-      - my_ws
-  angular_frontend:
-    container_name: angular_frontend
-    build: ./../CarRentalAngularApp/
-    ports:
-      - 80:80
-    depends_on:
-      - db
-    networks:
-      - my_ws
-networks:
-  my_ws:
-    driver: bridge
+    salesorderdb:
+      image: bitnami/cassandra:latest
+      container_name: salesorderdb
+      environment:
+        - CASSANDRA_PASSWORD_SEEDER=yes
+        - CASSANDRA_PASSWORD=password
+    usermanagementbackend:
+      container_name: usermanagementbackend
+      build: ./../car-now-user-management-service
+      ports:
+        - 9003:9003
+      depends_on:
+        - usermanagementdb
+      networks:
+        - my_ws
+    userauthorizationtbackend:
+      container_name: userauthorizationtbackend
+      build: ./../car-now-user-authentication-service
+      ports:
+        - 9002:9002
+      depends_on:
+        - authorizationdb
+      networks:
+        - my_ws
+    signupmanagementbackend:
+      container_name: signupmanagementbackend
+      build: ./../car-now-user-signup-service
+      ports:
+        - 9001:9001
+      depends_on:
+        - userregistrationdb
+      networks:
+        - my_ws
+    angular_frontend:
+      container_name: angular_frontend
+      build: ./../CarRentalAngularApp/
+      ports:
+        - 80:80
+      depends_on:
+        - signupmanagementbackend
+      networks:
+        - my_ws
+    currency_converter_sw:
+      container_name: currency_ws
+      build: ./../CurrencyConverterWebservice
+      ports:
+        - 9090:80
+      networks:
+        - my_ws
+    activemqservice:
+      image: rmohr/activemq
+      container_name: activemqservice
+      environment:
+        - TZ=CEST
+      ports:
+        - "8161:8161"
+      expose:
+        - 8161
+      networks:
+        - my_ws
+    inventorymanagementbackend:
+      container_name: inventorymanagementbackend
+      build: ./../car-now-inventory-management-service
+      ports:
+        - 9004:9004
+      depends_on:
+        - signupmanagementbackend
+      networks:
+        - my_ws
+    salesordermanagementbackend:
+      container_name: salesordermanagementbackend
+      build: ./../car-now-sales-oder-management-service
+      ports:
+        - 9005:9005
+      depends_on:
+        - signupmanagementbackend
+      networks:
+        - my_ws
+  networks:
+    my_ws:
+      driver: bridge

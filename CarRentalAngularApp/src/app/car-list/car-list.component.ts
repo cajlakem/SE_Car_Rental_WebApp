@@ -7,63 +7,63 @@ import {User} from '../_models/User';
 import {TokenStorageService} from '../_services/token-storage.service';
 
 @Component({
-    selector: 'app-car-list',
-    templateUrl: './car-list.component.html',
-    styleUrls: ['./car-list.component.css']
+  selector: 'app-car-list',
+  templateUrl: './car-list.component.html',
+  styleUrls: ['./car-list.component.css']
 })
 export class CarListComponent implements OnInit {
-    @Input() currency: string;
-    @Output() onCarBooked = new EventEmitter<any>();
+  @Input() currency: string;
+  @Output() onCarBooked = new EventEmitter<any>();
 
-    currentUser: User | null;
-    cars: Car[] = [];
-    iconDoubleCheck = faCheckDouble;
-    iconCircleX = faTimesCircle;
-    isLoggedIn = false;
+  currentUser: User | null;
+  cars: Car[] = [];
+  iconDoubleCheck = faCheckDouble;
+  iconCircleX = faTimesCircle;
+  isLoggedIn = false;
 
-    constructor(private userService: UserService, private carService: CarService, private tokenStorageService: TokenStorageService) {
+  constructor(private userService: UserService, private carService: CarService, private tokenStorageService: TokenStorageService) {
+  }
+
+  ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.isLoggedIn) {
+      this.userService.getCurrentUser()?.subscribe((user: User) => {
+          this.currentUser = user;
+        },
+        err => {
+          console.error(err.error.message);
+        });
     }
 
-    ngOnInit(): void {
-        this.isLoggedIn = !!this.tokenStorageService.getToken();
+    this.retrieveAllCars(this.currency);
+  }
 
-        if (this.isLoggedIn) {
-            this.userService.getCurrentUser()?.subscribe((user: User) => {
-                    this.currentUser = user;
-                },
-                err => {
-                    console.error(err.error.message);
-                });
-        }
-
-        this.retrieveAllCars(this.currency);
+  retrieveAllCars(currency: string) {
+    if (currency) {
+      this.carService.retrieveCars(currency).subscribe(cars => {
+          this.cars = cars;
+        },
+        err => {
+          console.error(err.error.message);
+        });
     }
+  }
 
-    retrieveAllCars(currency: string) {
-        if (currency) {
-            this.carService.retrieveCars(currency).subscribe(cars => {
-                    this.cars = cars;
-                },
-                err => {
-                    console.error(err.error.message);
-                });
-        }
-    }
+  isCarFree(status: string): boolean {
+    return status === 'FREE';
+  }
 
-    isCarFree(status: string): boolean {
-        return status === 'FREE';
+  bookCar(car: Car) {
+    if (this.currentUser) {
+      this.carService.bookCar(car, this.currentUser, this.currency).subscribe((data: any) => {
+          this.retrieveAllCars(this.currency);
+          this.onCarBooked.emit();
+        },
+        (err: any) => {
+          console.error(err.error);
+        });
     }
-
-    bookCar(car: Car) {
-        if (this.currentUser) {
-            this.carService.bookCar(car, this.currentUser, this.currency).subscribe((data: any) => {
-                    this.retrieveAllCars(this.currency);
-                    this.onCarBooked.emit();
-                },
-                (err: any) => {
-                    console.error(err.error);
-                });
-        }
-    }
+  }
 
 }

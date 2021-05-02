@@ -1,12 +1,12 @@
 <form style="margin: 15px;">
-  <mat-form-field >
+  <mat-form-field>
     <mat-label>Currency</mat-label>
     <input type="text"
            placeholder="Currency"
            aria-label="Currency"
            matInput
            [formControl]="myControl"
-           [matAutocomplete]="auto" (blur)="onCurrencyChanged()" >
+           [matAutocomplete]="auto" (blur)="onCurrencyChanged()">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onCurrencyChanged($event)">
       <mat-option *ngFor="let currency of filteredCurrencies | async" [value]="currency">
         {{currency}}

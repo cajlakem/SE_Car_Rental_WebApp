@@ -5,7 +5,7 @@ import {Car} from '../_models/Car';
 import {User} from "../_models/User";
 import {Booking} from "../_models/Booking";
 
-const API_URL = '/rest/';
+const API_URL = '/rest/inventorymanagementbackend/';
 
 @Injectable({
   providedIn: 'root',

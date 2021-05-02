@@ -17,8 +17,10 @@
       <div class="car-list-cell"> {{booking.startTime | date: 'dd:MM:YY hh:mm'}}</div>
       <div class="car-list-cell"> {{booking.price + ' ' + booking.currency}} </div>
       <div class="car-list-cell">
-        <fa-icon *ngIf="isCarFree(booking.status)" style="color: darkseagreen; margin-right: 5px;" [icon]="iconDoubleCheck"></fa-icon>
-        <fa-icon *ngIf="!isCarFree(booking.status)" style="color: lightgrey; margin-right: 5px;" [icon]="iconCircleX"></fa-icon>
+        <fa-icon *ngIf="isCarFree(booking.status)" style="color: darkseagreen; margin-right: 5px;"
+                 [icon]="iconDoubleCheck"></fa-icon>
+        <fa-icon *ngIf="!isCarFree(booking.status)" style="color: lightgrey; margin-right: 5px;"
+                 [icon]="iconCircleX"></fa-icon>
         {{booking.status}}
       </div>
       <div class="car-list-cell">

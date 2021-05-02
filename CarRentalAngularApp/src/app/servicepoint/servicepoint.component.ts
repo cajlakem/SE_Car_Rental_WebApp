@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ServicePoint} from '../_models/ServicePoint';
 
 @Component({
@@ -11,9 +11,11 @@ export class ServicepointComponent implements OnInit {
   sp2 = new ServicePoint();
   sp3 = new ServicePoint();
   sp4 = new ServicePoint();
-  onMapClicked(event: any){
+
+  onMapClicked(event: any) {
     console.log(event);
   }
+
   ngOnInit(): void {
     this.sp1.name = 'C A R NOW Zentrale';
     this.sp1.lat = 48.189432;
