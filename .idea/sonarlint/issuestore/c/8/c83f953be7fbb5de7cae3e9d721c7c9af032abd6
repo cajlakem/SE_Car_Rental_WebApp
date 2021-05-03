@@ -1,0 +1,16 @@
+
+k	java:S116"QRename this field "HEADER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ú›¶ùÿÿÿÿ
+W
+java:S1126M"AReplace this if-then-else statement by a single return statement.(µÔñ£
+E
+java:S1172K"*Remove this unused method parameter "res".(ô¹²«ıÿÿÿÿ
+<
+java:S1170"!Make this final field static too.(¿ÛºÄıÿÿÿÿ
+k	java:S116"QRename this field "PREFIX" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŸÜ›‡ûÿÿÿÿ
+1
+java:S36264"Remove this redundant jump.(ûÁİ…
+<
+java:S1170"!Make this final field static too.(Ú›¶ùÿÿÿÿ
+<
+java:S1170"!Make this final field static too.(ŸÜ›‡ûÿÿÿÿ
+k	java:S116"QRename this field "SECRET" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿ÛºÄıÿÿÿÿ
