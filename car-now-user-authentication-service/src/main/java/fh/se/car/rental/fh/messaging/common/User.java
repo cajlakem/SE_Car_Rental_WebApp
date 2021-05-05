@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class User extends CarNowMessage implements Serializable {
     @JsonProperty("id")
     private String id;
     @JsonProperty("userName")

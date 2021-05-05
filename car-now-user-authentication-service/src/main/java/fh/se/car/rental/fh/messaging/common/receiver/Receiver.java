@@ -13,8 +13,8 @@ public class Receiver {
 
     Logger logger = LoggerFactory.getLogger(Receiver.class);
 
-    @Autowired
-    private UserRepository userRepository;
+    //@Autowired
+    //private UserRepository userRepository;
 
     @RabbitListener(queues = MessagingConfig.SIGNED_USERS)
     public void receiveMessage(final fh.se.car.rental.fh.messaging.common.User message) {

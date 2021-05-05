@@ -1,6 +1,7 @@
 package fh.se.car.rental.fh.controller;
 import fh.se.car.rental.fh.exceptions.CredentialsWrong;
 import fh.se.car.rental.fh.exceptions.UsernameAlreadyInUse;
+import fh.se.car.rental.fh.messaging.common.MessageType;
 import fh.se.car.rental.fh.messaging.common.MySeverity;
 import fh.se.car.rental.fh.messaging.common.config.MessagingConfig;
 import fh.se.car.rental.fh.messaging.common.sender.Sender;
@@ -11,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @RestController
 @RequestMapping("/signupmanagementbackend/api/v1")
@@ -44,8 +47,8 @@ public class UserController {
         }
         newUser.setPassword(reenteredPassword);
         fh.se.car.rental.fh.messaging.common.User userMessage = new fh.se.car.rental.fh.messaging.common.User();
-        //userMessage.setType(MessageType.SIGNUP_MSG);
-        //userMessage.setCreationDate(new Date());
+        userMessage.setType(MessageType.SIGNUP_MSG);
+        userMessage.setCreationDate(new Date());
         userMessage.setUserName(newUser.getUserName());
         userMessage.setId(newUser.getId());
         userMessage.setFirstName(newUser.getFirstName());
