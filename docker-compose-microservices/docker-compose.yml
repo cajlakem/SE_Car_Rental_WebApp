@@ -47,7 +47,7 @@ services:
     container_name: signupmanagementbackend
     build: ./../car-now-user-signup-service
     ports:
-      - 9001:9001
+      - 9010:9001
     depends_on:
       - userregistrationdb
       - rabbit1

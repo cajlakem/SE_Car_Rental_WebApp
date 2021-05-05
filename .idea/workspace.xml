@@ -5,59 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db2d3588-c564-4547-b58a-d85afbccf8a1" name="Default Changelist" comment="Reimplementation as microservice architecture">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/3f23843e-96cc-4b45-8547-6b4c97eb2a19.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/5/05822a69f56588290c667c0a70f7206b0ff66049" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/8/08857f477831802b12fe53639865b8a641292fa7" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/a/0a0c9f999fdd974dd0756575fb29303d5107fb45" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/a/0a3599a1cc07b34966b866509722add61072192c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/c/0c078f8b67f39de121dbe2d6744b5853bd2873db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/d/0df2be8c8ec4a1a1863a5f188f48d8fc4864714b" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/f/0f982ee98a9d64c4576446d78e6ce82590d45490" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/9/191586c449fd3911393d577ae88ff17f99d9fef1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/4/249da293caed3c728141a1b8d9553e105276b780" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/7/2755fcea7d392a3fa984c36bafe7def210fd125e" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/c/2cc5570d61db076a7b647186e05f27a21b742baa" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/9/3939d974b6f4a31bb1a8ec992ef7ace6de41097a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/a/3a91c9c1d724979e14c684b68625d6058fa82302" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/2/42d2a2e86325612605d0bcac603148e57315607e" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/6/46552bdf7224fbaea107d98b0ff057733ec2344e" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/0/509592e430f031d5ba403083eab6ceacc2ef2550" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/0/50aec7f83b69084aab256cb7a1991d434d0f7b16" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/1/519b25d585bda979f3dadce9bdfc82e1adf13eda" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/1/51af191c3748f358bd64282d0a0ea143c2a3f7f0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/4/54e663f48c75b26541a7329958e4a7fa59105613" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/5/55fb0e8a21ffa2dc4b6524c47587a05e4429b2ed" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/a/5af71ed1462cb1539c2e72ac8e456986e80a5d93" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/1/61e8a7ceae2bdf275f6dad069face7b79e7092b4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/4/6420bca081afd7beb8ae544286fd08e80c47eb66" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/5/65f0bfdba775ce766be560ef89897d6fd7f7cbc4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/7/7726917bf82dd27ade210bf50a5cac1eb86bc514" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/a/7ac92951f6df7b5d992d6223f4fb53179e1d46bb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/b/7b4b23f81bdc19ae27fa5eafd3efe31f1fbf920c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/3/83e337bf30e21f681503fb1ba42a06de6058dde1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/6/86217025c2c9d7695283de23978a4ae696cce7a9" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/7/872f2ec836a38b5bbfd7ef6180d90f6bf52fd563" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/8/88682e5f600b7239e5f74b9acbaf2112c29bc5b0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/b/8b300b9eed41ba5065cc0fda28ff7ee7ebc14c4e" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/5/95ccab5f26fc0572169228b9448d2a73feb955e0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/9/9928ac99c68c361676d183e871c3281f57a7b10c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/c/9c9209e1af2a69edf7fd114cb7b94069bc16ddad" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/e/9e36c8d1c5aa3ff14e7ab3b0032e4b5a0cff5611" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/0/a0d6efe6af866e51c8ddeefca882eba19f9c30ec" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/5/a5a198f364b93d7dc3bb74f79dce97154b1866b8" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/7/a7b072aedee63bab0e58f9a68641f35f305c3f9d" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/7/a7d17b42e38cabd6b978386c174f4f2909d87f82" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/c/ac125c2b6ee231d36efcc24a087d2c8cd0dd8770" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/d/adb04773fbea5ebc5e856f19f1ac7ccf7e3d0bf3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/1/b12a97f72b8c6f86a56d4b2ea502e1cd4519d2dc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/2/b20530617b647aad079198ee6f5cf1e07d696de5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/3/b3cb002299afc20f1138d45cc52cfe3fb632dced" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/6/b6043723d5eee992db715bbe6046043d634e6f1d" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/a/ba62d23f2301ff76a774983ba5091f59a992dd05" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/3/c32e190a8ec231a372de9ae93e5f6af204f987bd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/8/c82010bf90c8151c4a9dabf430b1ec9aa854ab63" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/8/c83f953be7fbb5de7cae3e9d721c7c9af032abd6" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/a/cab43cfb9008d1e6f1c01e2504559607dac26b62" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car-now-user-signup-service/src/main/java/fh/se/car/rental/fh/messaging/common/CarNowMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car-now-user-signup-service/src/main/java/fh/se/car/rental/fh/messaging/common/MessageType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car-now-user-signup-service/src/main/java/fh/se/car/rental/fh/messaging/common/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car-now-user-signup-service/src/main/java/fh/se/car/rental/fh/messaging/receiver/Receiver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car-now-user-signup-service/src/main/java/fh/se/car/rental/fh/messaging/sender/Sender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-messaging-commons/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-messaging-commons/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-user-signup-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-signup-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-user-signup-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-signup-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose-microservices/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose-microservices/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -352,6 +310,9 @@
       <workItem from="1619982809616" duration="2988000" />
       <workItem from="1619986762606" duration="2233000" />
       <workItem from="1619989921006" duration="2350000" />
+      <workItem from="1620070093268" duration="2667000" />
+      <workItem from="1620079298598" duration="240000" />
+      <workItem from="1620079564959" duration="1894000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1613696516536</created>
@@ -640,7 +601,21 @@
       <option name="project" value="LOCAL" />
       <updated>1619992176583</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Reimplementation as microservice architecture">
+      <created>1620070304497</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1620070304497</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Reimplementation as microservice architecture">
+      <created>1620070359320</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1620070359320</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

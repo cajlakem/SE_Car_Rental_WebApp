@@ -1,10 +1,9 @@
 package fh.se.car.rental.fh.controller;
-import fh.se.car.rental.fh.CarRentalRESTWebService;
 import fh.se.car.rental.fh.exceptions.CredentialsWrong;
 import fh.se.car.rental.fh.exceptions.UsernameAlreadyInUse;
-import fh.se.car.rental.fh.messaging.common.CarNowMessage;
-import fh.se.car.rental.fh.messaging.common.MessageType;
-import fh.se.car.rental.fh.messaging.sender.Sender;
+import fh.se.car.rental.fh.messaging.common.MySeverity;
+import fh.se.car.rental.fh.messaging.common.config.MessagingConfig;
+import fh.se.car.rental.fh.messaging.common.sender.Sender;
 import fh.se.car.rental.fh.model.User;
 import fh.se.car.rental.fh.repository.UserRepository;
 import org.slf4j.Logger;
@@ -29,20 +28,34 @@ public class UserController {
     public User createUser(
             @Validated @RequestBody User newUser,
             @RequestHeader(name = "reenteredPassword") String reenteredPassword) {
-        sender.sendMessage(CarRentalRESTWebService.topicExchangeName, "foo.bar.baz", new CarNowMessage(MessageType.SIGNUP_MSG, new fh.se.car.rental.fh.messaging.common.User(newUser.getId(), newUser.getUserName(), newUser.getFirstName(), newUser.getLastName(), newUser.getActive(), "", newUser.getEmail(), newUser.getMobile()), fh.se.car.rental.fh.messaging.common.User.class.getName()));
-
         if (
                 reenteredPassword.isEmpty() || !newUser.getPassword().equals(reenteredPassword)
         ) throw new CredentialsWrong(
                 "Check the password! " + reenteredPassword + " != " + newUser.getPassword()
         );
-        logger.info("Adding user " + newUser.getUserName());
+        String msg = "Adding user " + newUser.getUserName();
+        logger.info(msg);
+        sender.sendLogMessage(msg, MySeverity.INFO);
         if (userRepository.findByUserName(newUser.getUserName()) != null) {
-            String msg = newUser.getUserName() + " already in use!";
+            msg = newUser.getUserName() + " already in use!";
             logger.error(msg);
+            sender.sendLogMessage(msg, MySeverity.ERROR);
             throw new UsernameAlreadyInUse(msg);
         }
         newUser.setPassword(reenteredPassword);
+        fh.se.car.rental.fh.messaging.common.User userMessage = new fh.se.car.rental.fh.messaging.common.User();
+        //userMessage.setType(MessageType.SIGNUP_MSG);
+        //userMessage.setCreationDate(new Date());
+        userMessage.setUserName(newUser.getUserName());
+        userMessage.setId(newUser.getId());
+        userMessage.setFirstName(newUser.getFirstName());
+        userMessage.setLastName(newUser.getLastName());
+        userMessage.setActive(newUser.getActive());
+        userMessage.setEmail(newUser.getEmail());
+        userMessage.setMobile(newUser.getMobile());
+        userMessage.setPassword(reenteredPassword);
+        sender.sendMessage(MessagingConfig.EXCHANGE_NAME, MessagingConfig.USERS, userMessage);
+        sender.sendLogMessage("A new User ("+newUser.getUserName()+") signed up!", MySeverity.INFO);
         return userRepository.save(newUser);
     }
 }

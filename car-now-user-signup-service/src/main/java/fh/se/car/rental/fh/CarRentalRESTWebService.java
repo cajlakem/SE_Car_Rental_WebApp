@@ -1,15 +1,11 @@
 package fh.se.car.rental.fh;
-
-import fh.se.car.rental.fh.messaging.receiver.Receiver;
+import fh.se.car.rental.fh.messaging.common.config.MessagingConfig;
 import fh.se.car.rental.fh.repository.UserRepository;
 import fh.se.car.rental.fh.security.JWTAuthorizationFilter;
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
-import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,13 +17,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+
 @SpringBootApplication
 public class CarRentalRESTWebService {
     @Autowired
     UserRepository userRepository;
-
-    public static final String topicExchangeName = "spring-boot-exchange";
-    public static final String queueName = "spring-boot";
 
     public static void main(String[] args) {
         SpringApplication.run(CarRentalRESTWebService.class, args);
@@ -56,33 +50,40 @@ public class CarRentalRESTWebService {
     }
 
     @Bean
-    Queue queue() {
-        return new Queue(queueName, false);
+    public TopicExchange appExchange() {
+        return new TopicExchange(MessagingConfig.EXCHANGE_NAME);
     }
 
     @Bean
-    TopicExchange exchange() {
-        return new TopicExchange(topicExchangeName);
+    public Queue appQueueGeneric() {
+        return new Queue(MessagingConfig.LOGGING_QUEUE);
     }
 
     @Bean
-    Binding binding(Queue queue, TopicExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with("foo.bar.#");
+    public Queue appQueueSpecific() {
+        return new Queue(MessagingConfig.SIGNED_USERS);
     }
 
     @Bean
-    SimpleMessageListenerContainer container(ConnectionFactory connectionFactory,
-                                             MessageListenerAdapter listenerAdapter) {
-        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-        container.setConnectionFactory(connectionFactory);
-        container.setQueueNames(queueName);
-        container.setMessageListener(listenerAdapter);
-        return container;
+    public Binding declareBindingGeneric() {
+        return BindingBuilder.bind(appQueueGeneric()).to(appExchange()).with(MessagingConfig.LOGS);
     }
 
     @Bean
-    MessageListenerAdapter listenerAdapter(Receiver receiver) {
-        return new MessageListenerAdapter(receiver, "receiveMessage");
+    public Binding declareBindingSpecific() {
+        return BindingBuilder.bind(appQueueSpecific()).to(appExchange()).with(MessagingConfig.USERS);
+    }
+
+    @Bean
+    public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory) {
+        final var rabbitTemplate = new RabbitTemplate(connectionFactory);
+        rabbitTemplate.setMessageConverter(producerJackson2MessageConverter());
+        return rabbitTemplate;
+    }
+
+    @Bean
+    public Jackson2JsonMessageConverter producerJackson2MessageConverter() {
+        return new Jackson2JsonMessageConverter();
     }
 
 }

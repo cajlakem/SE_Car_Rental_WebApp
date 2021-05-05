@@ -1,5 +1,5 @@
-package fh.se.car.rental.fh.messaging.sender;
-import fh.se.car.rental.fh.messaging.receiver.Receiver;
+package fh.se.car.rental.fh.messaging.common.sender;
+import fh.se.car.rental.fh.messaging.common.receiver.Receiver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

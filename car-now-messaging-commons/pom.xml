@@ -10,7 +10,7 @@
   </parent>
   <groupId>car.now.messaging.commons</groupId>
   <artifactId>car.now.messaging.commons</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <name>car.now.messaging.commons</name>
   <description>Demo project for Spring Boot</description>
   <properties>
@@ -48,21 +48,4 @@
       </plugin>
     </plugins>
   </build>
-
-  <repositories>
-    <repository>
-      <id>maven-group</id>
-      <url>http://localhost:8081/repository/test/</url>
-    </repository>
-  </repositories>
-  <distributionManagement>
-    <snapshotRepository>
-      <id>nexus-snapshots</id>
-      <url>http://admin:6d54e2b7-a897-47eb-b96b-894f621f0eff@localhost:8081/repository/maven-snapshots/</url>
-    </snapshotRepository>
-    <repository>
-      <id>nexus-releases</id>
-      <url>http://admin:6d54e2b7-a897-47eb-b96b-894f621f0eff@localhost:8081/repository/maven-releases/</url>
-    </repository>
-  </distributionManagement>
 </project>

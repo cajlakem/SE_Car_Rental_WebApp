@@ -1,10 +1,19 @@
 package fh.se.car.rental.fh;
 
+import fh.se.car.rental.fh.messaging.common.config.MessagingConfig;
+import fh.se.car.rental.fh.messaging.common.receiver.Receiver;
 import fh.se.car.rental.fh.repository.UserRepository;
 import fh.se.car.rental.fh.security.JWTAuthorizationFilter;
+import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
+import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -41,5 +50,42 @@ public class CarRentalRESTWebService {
                     .authenticated();
             http.cors();
         }
+    }
+
+    @Bean
+    public TopicExchange appExchange() {
+        return new TopicExchange(MessagingConfig.EXCHANGE_NAME);
+    }
+
+    @Bean
+    public Queue appQueueGeneric() {
+        return new Queue(MessagingConfig.LOGGING_QUEUE);
+    }
+
+    @Bean
+    public Queue appQueueSpecific() {
+        return new Queue(MessagingConfig.SIGNED_USERS);
+    }
+
+    @Bean
+    public Binding declareBindingGeneric() {
+        return BindingBuilder.bind(appQueueGeneric()).to(appExchange()).with(MessagingConfig.LOGS);
+    }
+
+    @Bean
+    public Binding declareBindingSpecific() {
+        return BindingBuilder.bind(appQueueSpecific()).to(appExchange()).with(MessagingConfig.USERS);
+    }
+
+    @Bean
+    public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory) {
+        final var rabbitTemplate = new RabbitTemplate(connectionFactory);
+        rabbitTemplate.setMessageConverter(producerJackson2MessageConverter());
+        return rabbitTemplate;
+    }
+
+    @Bean
+    public Jackson2JsonMessageConverter producerJackson2MessageConverter() {
+        return new Jackson2JsonMessageConverter();
     }
 }

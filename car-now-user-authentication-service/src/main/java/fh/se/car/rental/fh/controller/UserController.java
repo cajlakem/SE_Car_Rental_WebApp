@@ -2,10 +2,10 @@ package fh.se.car.rental.fh.controller;
 
 
 import fh.se.car.rental.fh.controller.helper.JwtResponse;
-import fh.se.car.rental.fh.exceptions.CredentialsWrong;
 import fh.se.car.rental.fh.exceptions.LoiginFail;
 import fh.se.car.rental.fh.exceptions.RecordNotFoundException;
-import fh.se.car.rental.fh.exceptions.UsernameAlreadyInUse;
+import fh.se.car.rental.fh.messaging.common.MySeverity;
+import fh.se.car.rental.fh.messaging.common.sender.Sender;
 import fh.se.car.rental.fh.model.User;
 import fh.se.car.rental.fh.repository.UserRepository;
 
@@ -16,7 +16,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -31,6 +30,9 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private Sender sender;
+
     Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @PostMapping("/users/login")
@@ -38,18 +40,26 @@ public class UserController {
             @RequestHeader(name = "username", required = true) String username,
             @RequestHeader(name = "password", required = true) String password
     ) {
-        logger.info("Logging in " + username);
+        String msg = "Logging in " + username;
+        logger.info(msg);
+        sender.sendLogMessage(msg, MySeverity.INFO);
         User dbUser = userRepository.findByUserName(username);
         if (dbUser == null) {
-            logger.error("Failed to login " + username);
+            msg ="Failed to login " + username;
+            logger.error(msg);
+            sender.sendLogMessage(msg, MySeverity.ERROR);
             throw new RecordNotFoundException(username + " not found!");
         }
         if (!dbUser.checkPassword(password)) {
-            logger.error("Failed to login " + username);
+            msg ="Failed to login " + username;
+            logger.error(msg);
+            sender.sendLogMessage(msg, MySeverity.ERROR);
             throw new LoiginFail("Wrong credentials!");
         }
         JwtResponse token = getJWTToken(dbUser);
-        logger.info("Token created for " + username + " " + token.getAccessToken());
+        msg = "Token created for " + username + " " + token.getAccessToken();
+        logger.info(msg);
+        sender.sendLogMessage(msg, MySeverity.INFO);
         return token;
     }
 
