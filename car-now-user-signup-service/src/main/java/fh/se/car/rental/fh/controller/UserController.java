@@ -57,7 +57,7 @@ public class UserController {
         userMessage.setEmail(newUser.getEmail());
         userMessage.setMobile(newUser.getMobile());
         userMessage.setPassword(reenteredPassword);
-        sender.sendMessage(MessagingConfig.EXCHANGE_NAME, MessagingConfig.USERS, userMessage);
+        sender.sendMessage(MessagingConfig.EXCHANGE_NAME, MessagingConfig.SIGN_UP, userMessage);
         sender.sendLogMessage("A new User ("+newUser.getUserName()+") signed up!", MySeverity.INFO);
         return userRepository.save(newUser);
     }

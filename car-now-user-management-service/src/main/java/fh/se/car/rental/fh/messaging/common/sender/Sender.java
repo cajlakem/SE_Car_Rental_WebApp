@@ -36,6 +36,6 @@ public class Sender {
         logEntry.setSeverity(severity);
         logEntry.setMicroserviceName(serviceName);
         logEntry.setMessage(logMessage);
-        //rabbitTemplate.convertAndSend(MessagingConfig.EXCHANGE_NAME, MessagingConfig.LOGGING_QUEUE, logEntry);
+        //rabbitTemplate.convertAndSend(MessagingConfig.EXCHANGE_NAME, MessagingConfig., logEntry);
     }
 }

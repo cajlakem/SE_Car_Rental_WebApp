@@ -93,6 +93,15 @@ services:
       - "15673:15672"
     networks:
       - my_ws
+  usermanagementbackend:
+    container_name: usermanagementbackend
+    build: ./../car-now-user-management-service
+    ports:
+      - 9003:9003
+    depends_on:
+      - usermanagementdb
+    networks:
+      - my_ws
 networks:
   my_ws:
     driver: bridge

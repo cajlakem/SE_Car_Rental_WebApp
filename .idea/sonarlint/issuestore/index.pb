@@ -514,3 +514,5 @@ j
 :.idea/dataSources/3f23843e-96cc-4b45-8547-6b4c97eb2a19.xml,5\d\5db0e79e9258788c147b89156fbdb6c189469d7f
 w
 G.idea/sonarlint/issuestore/5/1/51af191c3748f358bd64282d0a0ea143c2a3f7f0,0\3\03dead3fa465c0fe0728258c13f1476b41c2d672
+N
+CarRentalAngularApp/Dockerfile,8\1\8101098eae767a28fc095be8d0dcba919a22d554

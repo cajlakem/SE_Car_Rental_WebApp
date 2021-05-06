@@ -17,9 +17,9 @@ public class Receiver {
     @Autowired
     UserRepository userRepository;
 
-    @RabbitListener(queues = MessagingConfig.SIGN_UP_2_AUTHENTICATION)
+    @RabbitListener(queues = MessagingConfig.SIGN_UP_2_USER_MANAGEMENT)
     public void receiveMessage(final fh.se.car.rental.fh.messaging.common.User message) {
-        logger.info("Adding a new user with username: "+message.getUserName());
-        userRepository.save(new User(message.getUserName(), message.getUserName(), message.getFirstName(), message.getLastName(), message.getPassword(), true, message.getEmail()));
+        logger.info("Creating a new user with username: "+message.getUserName());
+        userRepository.save(new User(System.currentTimeMillis(), message.getUserName(), message.getFirstName(), message.getLastName(), message.getPassword(), true, message.getEmail()));
     }
 }

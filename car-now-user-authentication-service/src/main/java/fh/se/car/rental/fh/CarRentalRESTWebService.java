@@ -10,15 +10,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
-import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -55,6 +55,8 @@ public class CarRentalRESTWebService {
                     .authorizeRequests()
                     .antMatchers(HttpMethod.POST, "/userauthorizationtbackend/api/v1/users/login")
                     .permitAll()
+                    .antMatchers(HttpMethod.POST, "/userauthorizationtbackend/api/v1/users/validateToken")
+                    .permitAll()
                     .anyRequest()
                     .authenticated();
             http.cors();
@@ -68,22 +70,34 @@ public class CarRentalRESTWebService {
 
     @Bean
     public Queue appQueueGeneric() {
-        return new Queue(MessagingConfig.LOGGING_QUEUE);
+        return new Queue(MessagingConfig.LOGGING);
     }
 
     @Bean
-    public Queue appQueueSpecific() {
-        return new Queue(MessagingConfig.SIGNED_USERS);
+    public Queue appQueueUserMgt() {
+        return new Queue(MessagingConfig.SIGN_UP_2_USER_MANAGEMENT);
     }
+
+    @Bean
+    public Queue appQueueAuth() {
+        return new Queue(MessagingConfig.SIGN_UP_2_AUTHENTICATION);
+    }
+
+
 
     @Bean
     public Binding declareBindingGeneric() {
-        return BindingBuilder.bind(appQueueGeneric()).to(appExchange()).with(MessagingConfig.LOGS);
+        return BindingBuilder.bind(appQueueGeneric()).to(appExchange()).with(MessagingConfig.LOGGING_KEY);
     }
 
     @Bean
-    public Binding declareBindingSpecific() {
-        return BindingBuilder.bind(appQueueSpecific()).to(appExchange()).with(MessagingConfig.USERS);
+    public Binding declareBindingAuth() {
+        return BindingBuilder.bind(appQueueAuth()).to(appExchange()).with(MessagingConfig.SIGN_UP);
+    }
+
+    @Bean
+    public Binding declareBindingUSerMgt() {
+        return BindingBuilder.bind(appQueueUserMgt()).to(appExchange()).with(MessagingConfig.SIGN_UP);
     }
 
     @Bean

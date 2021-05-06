@@ -32,26 +32,6 @@ public class UserController {
 
     Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @PostMapping("/users/register")
-    public User createUser(
-            @Validated @RequestBody User newUser,
-            @RequestHeader(name = "reenteredPassword") String reenteredPassword
-    ) {
-        if (
-                reenteredPassword.isEmpty() || !newUser.getPassword().equals(reenteredPassword)
-        ) throw new CredentialsWrong(
-                "Check the password! " + reenteredPassword + " != " + newUser.getPassword()
-        );
-        logger.info("Adding user " + newUser.getUserName());
-        if (userRepository.findByUserName(newUser.getUserName()) != null) {
-            String msg = newUser.getUserName() + " already in use!";
-            logger.error(msg);
-            throw new UsernameAlreadyInUse(msg);
-        }
-        newUser.setPassword(reenteredPassword);
-        return userRepository.save(newUser);
-    }
-
     @GetMapping("/users")
     public List<User> queryAllUsers() {
         return userRepository.findAll();
@@ -86,54 +66,5 @@ public class UserController {
     @DeleteMapping("/users/{id}")
     public void deleteUser(@PathVariable Long id) {
         userRepository.deleteById(id);
-    }
-
-    @PostMapping("/users/login")
-    public JwtResponse login(
-            @RequestHeader(name = "username", required = true) String username,
-            @RequestHeader(name = "password", required = true) String password
-    ) {
-        logger.info("Logging in " + username);
-        User dbUser = userRepository.findByUserName(username);
-        if (dbUser == null) {
-            logger.error("Failed to login " + username);
-            throw new RecordNotFoundException(username + " not found!");
-        }
-        if (!dbUser.checkPassword(password)) {
-            logger.error("Failed to login " + username);
-            throw new LoiginFail("Wrong credentials!");
-        }
-        JwtResponse token = getJWTToken(dbUser);
-        logger.info("Token created for " + username + " " + token.getAccessToken());
-        return token;
-    }
-
-    private JwtResponse getJWTToken(User dbUser) {
-        String secretKey = "mySecretKey";
-        List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList(
-                "SYSTEM_ADMIN"
-        );
-        String token = Jwts
-                .builder()
-                .setSubject(dbUser.getUserName())
-                .claim(
-                        "authorities",
-                        grantedAuthorities
-                                .stream()
-                                .map(GrantedAuthority::getAuthority)
-                                .collect(Collectors.toList())
-                )
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 60000000))
-                .signWith(SignatureAlgorithm.HS512, secretKey.getBytes())
-                .compact();
-
-        return new JwtResponse(
-                token,
-                dbUser.getId(),
-                dbUser.getUserName(),
-                dbUser.getEmail(),
-                Arrays.asList("ADMIN", "MODERATOR", "USER")
-        );
     }
 }

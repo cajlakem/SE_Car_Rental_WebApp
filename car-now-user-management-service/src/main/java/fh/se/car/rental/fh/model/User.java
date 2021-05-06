@@ -9,7 +9,6 @@ import javax.validation.constraints.NotNull;
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true)
@@ -89,14 +88,6 @@ public class User {
     public User() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
     public String getUserName() {
         return userName;
     }
@@ -152,6 +143,15 @@ public class User {
 
     public User setMobile(String mobile) {
         this.mobile = mobile;
+        return this;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public User setId(Long id) {
+        this.id = id;
         return this;
     }
 }

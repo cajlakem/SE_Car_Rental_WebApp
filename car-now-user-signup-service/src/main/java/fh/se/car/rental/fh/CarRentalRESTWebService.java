@@ -1,5 +1,4 @@
 package fh.se.car.rental.fh;
-import fh.se.car.rental.fh.controller.UserController;
 import fh.se.car.rental.fh.messaging.common.config.MessagingConfig;
 import fh.se.car.rental.fh.repository.UserRepository;
 import fh.se.car.rental.fh.security.JWTAuthorizationFilter;
@@ -61,22 +60,34 @@ public class CarRentalRESTWebService {
 
     @Bean
     public Queue appQueueGeneric() {
-        return new Queue(MessagingConfig.LOGGING_QUEUE);
+        return new Queue(MessagingConfig.LOGGING);
     }
 
     @Bean
-    public Queue appQueueSpecific() {
-        return new Queue(MessagingConfig.SIGNED_USERS);
+    public Queue appQueueUserMgt() {
+        return new Queue(MessagingConfig.SIGN_UP_2_USER_MANAGEMENT);
     }
+
+    @Bean
+    public Queue appQueueAuth() {
+        return new Queue(MessagingConfig.SIGN_UP_2_AUTHENTICATION);
+    }
+
+
 
     @Bean
     public Binding declareBindingGeneric() {
-        return BindingBuilder.bind(appQueueGeneric()).to(appExchange()).with(MessagingConfig.LOGS);
+        return BindingBuilder.bind(appQueueGeneric()).to(appExchange()).with(MessagingConfig.LOGGING_KEY);
     }
 
     @Bean
-    public Binding declareBindingSpecific() {
-        return BindingBuilder.bind(appQueueSpecific()).to(appExchange()).with(MessagingConfig.USERS);
+    public Binding declareBindingAuth() {
+        return BindingBuilder.bind(appQueueAuth()).to(appExchange()).with(MessagingConfig.SIGN_UP);
+    }
+
+    @Bean
+    public Binding declareBindingUSerMgt() {
+        return BindingBuilder.bind(appQueueUserMgt()).to(appExchange()).with(MessagingConfig.SIGN_UP);
     }
 
     @Bean

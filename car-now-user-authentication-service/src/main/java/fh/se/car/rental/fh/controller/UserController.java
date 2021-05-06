@@ -9,6 +9,8 @@ import fh.se.car.rental.fh.messaging.common.sender.Sender;
 import fh.se.car.rental.fh.model.User;
 import fh.se.car.rental.fh.repository.UserRepository;
 
+import fh.se.car.rental.fh.security.JWTAuthorizationFilter;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.slf4j.Logger;
