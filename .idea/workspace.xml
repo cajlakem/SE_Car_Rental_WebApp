@@ -5,16 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db2d3588-c564-4547-b58a-d85afbccf8a1" name="Default Changelist" comment="Reimplementation as microservice architecture">
-      <change afterPath="$PROJECT_DIR$/car-now-user-signup-service/src/main/java/fh/se/car/rental/fh/messaging/common/CarNowMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car-now-user-signup-service/src/main/java/fh/se/car/rental/fh/messaging/common/MessageType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car-now-user-signup-service/src/main/java/fh/se/car/rental/fh/messaging/common/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car-now-user-signup-service/src/main/java/fh/se/car/rental/fh/messaging/receiver/Receiver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car-now-user-signup-service/src/main/java/fh/se/car/rental/fh/messaging/sender/Sender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/8/88682e5f600b7239e5f74b9acbaf2112c29bc5b0" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-messaging-commons/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-messaging-commons/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-signup-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-signup-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-signup-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-signup-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-user-authentication-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-authentication-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/CarRentalRESTWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/CarRentalRESTWebService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/controller/helper/JwtResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/controller/helper/JwtResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/messaging/common/receiver/Receiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/messaging/common/receiver/Receiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-user-signup-service/src/main/java/fh/se/car/rental/fh/CarRentalRESTWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-signup-service/src/main/java/fh/se/car/rental/fh/CarRentalRESTWebService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose-microservices/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose-microservices/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -313,6 +315,7 @@
       <workItem from="1620070093268" duration="2667000" />
       <workItem from="1620079298598" duration="240000" />
       <workItem from="1620079564959" duration="1894000" />
+      <workItem from="1620258394566" duration="1072000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1613696516536</created>

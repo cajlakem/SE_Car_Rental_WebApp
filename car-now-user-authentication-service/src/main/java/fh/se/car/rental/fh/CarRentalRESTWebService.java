@@ -2,17 +2,22 @@ package fh.se.car.rental.fh;
 
 import fh.se.car.rental.fh.messaging.common.config.MessagingConfig;
 import fh.se.car.rental.fh.messaging.common.receiver.Receiver;
+import fh.se.car.rental.fh.model.User;
 import fh.se.car.rental.fh.repository.UserRepository;
 import fh.se.car.rental.fh.security.JWTAuthorizationFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -23,6 +28,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @SpringBootApplication
 public class CarRentalRESTWebService {
+
     @Autowired
     UserRepository userRepository;
 
@@ -31,8 +37,11 @@ public class CarRentalRESTWebService {
     }
 
     @EnableWebSecurity
+    @EnableCaching
     @Configuration
     class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
@@ -87,5 +96,24 @@ public class CarRentalRESTWebService {
     @Bean
     public Jackson2JsonMessageConverter producerJackson2MessageConverter() {
         return new Jackson2JsonMessageConverter();
+    }
+
+    @Bean
+    InitializingBean initDatabase() {
+        return () -> {
+            User user = new User(
+                    "test",
+                    "test",
+                    "Dummy",
+                    "Dummy",
+                    "test",
+                    true,
+                    "emir@cajlakovic"
+            );
+            userRepository.save(user);
+            Logger logger = LoggerFactory.getLogger(CarRentalRESTWebService.class);
+            logger.info("Querying: "+userRepository.count());
+
+        };
     }
 }

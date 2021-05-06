@@ -1,8 +1,9 @@
 package fh.se.car.rental.fh.controller.helper;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class JwtResponse {
+public class JwtResponse implements Serializable {
     private String token;
     private String type = "Bearer";
     private String id;

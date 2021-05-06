@@ -1,10 +1,12 @@
 package fh.se.car.rental.fh.model;
 
-import org.springframework.data.redis.core.RedisHash;
+import javax.persistence.Entity;
 
-@RedisHash("User")
+
+@Entity
 public class User {
 
+    @javax.persistence.Id
     public String getId() {
         return id;
     }

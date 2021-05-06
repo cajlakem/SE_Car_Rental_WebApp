@@ -1,7 +1,10 @@
 package fh.se.car.rental.fh;
+import fh.se.car.rental.fh.controller.UserController;
 import fh.se.car.rental.fh.messaging.common.config.MessagingConfig;
 import fh.se.car.rental.fh.repository.UserRepository;
 import fh.se.car.rental.fh.security.JWTAuthorizationFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -22,6 +25,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class CarRentalRESTWebService {
     @Autowired
     UserRepository userRepository;
+
+    Logger logger = LoggerFactory.getLogger(CarRentalRESTWebService.class);
 
     public static void main(String[] args) {
         SpringApplication.run(CarRentalRESTWebService.class, args);

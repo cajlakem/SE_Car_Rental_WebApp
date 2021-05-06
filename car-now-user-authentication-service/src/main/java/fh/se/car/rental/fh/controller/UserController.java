@@ -14,6 +14,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -35,6 +37,7 @@ public class UserController {
 
     Logger logger = LoggerFactory.getLogger(UserController.class);
 
+    @Cacheable(value = "users")
     @PostMapping("/users/login")
     public JwtResponse login(
             @RequestHeader(name = "username", required = true) String username,
@@ -43,20 +46,22 @@ public class UserController {
         String msg = "Logging in " + username;
         logger.info(msg);
         sender.sendLogMessage(msg, MySeverity.INFO);
-        User dbUser = userRepository.findByUserName(username);
-        if (dbUser == null) {
+        Optional<User> dbUser = userRepository.findById(username);
+
+        if (dbUser.isEmpty()) {
             msg ="Failed to login " + username;
             logger.error(msg);
             sender.sendLogMessage(msg, MySeverity.ERROR);
             throw new RecordNotFoundException(username + " not found!");
         }
-        if (!dbUser.checkPassword(password)) {
+
+        if (!dbUser.get().checkPassword(password)) {
             msg ="Failed to login " + username;
             logger.error(msg);
             sender.sendLogMessage(msg, MySeverity.ERROR);
             throw new LoiginFail("Wrong credentials!");
         }
-        JwtResponse token = getJWTToken(dbUser);
+        JwtResponse token = getJWTToken(dbUser.get());
         msg = "Token created for " + username + " " + token.getAccessToken();
         logger.info(msg);
         sender.sendLogMessage(msg, MySeverity.INFO);

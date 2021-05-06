@@ -121,8 +121,6 @@ acar-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/model/e
 Ucar-now-inventory-management-service/src/main/java/fh/se/car/rental/fh/model/Car.java,d\8\d8ae398eb7cea999a5341220b20e1bc4d83f9f2d
 ]
 -car-now-sales-oder-management-service/pom.xml,3\9\3939d974b6f4a31bb1a8ec992ef7ace6de41097a
-å
-\car-now-messaging-commons/src/main/java/fh/se/car/rental/fh/messaging/receiver/Receiver.java,8\8\88682e5f600b7239e5f74b9acbaf2112c29bc5b0
 Q
 !car-now-messaging-commons/pom.xml,0\a\0a0c9f999fdd974dd0756575fb29303d5107fb45
 è
@@ -463,8 +461,6 @@ icar-now-user-management-service/src/main/java/fh/se/car/rental/fh/exceptions/Re
 ecar-now-user-signup-service/src/main/java/fh/se/car/rental/fh/exceptions/RecordNotFoundException.java,b\1\b1098d019f29c1451ec62a7b3ff8aff8143c57fa
 á
 WCar_Rental_WS/src/main/java/fh/se/car/rental/fh/exceptions/RecordNotFoundException.java,e\2\e298d0536f8c7005451b0de10700aebfdc1a0d9d
-à
-Xcar-now-messaging-commons/src/main/java/fh/se/car/rental/fh/messaging/sender/Sender.java,7\c\7cea110f6f46ce6bb160a3e6e6f97ceb644cdb8e
 ù
 mcar-now-inventory-management-service/src/main/java/fh/se/car/rental/fh/services/SequenceGeneratorService.java,a\3\a38ed8f84d0e087e7cbd3b543efac6104df49e67
 û
