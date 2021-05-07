@@ -78,7 +78,7 @@ public class BookingController {
 
     @PostMapping("/booking")
     public void add(@Validated @RequestBody Booking booking) {
-        logger.info("Adding booking " + booking.getId() + " " + booking.getCar().getPrice());
+        /*logger.info("Adding booking " + booking.getId() + " " + booking.getCar().getPrice());
         Optional<Car> car = carRepository.findById(booking.getCar().getId());
 
         if (booking.getCurrency() == null) {
@@ -100,7 +100,7 @@ public class BookingController {
         booking.setEndTime(null);
         booking.getCar().setStatus(CarState.INUSE);
         carRepository.save(booking.getCar());
-        bookingService.save(booking);
+        bookingService.save(booking);*/
     }
 
     @PostMapping("/booking/return")

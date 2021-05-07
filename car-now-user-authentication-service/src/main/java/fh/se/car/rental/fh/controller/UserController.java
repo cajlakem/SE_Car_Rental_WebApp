@@ -70,6 +70,42 @@ public class UserController {
         return token;
     }
 
+    @GetMapping("/users")
+    public List<User> queryAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @GetMapping("/users/{id}")
+    public User getUser(@PathVariable String id) {
+        return userRepository
+                .findById(id)
+                .orElseThrow(() -> new RecordNotFoundException(id.toString()));
+    }
+
+    @PutMapping("/users/{id}")
+    public User modifyUser(@RequestBody User newUser, @PathVariable String id) {
+        return userRepository
+                .findById(id)
+                .map(
+                        user -> {
+                            user.setEmail(newUser.getEmail());
+                            user.setMobile(newUser.getMobile());
+                            return userRepository.save(user);
+                        }
+                )
+                .orElseGet(
+                        () -> {
+                            newUser.setId(id);
+                            return userRepository.save(newUser);
+                        }
+                );
+    }
+
+    @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable String id) {
+        userRepository.deleteById(id);
+    }
+
     private JwtResponse getJWTToken(User dbUser) {
         String secretKey = "mySecretKey";
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList(

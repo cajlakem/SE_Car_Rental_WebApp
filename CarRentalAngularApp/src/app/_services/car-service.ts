@@ -16,7 +16,7 @@ export class CarService {
   }
 
   retrieveCars(currencyCode: string): Observable<Array<Car>> {
-    return this.http.get<Array<Car>>(API_URL + 'cars/findByState?state=FREE&currency=' + currencyCode);
+    return this.http.get<Array<Car>>( '/rest/inventorymanagementbackend/cars/findByState?state=FREE&currency=' + currencyCode);
   }
 
   retrieveUserBookings(userId: any): Observable<Array<Booking>> {
@@ -38,11 +38,11 @@ export class CarService {
       status: 'OPEN',
       currency: currency
     };
-    return this.http.post(API_URL + '/rest/salesordermanagementbackend/booking', bookingRequest);
+    return this.http.post('/rest/salesordermanagementbackend/booking', bookingRequest);
   }
 
   returnCar(booking: Booking) {
-    return this.http.post(API_URL + '/rest/salesordermanagementbackend/booking/return', booking);
+    return this.http.post('/rest/salesordermanagementbackend/booking/return', booking);
   }
 
 }

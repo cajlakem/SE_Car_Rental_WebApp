@@ -14,13 +14,13 @@ export class UserService {
   }
 
   getPublicContent(): Observable<User[]> {
-    return this.http.get<User[]>(API_URL + '/users');
+    return this.http.get<User[]>('/rest/userauthorizationtbackend/users');
   }
 
   getCurrentUser(): Observable<User> | null {
-    const userId = this.tokenService.getUser()?.id;
+    const userId = this.tokenService.getUser()?.username;
     if (userId) {
-      return this.http.get<User>(API_URL + '/users/' + userId);
+      return this.http.get<User>('/rest/userauthorizationtbackend/users/' + userId);
     }
     return null;
   }
