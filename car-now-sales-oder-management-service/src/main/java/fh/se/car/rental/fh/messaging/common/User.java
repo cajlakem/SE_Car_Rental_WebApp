@@ -1,74 +1,52 @@
-package fh.se.car.rental.fh.model;
+package fh.se.car.rental.fh.messaging.common;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Document("users")
-public class User {
-    @Id
-    private Long id;
+import java.io.Serializable;
 
+public class User extends CarNowMessage implements Serializable {
+    @JsonProperty("id")
+    private String id;
+    @JsonProperty("userName")
     private String userName;
-
+    @JsonProperty("firstName")
     private String firstName;
-
+    @JsonProperty("lastName")
     private String lastName;
-
-
+    @JsonProperty("active")
     private Boolean active;
+    @JsonProperty("token")
     private String token;
-
+    @JsonProperty("email")
     private String email;
-
+    @JsonProperty("mobile")
     private String mobile;
-
-    public Boolean getActive() {
-        return active;
-    }
-
-    public User setActive(Boolean active) {
-        this.active = active;
-        return this;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public User setPassword(String password) {
-        this.password = password;
-        return this;
-    }
-
+    @JsonProperty("password")
     private String password;
 
-    public User(
-            Long id,
-            String userName,
-            String firstName,
-            String lastName,
-            String password,
-            boolean active,
-            String email
-    ) {
+    public User(){
+
+    }
+
+    public User(String id, String userName, String firstName, String lastName, Boolean active, String token, String email, String mobile) {
         this.id = id;
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.password = password;
         this.active = active;
+        this.token = token;
         this.email = email;
+        this.mobile = mobile;
     }
 
-    public User() {
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
+    public String getId() {
         return id;
+    }
+
+    public User setId(String id) {
+        this.id = id;
+        return this;
     }
 
     public String getUserName() {
@@ -98,6 +76,15 @@ public class User {
         return this;
     }
 
+    public Boolean getActive() {
+        return active;
+    }
+
+    public User setActive(Boolean active) {
+        this.active = active;
+        return this;
+    }
+
     public String getToken() {
         return token;
     }
@@ -105,10 +92,6 @@ public class User {
     public User setToken(String token) {
         this.token = token;
         return this;
-    }
-
-    public boolean checkPassword(String password) {
-        return password.equals(this.password);
     }
 
     public String getEmail() {
@@ -126,6 +109,15 @@ public class User {
 
     public User setMobile(String mobile) {
         this.mobile = mobile;
+        return this;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public User setPassword(String password) {
+        this.password = password;
         return this;
     }
 }

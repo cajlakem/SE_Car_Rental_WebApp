@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javassist.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Validated
-@RequestMapping("/api/v1")
+@RequestMapping("/salesordermanagementbackend/api/v1")
 public class BookingController {
     @Autowired
     private BookingRepository bookingService;
@@ -105,7 +104,7 @@ public class BookingController {
     }
 
     @PostMapping("/booking/return")
-    public void returnCar(@Validated @RequestBody Booking booking) throws NotFoundException {
+    public void returnCar(@Validated @RequestBody Booking booking) {
         logger.info("Return car " + booking.getId());
         Optional<Booking> repositoryBooking = bookingService.findById(booking.getId());
 
@@ -113,7 +112,7 @@ public class BookingController {
             throw new CurrencyNotSet("End Time not set!");
         }
         if (repositoryBooking.isEmpty()) {
-            throw new NotFoundException("Booking entry not found!");
+            throw new RecordNotFoundException("Booking entry not found!");
         }
 
         Booking carBooking = repositoryBooking.get();

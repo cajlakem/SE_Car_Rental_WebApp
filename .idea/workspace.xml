@@ -4,44 +4,54 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db2d3588-c564-4547-b58a-d85afbccf8a1" name="Default Changelist" comment="Reimplementation as microservice architecture">
-      <change afterPath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/CarNowMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/LogEntry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/MessageType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/MySeverity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/config/MessagingConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/receiver/Receiver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/sender/Sender.java" afterDir="false" />
+    <list default="true" id="db2d3588-c564-4547-b58a-d85afbccf8a1" name="Default Changelist" comment="Adding user management service">
+      <change afterPath="$PROJECT_DIR$/car-now-inventory-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/CarNowMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car-now-inventory-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/LogEntry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car-now-inventory-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/MessageType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car-now-inventory-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/MySeverity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car-now-inventory-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car-now-inventory-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/config/MessagingConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car-now-inventory-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/receiver/Receiver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car-now-inventory-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/sender/Sender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/CarNowMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/LogEntry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/MessageType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/MySeverity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/config/MessagingConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/receiver/Receiver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/messaging/common/sender/Sender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/resources/wsdl/cc.client.wsdl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/5/55fb0e8a21ffa2dc4b6524c47587a05e4429b2ed" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/5/55fb0e8a21ffa2dc4b6524c47587a05e4429b2ed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/b/8b300b9eed41ba5065cc0fda28ff7ee7ebc14c4e" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/b/8b300b9eed41ba5065cc0fda28ff7ee7ebc14c4e" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/2/b20530617b647aad079198ee6f5cf1e07d696de5" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/2/b20530617b647aad079198ee6f5cf1e07d696de5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/f/ff83bdb9776d26647a02dc1e6b7cc6d5298a0caf" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/f/ff83bdb9776d26647a02dc1e6b7cc6d5298a0caf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/CarRentalRESTWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/CarRentalRESTWebService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/messaging/common/config/MessagingConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/messaging/common/config/MessagingConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/messaging/common/receiver/Receiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/messaging/common/receiver/Receiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/messaging/common/sender/Sender.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/messaging/common/sender/Sender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/security/JWTAuthorizationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-authentication-service/src/main/java/fh/se/car/rental/fh/security/JWTAuthorizationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-management-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-management-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/CarRentalRESTWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/CarRentalRESTWebService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/controller/BookingController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/controller/CarController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/CurrencyClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/CurrencyClientConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/helper/Convert.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/helper/ConvertResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/helper/ObjectFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/helper/package-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/repository/BookingRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/repository/CarRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/services/DocumentType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-management-service/src/main/java/fh/se/car/rental/fh/services/SequenceGeneratorService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-management-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-management-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-signup-service/src/main/java/fh/se/car/rental/fh/CarRentalRESTWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-signup-service/src/main/java/fh/se/car/rental/fh/CarRentalRESTWebService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-signup-service/src/main/java/fh/se/car/rental/fh/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-signup-service/src/main/java/fh/se/car/rental/fh/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-signup-service/src/main/java/fh/se/car/rental/fh/messaging/common/config/MessagingConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-signup-service/src/main/java/fh/se/car/rental/fh/messaging/common/config/MessagingConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRentalAngularApp/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/CarRentalAngularApp/nginx.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRentalAngularApp/src/app/_services/car-service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/CarRentalAngularApp/src/app/_services/car-service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRentalAngularApp/src/app/_services/currency.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/CarRentalAngularApp/src/app/_services/currency.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-inventory-management-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-inventory-management-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-inventory-management-service/src/main/java/fh/se/car/rental/fh/CarRentalRESTWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-inventory-management-service/src/main/java/fh/se/car/rental/fh/CarRentalRESTWebService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-inventory-management-service/src/main/java/fh/se/car/rental/fh/controller/CarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-inventory-management-service/src/main/java/fh/se/car/rental/fh/controller/CarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-inventory-management-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-inventory-management-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/CarRentalRESTWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/CarRentalRESTWebService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/controller/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/controller/BookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/controller/CarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/controller/CarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/CurrencyClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/CurrencyClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/helper/Convert.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/helper/Convert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/helper/ConvertResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/helper/ConvertResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/helper/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/helper/ObjectFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/helper/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/helper/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/model/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/model/Booking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/model/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/model/Car.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/repository/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/repository/BookingRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/repository/CarRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/repository/CarRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose-microservices/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose-microservices/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -343,7 +353,10 @@
       <workItem from="1620258394566" duration="1137000" />
       <workItem from="1620292562844" duration="2639000" />
       <workItem from="1620317590298" duration="43000" />
-      <workItem from="1620328207486" duration="4728000" />
+      <workItem from="1620328207486" duration="4928000" />
+      <workItem from="1620334680373" duration="343000" />
+      <workItem from="1620335046917" duration="3050000" />
+      <workItem from="1620338163265" duration="7792000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1613696516536</created>
@@ -646,7 +659,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620070359320</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Adding user management service">
+      <created>1620334562928</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1620334562928</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -696,6 +716,7 @@
     <MESSAGE value="Front end fix." />
     <MESSAGE value="Back end BookingController.java fix." />
     <MESSAGE value="Reimplementation as microservice architecture" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reimplementation as microservice architecture" />
+    <MESSAGE value="Adding user management service" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding user management service" />
   </component>
 </project>

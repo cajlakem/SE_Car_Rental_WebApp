@@ -1,6 +1,5 @@
 package fh.se.car.rental.fh.currency.ws.client;
 
-import fh.se.car.rental.fh.controller.BookingController;
 import fh.se.car.rental.fh.currency.ws.client.helper.Convert;
 import fh.se.car.rental.fh.currency.ws.client.helper.ConvertResponse;
 import org.slf4j.Logger;

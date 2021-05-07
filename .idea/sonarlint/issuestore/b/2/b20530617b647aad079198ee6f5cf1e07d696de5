@@ -1,16 +1,16 @@
 
+r	java:S116"QRename this field "SECRET" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿ÛºÄıÿÿÿÿ8‡ÎĞû.
+r	java:S116"QRename this field "PREFIX" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŸÜ›‡ûÿÿÿÿ8‡ÎĞû.
 C
 java:S1170"!Make this final field static too.(¿ÛºÄıÿÿÿÿ8‡ÎĞû.
-8
-java:S36264"Remove this redundant jump.(ûÁİ…8‡ÎĞû.
-r	java:S116"QRename this field "HEADER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ú›¶ùÿÿÿÿ8‡ÎĞû.
 C
 java:S1170"!Make this final field static too.(ŸÜ›‡ûÿÿÿÿ8‡ÎĞû.
 C
 java:S1170"!Make this final field static too.(Ú›¶ùÿÿÿÿ8‡ÎĞû.
-r	java:S116"QRename this field "SECRET" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿ÛºÄıÿÿÿÿ8‡ÎĞû.
 ^
 java:S1126M"AReplace this if-then-else statement by a single return statement.(µÔñ£8ğ¸ãŠ/
+r	java:S116"QRename this field "HEADER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ú›¶ùÿÿÿÿ8‡ÎĞû.
+8
+java:S36264"Remove this redundant jump.(ûÁİ…8‡ÎĞû.
 L
 java:S1172K"*Remove this unused method parameter "res".(ô¹²«ıÿÿÿÿ8‡ÎĞû.
-r	java:S116"QRename this field "PREFIX" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŸÜ›‡ûÿÿÿÿ8‡ÎĞû.

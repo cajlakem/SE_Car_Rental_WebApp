@@ -20,7 +20,7 @@ export class CarService {
   }
 
   retrieveUserBookings(userId: any): Observable<Array<Booking>> {
-    return this.http.get<Array<Booking>>(API_URL + 'bookings/user/' + userId);
+    return this.http.get<Array<Booking>>('/rest/salesordermanagementbackend/bookings/user/' + userId);
   }
 
   bookCar(carToBook: Car, user: User, currency: string): any {
@@ -37,12 +37,12 @@ export class CarService {
       user: user,
       status: 'OPEN',
       currency: currency
-    }
-    return this.http.post(API_URL + 'booking', bookingRequest);
+    };
+    return this.http.post(API_URL + '/rest/salesordermanagementbackend/booking', bookingRequest);
   }
 
   returnCar(booking: Booking) {
-    return this.http.post(API_URL + 'booking/return', booking);
+    return this.http.post(API_URL + '/rest/salesordermanagementbackend/booking/return', booking);
   }
 
 }

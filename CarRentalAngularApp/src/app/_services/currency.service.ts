@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 
-const API_URL = '/rest';
+const API_URL = '/rest/salesordermanagementbackend/';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,6 @@ export class CurrencyService {
   }
 
   retrieveCurrencyCodes(): Observable<string[]> {
-    return this.http.get<string[]>(API_URL + '/currencyCodes');
+    return this.http.get<string[]>(API_URL + 'currencyCodes');
   }
 }

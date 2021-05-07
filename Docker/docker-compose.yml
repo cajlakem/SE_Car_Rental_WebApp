@@ -18,7 +18,16 @@ services:
     environment:
       - REDIS_PASSWORD=password123
     ports:
-      - '6379'
+      - 6379
+    networks:
+      - my_ws
+  userauthorizationtbackend:
+    container_name: userauthorizationtbackend
+    build: ./../car-now-user-authentication-service
+    ports:
+      - 9002:9002
+    depends_on:
+      - authorizationdb
     networks:
       - my_ws
   usermanagementdb:
@@ -34,6 +43,65 @@ services:
       MYSQL_PASSWORD: password
     networks:
       - my_ws
+  signupmanagementbackend:
+    container_name: signupmanagementbackend
+    build: ./../car-now-user-signup-service
+    ports:
+      - 9010:9001
+    depends_on:
+      - userregistrationdb
+      - rabbit1
+      - rabbit2
+    networks:
+      - my_ws
+  angular_frontend:
+    container_name: angular_frontend
+    build: ./../CarRentalAngularApp/
+    ports:
+      - 80:80
+    depends_on:
+      - signupmanagementbackend
+    networks:
+      - my_ws
+  currency_converter_sw:
+    container_name: currency_ws
+    build: ./../CurrencyConverterWebservice
+    ports:
+      - 9090:80
+    networks:
+      - my_ws
+  rabbit1:
+    image: levvel/rabbitclusternode
+    hostname: rabbit1
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - my_ws
+
+  rabbit2:
+    image: levvel/rabbitclusternode
+    hostname: rabbit2
+    links:
+      - rabbit1
+    environment:
+      - CLUSTERED=true
+      - CLUSTER_WITH=rabbit1
+      - RAM_NODE=true
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    networks:
+      - my_ws
+  usermanagementbackend:
+    container_name: usermanagementbackend
+    build: ./../car-now-user-management-service
+    ports:
+      - 9003:9003
+    depends_on:
+      - usermanagementdb
+    networks:
+      - my_ws
   inventorymanagementdb:
     container_name: inventorymanagementdb
     image: postgres
@@ -46,84 +114,24 @@ services:
       - POSTGRES_DB=inventorymanagementdb
     networks:
       - my_ws
-    salesorderdb:
-      image: bitnami/cassandra:latest
-      container_name: salesorderdb
-      environment:
-        - CASSANDRA_PASSWORD_SEEDER=yes
-        - CASSANDRA_PASSWORD=password
-    usermanagementbackend:
-      container_name: usermanagementbackend
-      build: ./../car-now-user-management-service
-      ports:
-        - 9003:9003
-      depends_on:
-        - usermanagementdb
-      networks:
-        - my_ws
-    userauthorizationtbackend:
-      container_name: userauthorizationtbackend
-      build: ./../car-now-user-authentication-service
-      ports:
-        - 9002:9002
-      depends_on:
-        - authorizationdb
-      networks:
-        - my_ws
-    signupmanagementbackend:
-      container_name: signupmanagementbackend
-      build: ./../car-now-user-signup-service
-      ports:
-        - 9001:9001
-      depends_on:
-        - userregistrationdb
-      networks:
-        - my_ws
-    angular_frontend:
-      container_name: angular_frontend
-      build: ./../CarRentalAngularApp/
-      ports:
-        - 80:80
-      depends_on:
-        - signupmanagementbackend
-      networks:
-        - my_ws
-    currency_converter_sw:
-      container_name: currency_ws
-      build: ./../CurrencyConverterWebservice
-      ports:
-        - 9090:80
-      networks:
-        - my_ws
-    activemqservice:
-      image: rmohr/activemq
-      container_name: activemqservice
-      environment:
-        - TZ=CEST
-      ports:
-        - "8161:8161"
-      expose:
-        - 8161
-      networks:
-        - my_ws
-    inventorymanagementbackend:
-      container_name: inventorymanagementbackend
-      build: ./../car-now-inventory-management-service
-      ports:
-        - 9004:9004
-      depends_on:
-        - signupmanagementbackend
-      networks:
-        - my_ws
-    salesordermanagementbackend:
-      container_name: salesordermanagementbackend
-      build: ./../car-now-sales-oder-management-service
-      ports:
-        - 9005:9005
-      depends_on:
-        - signupmanagementbackend
-      networks:
-        - my_ws
-  networks:
-    my_ws:
-      driver: bridge
+  inventorymanagementbackend:
+    container_name: inventorymanagementbackend
+    build: ./../car-now-inventory-management-service
+    ports:
+      - 9004:9004
+    depends_on:
+      - inventorymanagementdb
+    networks:
+      - my_ws
+  salesordermanagementbackend:
+    container_name: salesordermanagementbackend
+    build: ./../car-now-sales-oder-management-service
+    ports:
+      - 9005:9005
+    depends_on:
+      - signupmanagementbackend
+    networks:
+      - my_ws
+networks:
+  my_ws:
+    driver: bridge

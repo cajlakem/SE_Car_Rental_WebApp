@@ -102,6 +102,36 @@ services:
       - usermanagementdb
     networks:
       - my_ws
+  inventorymanagementdb:
+    container_name: inventorymanagementdb
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=inventorymanagementdb
+    networks:
+      - my_ws
+  inventorymanagementbackend:
+    container_name: inventorymanagementbackend
+    build: ./../car-now-inventory-management-service
+    ports:
+      - 9004:9004
+    depends_on:
+      - inventorymanagementdb
+    networks:
+      - my_ws
+  salesordermanagementbackend:
+    container_name: salesordermanagementbackend
+    build: ./../car-now-sales-oder-management-service
+    ports:
+      - 9005:9005
+    depends_on:
+      - signupmanagementbackend
+    networks:
+      - my_ws
 networks:
   my_ws:
     driver: bridge

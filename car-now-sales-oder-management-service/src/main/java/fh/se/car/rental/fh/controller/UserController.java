@@ -24,7 +24,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/salesordermanagementbackend/api/v1")
 @CrossOrigin(origins = "*")
 public class UserController {
     @Autowired

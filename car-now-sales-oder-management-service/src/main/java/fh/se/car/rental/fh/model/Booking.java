@@ -1,19 +1,16 @@
 package fh.se.car.rental.fh.model;
 
 import fh.se.car.rental.fh.model.enums.BookingState;
-import fh.se.car.rental.fh.model.enums.CarState;
 import fh.se.car.rental.fh.model.enums.CurrencyCode;
-
-import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Table
+@Document("bookings")
 public class Booking {
-    @PrimaryKey
+    @Id
     private Long id;
 
     private String remark;
