@@ -15,7 +15,6 @@ pipeline {
         stage('perparation') {
             steps {
                 sh '''
-                docker rm -f $(docker ps -a -q)
                 mvn --version
                 docker --version
                 sonar-scanner --version

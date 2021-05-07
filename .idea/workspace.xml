@@ -318,14 +318,7 @@
       <workItem from="1620413301574" duration="402000" />
       <workItem from="1620414105773" duration="812000" />
       <workItem from="1620415049928" duration="999000" />
-      <workItem from="1620416519869" duration="333000" />
-    </task>
-    <task id="LOCAL-00001" summary="initial commit">
-      <created>1613696516536</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1613696516536</updated>
+      <workItem from="1620416519869" duration="698000" />
     </task>
     <task id="LOCAL-00002" summary="- Authentication&#10;- register and login user">
       <created>1613751246175</created>
@@ -663,7 +656,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620416627460</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Docker compose clean up">
+      <created>1620416859496</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1620416859496</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
