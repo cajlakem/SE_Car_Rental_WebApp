@@ -4,5 +4,6 @@ import java.io.Serializable;
 
 public enum MessageType implements Serializable {
     SIGNUP_MSG,
-    SALES_ODER_CREATION_MSG;
+    SALES_ODER_CREATION_MSG,
+    LOG_MSG;
 }

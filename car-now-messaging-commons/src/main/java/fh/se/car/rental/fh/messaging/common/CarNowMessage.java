@@ -1,17 +1,11 @@
 package fh.se.car.rental.fh.messaging.common;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class CarNowMessage implements Serializable {
     private MessageType type;
-    private Object payload;
-    private String payloadClass;
-
-    public CarNowMessage(MessageType type, Object payload, String payloadClass) {
-        this.type = type;
-        this.payload = payload;
-        this.payloadClass = payloadClass;
-    }
+    private Date creationDate;
 
 
     public MessageType getType() {
@@ -23,21 +17,12 @@ public class CarNowMessage implements Serializable {
         return this;
     }
 
-    public Object getPayload() {
-        return payload;
+    public Date getCreationDate() {
+        return creationDate;
     }
 
-    public CarNowMessage setPayload(Object payload) {
-        this.payload = payload;
-        return this;
-    }
-
-    public String getPayloadClass() {
-        return payloadClass;
-    }
-
-    public CarNowMessage setPayloadClass(String payloadClass) {
-        this.payloadClass = payloadClass;
+    public CarNowMessage setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
         return this;
     }
 }

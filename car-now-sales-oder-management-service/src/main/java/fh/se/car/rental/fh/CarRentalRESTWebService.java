@@ -70,7 +70,7 @@ public class CarRentalRESTWebService {
     InitializingBean initDatabase() {
         return () -> {
             User user = new User(
-                    1L,
+                    "testuser",
                     "testuser",
                     "Dummy",
                     "Dummy",

@@ -64,25 +64,6 @@ public class UserController {
                 .orElseThrow(() -> new RecordNotFoundException(id.toString()));
     }
 
-    @PutMapping("/users/{id}")
-    public User modifyUser(@RequestBody User newUser, @PathVariable Long id) {
-        return userRepository
-                .findById(id)
-                .map(
-                        user -> {
-                            user.setEmail(newUser.getEmail());
-                            user.setMobile(newUser.getMobile());
-                            return userRepository.save(user);
-                        }
-                )
-                .orElseGet(
-                        () -> {
-                            newUser.setId(id);
-                            return userRepository.save(newUser);
-                        }
-                );
-    }
-
     @DeleteMapping("/users/{id}")
     public void deleteUser(@PathVariable Long id) {
         userRepository.deleteById(id);

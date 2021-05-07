@@ -69,8 +69,6 @@
             <version>2.3.5.RELEASE</version>
         </dependency>
     </dependencies>
-
-
     <build>
         <plugins>
             <plugin>
