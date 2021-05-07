@@ -4,35 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db2d3588-c564-4547-b58a-d85afbccf8a1" name="Default Changelist" comment="Docker compose clean up">
-      <change afterPath="$PROJECT_DIR$/car-now-messaging-commons/src/main/java/fh/se/car/rental/fh/messaging/common/LogEntry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car-now-messaging-commons/src/main/java/fh/se/car/rental/fh/messaging/common/MySeverity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car-now-messaging-commons/src/main/java/fh/se/car/rental/fh/messaging/common/config/MessagingConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/6/46552bdf7224fbaea107d98b0ff057733ec2344e" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/6/46552bdf7224fbaea107d98b0ff057733ec2344e" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/0/50aec7f83b69084aab256cb7a1991d434d0f7b16" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/0/50aec7f83b69084aab256cb7a1991d434d0f7b16" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/9/9928ac99c68c361676d183e871c3281f57a7b10c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/5/a5a198f364b93d7dc3bb74f79dce97154b1866b8" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/5/a5a198f364b93d7dc3bb74f79dce97154b1866b8" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/c/ac125c2b6ee231d36efcc24a087d2c8cd0dd8770" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/c/ac125c2b6ee231d36efcc24a087d2c8cd0dd8770" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/1/d1db7730417f8b502138940284eae9b9077de3c5" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/1/d1db7730417f8b502138940284eae9b9077de3c5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-messaging-commons/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-messaging-commons/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-messaging-commons/src/main/java/fh/se/car/rental/fh/messaging/common/CarNowMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-messaging-commons/src/main/java/fh/se/car/rental/fh/messaging/common/CarNowMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-messaging-commons/src/main/java/fh/se/car/rental/fh/messaging/common/MessageType.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-messaging-commons/src/main/java/fh/se/car/rental/fh/messaging/common/MessageType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-messaging-commons/src/main/java/fh/se/car/rental/fh/messaging/common/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-messaging-commons/src/main/java/fh/se/car/rental/fh/messaging/common/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-messaging-commons/src/main/java/fh/se/car/rental/fh/messaging/common/receiver/Receiver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-messaging-commons/src/main/java/fh/se/car/rental/fh/messaging/common/sender/Sender.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-messaging-commons/src/main/java/fh/se/car/rental/fh/messaging/common/sender/Sender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/CarRentalRESTWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/CarRentalRESTWebService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/controller/helper/JwtResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/controller/helper/JwtResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/helper/Convert.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/helper/Convert.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/helper/ConvertResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/helper/ConvertResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/helper/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/helper/ObjectFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/helper/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/currency/ws/client/helper/package-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-sales-oder-management-service/src/main/java/fh/se/car/rental/fh/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car-now-user-signup-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/car-now-user-signup-service/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="db2d3588-c564-4547-b58a-d85afbccf8a1" name="Default Changelist" comment="Docker compose clean up" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -343,7 +315,7 @@
       <workItem from="1620411784311" duration="1154000" />
       <workItem from="1620413301574" duration="402000" />
       <workItem from="1620414105773" duration="812000" />
-      <workItem from="1620415049928" duration="423000" />
+      <workItem from="1620415049928" duration="999000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1613696516536</created>
@@ -674,7 +646,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620350173271</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Docker compose clean up">
+      <created>1620415716664</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1620415716664</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

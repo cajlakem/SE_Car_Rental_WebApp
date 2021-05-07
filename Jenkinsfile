@@ -74,6 +74,7 @@ pipeline {
             steps {
                     dir('docker-compose-microservices'){
                         sh 'docker-compose down'
+                        sh 'docker rm -f $(docker ps -a -q)'
                         sh 'docker-compose up -d --build'
                 }
             }
