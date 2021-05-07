@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db2d3588-c564-4547-b58a-d85afbccf8a1" name="Default Changelist" comment="Docker compose clean up" />
+    <list default="true" id="db2d3588-c564-4547-b58a-d85afbccf8a1" name="Default Changelist" comment="Docker compose clean up">
+      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,7 +66,7 @@
     <property name="jdk.selected.JAVA_MODULE" value="14" />
     <property name="jdk.selected.PLUGIN_MODULE" value="IntelliJ IDEA IU-202.7660.26" />
     <property name="jdk.selected.PYTHON_MODULE" value="Python 3.9 (CC_Project_Work_3)" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/car-now-messaging-commons/src/main/java/fh/se/car/rental/fh/messaging" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -316,6 +318,7 @@
       <workItem from="1620413301574" duration="402000" />
       <workItem from="1620414105773" duration="812000" />
       <workItem from="1620415049928" duration="999000" />
+      <workItem from="1620416519869" duration="333000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1613696516536</created>
@@ -653,7 +656,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620415716664</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Docker compose clean up">
+      <created>1620416627460</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1620416627460</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -15,6 +15,7 @@ pipeline {
         stage('perparation') {
             steps {
                 sh '''
+                docker rm -f $(docker ps -a -q)
                 mvn --version
                 docker --version
                 sonar-scanner --version
@@ -74,7 +75,6 @@ pipeline {
             steps {
                     dir('docker-compose-microservices'){
                         sh 'docker-compose down'
-                        sh 'docker rm -f $(docker ps -a -q)'
                         sh 'docker-compose up -d --build'
                 }
             }
