@@ -158,7 +158,6 @@ public class BookingController {
     @GetMapping("/bookings/user/{id}")
     public List<Booking> getUser(@PathVariable String id) {
         logger.info("Getting bookings from " + id);
-        //return bookingService.findAll();
         return bookingService.findByUserId(id).orElseThrow(() -> new RecordNotFoundException(id.toString()));
     }
 
