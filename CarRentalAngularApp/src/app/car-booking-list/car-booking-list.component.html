@@ -2,7 +2,9 @@
   <ul>
     <li class="car-list-headings">
       <div class="car-list-cell">Car</div>
+      <div class="car-list-cell">Plate</div>
       <div class="car-list-cell">Start Date</div>
+      <div class="car-list-cell">End Date</div>
       <div class="car-list-cell">Price</div>
       <div class="car-list-cell">Status</div>
       <div class="car-list-cell"></div>
@@ -14,7 +16,9 @@
       >
         {{booking.car.label}}
       </div>
+      <div class="car-list-cell"> {{booking.car.licensePlate}} </div>
       <div class="car-list-cell"> {{booking.startTime | date: 'dd:MM:YY hh:mm'}}</div>
+      <div class="car-list-cell"> {{booking.endTime | date: 'dd:MM:YY hh:mm'}}</div>
       <div class="car-list-cell"> {{booking.price + ' ' + booking.currency}} </div>
       <div class="car-list-cell">
         <fa-icon *ngIf="isCarFree(booking.status)" style="color: darkseagreen; margin-right: 5px;"

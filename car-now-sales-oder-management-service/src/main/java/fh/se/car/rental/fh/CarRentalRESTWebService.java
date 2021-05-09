@@ -79,13 +79,14 @@ public class CarRentalRESTWebService {
                     "emir@cajlakovic"
             );
             userRepository.save(user);
-            Car car = new Car(6L, "407", "Pug", 454D, "W-sdfg43", CarState.FREE, CurrencyCode.USD);
+            carRepository.deleteAll();
+            Car car = new Car("W-sdfg43", "407", "Pug", 454D, "W-sdfg43", CarState.FREE, CurrencyCode.USD);
             carRepository.save(car);
             car =
-                    new Car(11L, "Passat", "VW", 895D, "W-651988", CarState.FREE, CurrencyCode.USD);
+                    new Car("W-651988", "Passat", "VW", 895D, "W-651988", CarState.FREE, CurrencyCode.USD);
             carRepository.save(car);
             car =
-                    new Car(12L, "Z4", "BMW", 356D, "W-626265", CarState.FREE, CurrencyCode.USD);
+                    new Car("W-626265", "Z4", "BMW", 356D, "W-626265", CarState.FREE, CurrencyCode.USD);
             carRepository.save(car);
             //currencyClient.convertCurrency("EUR", 100D);
         };

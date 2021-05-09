@@ -54,7 +54,7 @@ public class CarController {
     @PostMapping("/car")
     public void add(@Validated @RequestBody Car car) {
         logger.info("Adding car " + car.getLabel());
-        Optional<Car> dbCar = carService.findById(car.getId());
+        Optional<Car> dbCar = carService.findById(car.getLicensePlate());
         if (dbCar != null) {
             String msg = car.getLabel() + " already in use!";
             logger.error(msg);

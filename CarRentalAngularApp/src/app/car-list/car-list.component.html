@@ -1,7 +1,7 @@
 <ul>
   <li class="car-list-headings">
     <div class="car-list-cell">Car</div>
-    <div class="car-list-cell">Vendor</div>
+    <div class="car-list-cell">Plate</div>
     <div class="car-list-cell">Price</div>
     <div class="car-list-cell">Status</div>
     <div class="car-list-cell" style="min-width: 120px;"></div>
@@ -11,9 +11,9 @@
     <div class="car-list-cell"
          style="font-weight: bold"
     >
-      {{car.label}}
+      {{car.label + ' ' + car.vendor}}
     </div>
-    <div class="car-list-cell"> {{car.vendor}}</div>
+    <div class="car-list-cell"> {{car.licensePlate}}</div>
     <div class="car-list-cell"> {{car.price + ' ' + car.currency}} </div>
     <div class="car-list-cell">
       <fa-icon *ngIf="isCarFree(car.status)" style="color: darkseagreen; margin-right: 5px;"

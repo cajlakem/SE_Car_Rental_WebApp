@@ -2,15 +2,17 @@ package fh.se.car.rental.fh.model;
 
 import fh.se.car.rental.fh.model.enums.CarState;
 import fh.se.car.rental.fh.model.enums.CurrencyCode;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
 
+@ToString
 @Document("cars")
 public class Car {
     @Id
-    private Long id;
+    private String id;
 
 
     private String label;
@@ -29,7 +31,7 @@ public class Car {
     private CurrencyCode currency;
 
     public Car(
-            Long id,
+            String id,
             @NotNull(message = "Username cannot be null") String label,
             @NotNull(message = "Vendor cannot be null") String vendor,
             @NotNull(message = "Price cannot be null") Double price,
@@ -67,15 +69,6 @@ public class Car {
         return this;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public Car setId(Long id) {
-        this.id = id;
-        return this;
-    }
-
     public String getLabel() {
         return label;
     }
@@ -109,6 +102,15 @@ public class Car {
 
     public Car setCurrency(CurrencyCode currency) {
         this.currency = currency;
+        return this;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public Car setId(String id) {
+        this.id = id;
         return this;
     }
 }

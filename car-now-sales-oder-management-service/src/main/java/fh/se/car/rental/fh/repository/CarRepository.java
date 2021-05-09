@@ -5,6 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
 
-public interface CarRepository extends MongoRepository<Car, Long> {
+public interface CarRepository extends MongoRepository<Car, String> {
     Optional<Car> findByLicensePlate(String licensePlate);
 }

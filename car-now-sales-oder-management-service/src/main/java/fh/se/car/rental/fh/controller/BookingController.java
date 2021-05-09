@@ -92,7 +92,10 @@ public class BookingController {
 
     @PostMapping("/booking")
     public void add(@RequestBody Booking booking, Errors errors) {
-            logger.info("Adding booking " + booking.getId() + " " + booking.getCar().getPrice());
+            logger.info("Adding booking " + booking.getCar().getPrice());
+            for(Car car : carRepository.findAll()){
+                logger.info(car.toString());
+            }
             Optional<Car> car = carRepository.findByLicensePlate(booking.getCar().getLicensePlate());
 
             if (booking.getCurrency() == null) {
@@ -116,14 +119,14 @@ public class BookingController {
             booking.setLabel("");
             booking.setRemark("");
             booking.setEndTime(null);
-            booking.getCar().setStatus(CarState.INUSE);
+            car.get().setStatus(CarState.INUSE);
             long leftLimit = 1L;
             long rightLimit = 10000000L;
             long generatedLong = leftLimit + (long) (Math.random() * (rightLimit - leftLimit));
             booking.setId(generatedLong);
             booking.setStatus(BookingState.IN_PROGRESS);
 
-            carRepository.save(booking.getCar());
+            carRepository.save(car.get());
             Booking dbBooking = bookingService.save(booking);
             logger.info(dbBooking.toString());
             CarUpdate carUpdate = new CarUpdate(booking.getCar().getLicensePlate(), dbBooking.getId());
@@ -135,6 +138,8 @@ public class BookingController {
     public void returnCar(@Validated @RequestBody Booking booking) {
         logger.info("Return car " + booking.getId());
         Optional<Booking> repositoryBooking = bookingService.findById(booking.getId());
+        Optional<Car> car = carRepository.findByLicensePlate(booking.getCar().getLicensePlate());
+
 
         if (booking.getEndTime() == null) {
             throw new CurrencyNotSet("End Time not set!");
@@ -146,9 +151,9 @@ public class BookingController {
         Booking carBooking = repositoryBooking.get();
         carBooking.setEndTime(booking.getEndTime());
         carBooking.setStatus(BookingState.CLOSED);
-        carBooking.getCar().setStatus(CarState.FREE);
-
-        carRepository.save(carBooking.getCar());
+        car.get().setStatus(CarState.FREE);
+        carRepository.save(car.get());
+        //carRepository.save(carBooking.getCar());
         bookingService.save(carBooking);
         CarUpdateFree carUpdateFree = new CarUpdateFree(booking.getCar().getLicensePlate(), carBooking.getId());
         logger.info("Returning car "+carUpdateFree.toString());
