@@ -1,7 +1,7 @@
 import {Booking} from './Booking';
 
 export class User {
-  id: number;
+  id: string;
   userName: string;
   firstName: string;
   lastName: string;

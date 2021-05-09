@@ -1,9 +1,10 @@
 package fh.se.car.rental.fh.controller;
 import fh.se.car.rental.fh.exceptions.CredentialsWrong;
 import fh.se.car.rental.fh.exceptions.UsernameAlreadyInUse;
-import fh.se.car.rental.fh.messaging.common.MessageType;
-import fh.se.car.rental.fh.messaging.common.MySeverity;
 import fh.se.car.rental.fh.messaging.common.config.MessagingConfig;
+import fh.se.car.rental.fh.messaging.common.enums.MessageType;
+import fh.se.car.rental.fh.messaging.common.enums.MySeverity;
+import fh.se.car.rental.fh.messaging.common.events.user.UserUpdate;
 import fh.se.car.rental.fh.messaging.common.sender.Sender;
 import fh.se.car.rental.fh.model.User;
 import fh.se.car.rental.fh.repository.UserRepository;
@@ -46,7 +47,7 @@ public class UserController {
             throw new UsernameAlreadyInUse(msg);
         }
         newUser.setPassword(reenteredPassword);
-        fh.se.car.rental.fh.messaging.common.User userMessage = new fh.se.car.rental.fh.messaging.common.User();
+        UserUpdate userMessage = new UserUpdate();
         userMessage.setType(MessageType.SIGNUP_MSG);
         userMessage.setCreationDate(new Date());
         userMessage.setUserName(newUser.getUserName());

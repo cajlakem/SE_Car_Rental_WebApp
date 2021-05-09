@@ -4,7 +4,7 @@ package fh.se.car.rental.fh.controller;
 import fh.se.car.rental.fh.controller.helper.JwtResponse;
 import fh.se.car.rental.fh.exceptions.LoiginFail;
 import fh.se.car.rental.fh.exceptions.RecordNotFoundException;
-import fh.se.car.rental.fh.messaging.common.MySeverity;
+import fh.se.car.rental.fh.messaging.common.enums.MySeverity;
 import fh.se.car.rental.fh.messaging.common.sender.Sender;
 import fh.se.car.rental.fh.model.User;
 import fh.se.car.rental.fh.repository.UserRepository;

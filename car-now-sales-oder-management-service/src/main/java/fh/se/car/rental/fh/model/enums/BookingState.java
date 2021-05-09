@@ -1,8 +1,8 @@
 package fh.se.car.rental.fh.model.enums;
 
 public enum BookingState {
-    OPEN,
     IN_PROGRESS,
+    BOOKED,
     STORNO,
     CLOSED
 }

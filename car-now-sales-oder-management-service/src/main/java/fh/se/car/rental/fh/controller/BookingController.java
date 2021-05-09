@@ -12,6 +12,7 @@ import fh.se.car.rental.fh.model.enums.CurrencyCode;
 import fh.se.car.rental.fh.repository.BookingRepository;
 import fh.se.car.rental.fh.repository.CarRepository;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,8 +20,12 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @Validated
@@ -77,30 +82,37 @@ public class BookingController {
     }
 
     @PostMapping("/booking")
-    public void add(@Validated @RequestBody Booking booking) {
-        /*logger.info("Adding booking " + booking.getId() + " " + booking.getCar().getPrice());
-        Optional<Car> car = carRepository.findById(booking.getCar().getId());
+    public void add(@RequestBody Booking booking, Errors errors) {
+        try {
+            logger.info("Adding booking " + booking.getId() + " " + booking.getCar().getPrice());
+            Optional<Car> car = carRepository.findById(booking.getCar().getId());
+            logger.info("Car " + car.get().getStatus());
 
-        if (booking.getCurrency() == null) {
-            throw new CurrencyNotSet("Currency not set!");
-        }
-        if (car.isPresent()) {
-            if (!car.get().getStatus().name().equals(CarState.FREE.name())) {
-                String msg = booking.getId() + " already in use!";
-                logger.error(msg);
-                throw new CarLabelAlreadyInUse(msg);
+            if (booking.getCurrency() == null) {
+                throw new CurrencyNotSet("Currency not set!");
             }
-        }
+            if (car.isPresent()) {
+                if (!car.get().getStatus().name().equals(CarState.FREE.name())) {
+                    String msg = booking.getId() + " already in use!";
+                    logger.error(msg);
+                    throw new CarLabelAlreadyInUse(msg);
+                }
+            }
 
-        booking.setPrice(
-                currencyClient
-                        .convertCurrency(booking.getCurrency().name(), booking.getCar().getPrice())
-                        .getConvertResult()
-        );
-        booking.setEndTime(null);
-        booking.getCar().setStatus(CarState.INUSE);
-        carRepository.save(booking.getCar());
-        bookingService.save(booking);*/
+            booking.setPrice(
+                    currencyClient
+                            .convertCurrency(booking.getCurrency().name(), booking.getCar().getPrice())
+                            .getConvertResult()
+            );
+            booking.setEndTime(null);
+            booking.getCar().setStatus(CarState.INUSE);
+            booking.setId(System.currentTimeMillis());
+            booking.setStatus(BookingState.IN_PROGRESS);
+            carRepository.save(booking.getCar());
+            bookingService.save(booking);
+        }catch (Exception exception){
+            logger.error("Failed to create sales order "+exception.getMessage());
+        }
     }
 
     @PostMapping("/booking/return")
@@ -125,10 +137,13 @@ public class BookingController {
     }
 
     @GetMapping("/bookings/user/{id}")
-    public List<Booking> getUser(@PathVariable Long id) {
-        System.out.println(bookingService.findByUserId(id).get());
-        return bookingService
-                .findByUserId(id)
-                .orElseThrow(() -> new RecordNotFoundException(id.toString()));
+    public List<Booking> getUser(@PathVariable String id) {
+        logger.info("Getting bookings from " + id);
+        return bookingService.findByUserId(id).orElseThrow(() -> new RecordNotFoundException(id.toString()));
+    }
+
+    @ExceptionHandler
+    void handleIllegalArgumentException(IllegalArgumentException e, HttpServletResponse response) throws IOException {
+        response.sendError(HttpStatus.BAD_REQUEST.value());
     }
 }

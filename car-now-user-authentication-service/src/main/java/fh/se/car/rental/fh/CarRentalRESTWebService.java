@@ -83,7 +83,25 @@ public class CarRentalRESTWebService {
         return new Queue(MessagingConfig.SIGN_UP_2_AUTHENTICATION);
     }
 
+    @Bean
+    public Queue appQueueSOMgt() {
+        return new Queue(MessagingConfig.SALES_ORDER_UPDATE);
+    }
 
+    @Bean
+    public Queue appQueueCar() {
+        return new Queue(MessagingConfig.CAR_UPDATE);
+    }
+
+    @Bean
+    public Binding declareBindingCar() {
+        return BindingBuilder.bind(appQueueCar()).to(appExchange()).with(MessagingConfig.CAR_UPDATE_KEY);
+    }
+
+    @Bean
+    public Binding declareBindingSO() {
+        return BindingBuilder.bind(appQueueSOMgt()).to(appExchange()).with(MessagingConfig.SO_UPDATE);
+    }
 
     @Bean
     public Binding declareBindingGeneric() {
@@ -116,13 +134,13 @@ public class CarRentalRESTWebService {
     InitializingBean initDatabase() {
         return () -> {
             User user = new User(
-                    "test",
-                    "test",
+                    "testuser",
+                    "testuser",
                     "Dummy",
                     "Dummy",
                     "test",
                     true,
-                    "emir@cajlakovic"
+                    "emir@gmail.com"
             );
             userRepository.save(user);
             Logger logger = LoggerFactory.getLogger(CarRentalRESTWebService.class);

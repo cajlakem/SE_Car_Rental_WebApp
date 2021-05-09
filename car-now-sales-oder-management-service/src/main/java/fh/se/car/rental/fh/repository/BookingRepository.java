@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BookingRepository extends MongoRepository<Booking, Long> {
-    Optional<List<Booking>> findByUserId(Long userId);
+    Optional<List<Booking>> findByUserId(String id);
 }

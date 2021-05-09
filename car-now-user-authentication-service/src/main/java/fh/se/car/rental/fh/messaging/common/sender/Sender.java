@@ -1,8 +1,8 @@
 package fh.se.car.rental.fh.messaging.common.sender;
-import fh.se.car.rental.fh.messaging.common.LogEntry;
-import fh.se.car.rental.fh.messaging.common.MessageType;
-import fh.se.car.rental.fh.messaging.common.MySeverity;
-import fh.se.car.rental.fh.messaging.common.config.MessagingConfig;
+
+import fh.se.car.rental.fh.messaging.common.events.log.LogEntry;
+import fh.se.car.rental.fh.messaging.common.enums.MessageType;
+import fh.se.car.rental.fh.messaging.common.enums.MySeverity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -36,6 +36,6 @@ public class Sender {
         logEntry.setSeverity(severity);
         logEntry.setMicroserviceName(serviceName);
         logEntry.setMessage(logMessage);
-        //rabbitTemplate.convertAndSend(MessagingConfig.EXCHANGE_NAME, MessagingConfig.LOGGING_QUEUE, logEntry);
+        //rabbitTemplate.convertAndSend(MessagingConfig.EXCHANGE_NAME, MessagingConfig., logEntry);
     }
 }

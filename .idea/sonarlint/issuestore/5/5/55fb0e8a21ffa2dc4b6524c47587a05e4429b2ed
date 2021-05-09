@@ -1,7 +1,7 @@
 
-}
-java:S1128"[Remove this unused import 'org.springframework.boot.autoconfigure.EnableAutoConfiguration'.(æèşŞøÿÿÿÿ8àŒİ›”/
+q
+java:S1128"QRemove this unused import 'org.springframework.context.annotation.ComponentScan'.(æëòÒûÿÿÿÿ8àŒİ›”/
+{
+java:S1128"[Remove this unused import 'org.springframework.boot.autoconfigure.EnableAutoConfiguration'.(æèşŞøÿÿÿÿ8àŒİ›”/
 s
-java:S1128"QRemove this unused import 'org.springframework.context.annotation.ComponentScan'.(æëòÒûÿÿÿÿ8àŒİ›”/
-u
-java:S1128"SRemove this unused import 'fh.se.car.rental.fh.messaging.common.receiver.Receiver'.(åĞÅÈşÿÿÿÿ8àŒİ›”/
+java:S1128"SRemove this unused import 'fh.se.car.rental.fh.messaging.common.receiver.Receiver'.(åĞÅÈşÿÿÿÿ8àŒİ›”/

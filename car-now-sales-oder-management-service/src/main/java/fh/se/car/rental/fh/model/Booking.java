@@ -3,7 +3,6 @@ package fh.se.car.rental.fh.model;
 import fh.se.car.rental.fh.model.enums.BookingState;
 import fh.se.car.rental.fh.model.enums.CurrencyCode;
 import java.util.Date;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -38,14 +37,14 @@ public class Booking {
     public Booking(
             Long id,
             String remark,
-            @NotNull(message = "Label cannot be null") String label,
-            @NotNull(message = "StartTime cannot be null") Date startTime,
+            String label,
+            Date startTime,
             Date endTime,
-            @NotNull(message = "Price cannot be null") Double price,
-            @NotNull(message = "Car cannot be null") Car car,
-            @NotNull(message = "User cannot be null") User user,
-            @NotNull(message = "state cannot be null") BookingState status,
-            @NotNull(message = "currency cannot be null") CurrencyCode currency
+            Double price,
+            Car car,
+            User user,
+            BookingState status,
+            CurrencyCode currency
     ) {
         this.id = id;
         this.remark = remark;

@@ -35,7 +35,7 @@ export class CarService {
       price: 0,
       car: carToBook,
       user: user,
-      status: 'OPEN',
+      status: 'IN_PROGRESS',
       currency: currency
     };
     return this.http.post('/rest/salesordermanagementbackend/booking', bookingRequest);
