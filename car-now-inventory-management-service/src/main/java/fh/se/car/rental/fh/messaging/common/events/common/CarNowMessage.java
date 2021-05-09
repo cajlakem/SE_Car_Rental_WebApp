@@ -10,6 +10,7 @@ public class CarNowMessage implements Serializable {
     private Date creationDate;
 
 
+
     public MessageType getType() {
         return type;
     }

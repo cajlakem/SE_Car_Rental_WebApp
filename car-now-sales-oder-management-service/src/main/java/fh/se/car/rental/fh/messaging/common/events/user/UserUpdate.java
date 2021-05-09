@@ -2,9 +2,11 @@ package fh.se.car.rental.fh.messaging.common.events.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import fh.se.car.rental.fh.messaging.common.events.common.CarNowMessage;
+import lombok.ToString;
 
 import java.io.Serializable;
 
+@ToString
 public class UserUpdate extends CarNowMessage implements Serializable {
     @JsonProperty("id")
     private String id;

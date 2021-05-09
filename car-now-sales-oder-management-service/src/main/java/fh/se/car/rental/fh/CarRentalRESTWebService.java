@@ -168,6 +168,16 @@ public class CarRentalRESTWebService {
     }
 
     @Bean
+    public Queue appQueueCarFree() {
+        return new Queue(MessagingConfig.CAR_UPDATE_FREE);
+    }
+
+    @Bean
+    public Binding declareBindingCarFree() {
+        return BindingBuilder.bind(appQueueCarFree()).to(appExchange()).with(MessagingConfig.CAR_UPDATE_FREE_KEY);
+    }
+
+    @Bean
     public Binding declareBindingCar() {
         return BindingBuilder.bind(appQueueCar()).to(appExchange()).with(MessagingConfig.CAR_UPDATE_KEY);
     }

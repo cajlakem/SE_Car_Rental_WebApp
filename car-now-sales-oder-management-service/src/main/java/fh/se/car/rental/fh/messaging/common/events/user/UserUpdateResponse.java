@@ -2,9 +2,11 @@ package fh.se.car.rental.fh.messaging.common.events.user;
 
 import fh.se.car.rental.fh.messaging.common.events.common.CarNowMessage;
 import fh.se.car.rental.fh.messaging.common.enums.ResponseState;
+import lombok.ToString;
 
 import java.io.Serializable;
 
+@ToString
 public class UserUpdateResponse extends CarNowMessage implements Serializable {
     private ResponseState state;
     private String id;
@@ -16,6 +18,9 @@ public class UserUpdateResponse extends CarNowMessage implements Serializable {
     public UserUpdateResponse setState(ResponseState state) {
         this.state = state;
         return this;
+    }
+
+    public UserUpdateResponse() {
     }
 
     public String getId() {

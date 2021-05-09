@@ -4,6 +4,7 @@ import fh.se.car.rental.fh.messaging.common.config.MessagingConfig;
 import fh.se.car.rental.fh.messaging.common.events.salesorder.BookingCarAvailabilityUpdate;
 import fh.se.car.rental.fh.model.Booking;
 import fh.se.car.rental.fh.model.enums.BookingState;
+import fh.se.car.rental.fh.model.enums.CarState;
 import fh.se.car.rental.fh.repository.BookingRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,10 +24,11 @@ public class Receiver {
 
     @RabbitListener(queues = MessagingConfig.SALES_ORDER_UPDATE)
     public void receiveMessage(final BookingCarAvailabilityUpdate update) {
-        logger.info("Sales order update "+update.getId());
+        logger.info("Sales order update "+update.toString());
         Optional<Booking> booking = bookingRepository.findById(update.getId());
         if(booking.isPresent()){
             booking.get().setStatus(BookingState.BOOKED);
+            booking.get().getCar().setStatus(CarState.INUSE);
             logger.info("Setting sales order "+booking.get().getId()+" to BOOKED");
         }else{
             booking.get().setStatus(BookingState.STORNO);

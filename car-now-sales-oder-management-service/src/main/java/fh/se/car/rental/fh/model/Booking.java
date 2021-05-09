@@ -4,9 +4,11 @@ import fh.se.car.rental.fh.model.enums.BookingState;
 import fh.se.car.rental.fh.model.enums.CurrencyCode;
 import java.util.Date;
 
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+@ToString
 @Document("bookings")
 public class Booking {
     @Id

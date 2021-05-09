@@ -4,8 +4,14 @@ import fh.se.car.rental.fh.currency.ws.client.CurrencyClient;
 import fh.se.car.rental.fh.exceptions.CarLabelAlreadyInUse;
 import fh.se.car.rental.fh.exceptions.CurrencyNotSet;
 import fh.se.car.rental.fh.exceptions.RecordNotFoundException;
+import fh.se.car.rental.fh.messaging.common.config.MessagingConfig;
+import fh.se.car.rental.fh.messaging.common.enums.MySeverity;
+import fh.se.car.rental.fh.messaging.common.events.inventory.CarUpdate;
+import fh.se.car.rental.fh.messaging.common.events.inventory.CarUpdateFree;
+import fh.se.car.rental.fh.messaging.common.sender.Sender;
 import fh.se.car.rental.fh.model.Booking;
 import fh.se.car.rental.fh.model.Car;
+import fh.se.car.rental.fh.model.User;
 import fh.se.car.rental.fh.model.enums.BookingState;
 import fh.se.car.rental.fh.model.enums.CarState;
 import fh.se.car.rental.fh.model.enums.CurrencyCode;
@@ -39,6 +45,9 @@ public class BookingController {
 
     @Autowired
     private CurrencyClient currencyClient;
+
+    @Autowired
+    private Sender sender;
 
     Logger logger = LoggerFactory.getLogger(BookingController.class);
 
@@ -83,10 +92,8 @@ public class BookingController {
 
     @PostMapping("/booking")
     public void add(@RequestBody Booking booking, Errors errors) {
-        try {
             logger.info("Adding booking " + booking.getId() + " " + booking.getCar().getPrice());
-            Optional<Car> car = carRepository.findById(booking.getCar().getId());
-            logger.info("Car " + car.get().getStatus());
+            Optional<Car> car = carRepository.findByLicensePlate(booking.getCar().getLicensePlate());
 
             if (booking.getCurrency() == null) {
                 throw new CurrencyNotSet("Currency not set!");
@@ -104,15 +111,20 @@ public class BookingController {
                             .convertCurrency(booking.getCurrency().name(), booking.getCar().getPrice())
                             .getConvertResult()
             );
+
+
+            booking.setLabel("");
+            booking.setRemark("");
             booking.setEndTime(null);
             booking.getCar().setStatus(CarState.INUSE);
-            booking.setId(System.currentTimeMillis());
+            booking.setId(System.currentTimeMillis()/1000000);
             booking.setStatus(BookingState.IN_PROGRESS);
+            logger.info(booking.toString());
             carRepository.save(booking.getCar());
-            bookingService.save(booking);
-        }catch (Exception exception){
-            logger.error("Failed to create sales order "+exception.getMessage());
-        }
+            Booking dbBooking = bookingService.save(booking);
+            CarUpdate carUpdate = new CarUpdate(booking.getCar().getLicensePlate(), dbBooking.getId());
+            sender.sendMessage(MessagingConfig.EXCHANGE_NAME, MessagingConfig.CAR_UPDATE_KEY, carUpdate);
+            sender.sendLogMessage("A new car update ("+booking.getCar().getLicensePlate()+"!", MySeverity.INFO);
     }
 
     @PostMapping("/booking/return")
@@ -134,11 +146,15 @@ public class BookingController {
 
         carRepository.save(carBooking.getCar());
         bookingService.save(carBooking);
+        CarUpdateFree carUpdateFree = new CarUpdateFree(booking.getCar().getLicensePlate(), carBooking.getId());
+        logger.info("Returning car "+carUpdateFree.toString());
+        sender.sendMessage(MessagingConfig.EXCHANGE_NAME, MessagingConfig.CAR_UPDATE_FREE_KEY, carUpdateFree);
     }
 
     @GetMapping("/bookings/user/{id}")
     public List<Booking> getUser(@PathVariable String id) {
         logger.info("Getting bookings from " + id);
+        //return bookingService.findAll();
         return bookingService.findByUserId(id).orElseThrow(() -> new RecordNotFoundException(id.toString()));
     }
 

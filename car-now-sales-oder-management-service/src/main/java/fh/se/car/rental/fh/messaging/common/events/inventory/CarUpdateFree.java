@@ -1,32 +1,28 @@
 package fh.se.car.rental.fh.messaging.common.events.inventory;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import fh.se.car.rental.fh.messaging.common.events.common.CarNowMessage;
 import lombok.ToString;
 
 import java.io.Serializable;
 
 @ToString
-public class CarUpdate extends CarNowMessage implements Serializable {
-    public CarUpdate() {
-    }
-
+public class CarUpdateFree extends CarNowMessage implements Serializable {
     public String getCarId() {
         return carId;
     }
 
-    public CarUpdate setCarId(String carId) {
+    public CarUpdateFree setCarId(String carId) {
         this.carId = carId;
         return this;
     }
 
-    @JsonProperty("carId")
     private String carId;
-    @JsonProperty("salesOrderId")
     private Long salesOrderId;
 
+    public CarUpdateFree() {
+    }
 
-    public CarUpdate(String carId, Long salesOrderId) {
+    public CarUpdateFree(String carId, Long salesOrderId) {
         this.carId = carId;
         this.salesOrderId = salesOrderId;
     }
@@ -35,7 +31,7 @@ public class CarUpdate extends CarNowMessage implements Serializable {
         return salesOrderId;
     }
 
-    public CarUpdate setSalesOrderId(Long salesOrderId) {
+    public CarUpdateFree setSalesOrderId(Long salesOrderId) {
         this.salesOrderId = salesOrderId;
         return this;
     }

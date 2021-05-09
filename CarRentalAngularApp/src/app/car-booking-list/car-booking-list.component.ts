@@ -36,7 +36,7 @@ export class CarBookingListComponent implements OnInit {
   retrieveUsersBookings() {
     if (this.currentUser) {
       this.carService.retrieveUserBookings(this.currentUser.id).subscribe(bookings => {
-        this.userBookings = bookings.filter((booking) => booking.status === 'IN_PROGRESS');
+        this.userBookings = bookings.filter((booking) => true);
       });
     }
   }

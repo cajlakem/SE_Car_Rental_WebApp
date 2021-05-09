@@ -9,6 +9,10 @@ public class UserUpdateResponse extends CarNowMessage implements Serializable {
     private ResponseState state;
     private String id;
 
+    public UserUpdateResponse() {
+    }
+
+
     public ResponseState getState() {
         return state;
     }
