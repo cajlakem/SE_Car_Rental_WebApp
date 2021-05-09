@@ -24,7 +24,7 @@
         {{booking.status}}
       </div>
       <div class="car-list-cell">
-        <button class="car-list-button btn-primary round booking-button" (click)="returnCar(booking)">
+        <button *ngIf="isBookingOrderBooked(booking.status)" class="car-list-button btn-primary round booking-button" (click)="returnCar(booking)">
           return
         </button>
       </div>

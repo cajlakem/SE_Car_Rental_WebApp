@@ -117,11 +117,15 @@ public class BookingController {
             booking.setRemark("");
             booking.setEndTime(null);
             booking.getCar().setStatus(CarState.INUSE);
-            booking.setId(System.currentTimeMillis()/1000000);
+            long leftLimit = 1L;
+            long rightLimit = 10000000L;
+            long generatedLong = leftLimit + (long) (Math.random() * (rightLimit - leftLimit));
+            booking.setId(generatedLong);
             booking.setStatus(BookingState.IN_PROGRESS);
-            logger.info(booking.toString());
+
             carRepository.save(booking.getCar());
             Booking dbBooking = bookingService.save(booking);
+            logger.info(dbBooking.toString());
             CarUpdate carUpdate = new CarUpdate(booking.getCar().getLicensePlate(), dbBooking.getId());
             sender.sendMessage(MessagingConfig.EXCHANGE_NAME, MessagingConfig.CAR_UPDATE_KEY, carUpdate);
             sender.sendLogMessage("A new car update ("+booking.getCar().getLicensePlate()+"!", MySeverity.INFO);

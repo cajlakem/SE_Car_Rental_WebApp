@@ -36,7 +36,7 @@ export class CarBookingListComponent implements OnInit {
   retrieveUsersBookings() {
     if (this.currentUser) {
       this.carService.retrieveUserBookings(this.currentUser.id).subscribe(bookings => {
-        this.userBookings = bookings.filter((booking) => true);
+        this.userBookings = bookings;
       });
     }
   }
@@ -47,6 +47,10 @@ export class CarBookingListComponent implements OnInit {
 
   hasBookings() {
     return this.userBookings?.length > 0;
+  }
+
+  isBookingOrderBooked(status: string): boolean {
+    return status === 'BOOKED';
   }
 
   returnCar(booking: Booking) {

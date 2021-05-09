@@ -29,9 +29,9 @@ public class Receiver {
         if(booking.isPresent()){
             booking.get().setStatus(BookingState.BOOKED);
             booking.get().getCar().setStatus(CarState.INUSE);
+            bookingRepository.save(booking.get());
             logger.info("Setting sales order "+booking.get().getId()+" to BOOKED");
         }else{
-            booking.get().setStatus(BookingState.STORNO);
             logger.info("Failed to book sales order "+booking.get().getId()+", Car not available");
         }
    }

@@ -37,7 +37,7 @@ public class Receiver {
             availabilityUpdate.setId(carUpdate.getSalesOrderId());
             Optional<Car> car = carRepository.findByLicensePlate(carUpdate.getCarId());
             logger.info("DB Car"+car.get().getLicensePlate());
-            if(car.isPresent()&&(car.get().getStatus() == CarState.FREE)){
+            if(car.isPresent()){
                 car.get().setStatus(CarState.INUSE);
                 carRepository.save(car.get());
                 availabilityUpdate.setState(ResponseState.OK);
@@ -57,7 +57,7 @@ public class Receiver {
         try{
             Optional<Car> car = carRepository.findByLicensePlate(carUpdate.getCarId());
             logger.info("DB Car"+car.get().getLicensePlate());
-            if(car.isPresent()&&(car.get().getStatus() == CarState.FREE)){
+            if(car.isPresent()){
                 car.get().setStatus(CarState.FREE);
                 carRepository.save(car.get());
             }else{
