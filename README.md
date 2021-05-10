@@ -17,7 +17,7 @@ Each part of the application is containerized with docker, the whole system can 
 # How to deploy locally
 
 <code>
-  cd docker-compose-microservices
+  cd docker-compose-microservices</br>
   docker-compose up --build
 </code>
 
