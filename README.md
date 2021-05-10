@@ -1,5 +1,7 @@
 # SE Car Rental WebApp
 
+![alt text](https://drive.google.com/file/d/1kbyKKVoWjBCvPdplkgPzOBc0zBi0mBpC/view?usp=sharing)
+
 We have separated the logic of the backend and created a separate DB for each service (as it can be seen on the architectural overview) and we have used a Rabbit MQ messaging cluster:
 - Sign-up Order Microservice:
   Spring-boot application + MongoDB
