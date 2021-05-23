@@ -27,6 +27,7 @@ pipeline {
             steps {
                 dir('Car_Rental_WS'){
                     sh 'mvn compile'
+                    sh 'mvn prettier:write'
                     sh 'mvn prettier:check' // https://github.com/HubSpot/prettier-maven-plugin
                 }
             }
