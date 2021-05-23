@@ -50,7 +50,7 @@ pipeline {
             when{
                 allOf{
                     expression {
-                        return env.GIT_BRANCH == "main"
+                        return env.GIT_BRANCH == "secure_software_dev"
                     }
                 }
             }
@@ -67,7 +67,7 @@ pipeline {
             when{
                 allOf{
                     expression {
-                        return env.GIT_BRANCH == "main"
+                        return env.GIT_BRANCH == "secure_software_dev"
                     }
                 }
             }
